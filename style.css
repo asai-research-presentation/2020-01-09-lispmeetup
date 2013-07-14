@@ -108,6 +108,7 @@ i,.note {
 }
 
 img {
+    -moz-box-sizing: content-box;
     padding: 2px;
     border-width: 3px;
     border-radius: 3px;
