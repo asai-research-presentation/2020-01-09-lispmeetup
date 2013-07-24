@@ -66,7 +66,7 @@ ol li, ul li {
 
 /* notes */
 
-i,.note {
+.note {
     animation-name: emerge;
     animation-delay: 0s;
     animation-duration: 1s;
@@ -88,7 +88,7 @@ i,.note {
 /* li > i, li > .note { */
 /*     font-size: 70%; */
 /* } */
-.note ol li, .note ul li, i ol li, i ul li {
+.note ol li, .note ul li{
     margin: -0.6em;
     padding: 0em;
 }
