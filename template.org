@@ -9,3 +9,5 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
 #+HTML_POSTAMBLE: nil
 
+
+発表の時はわかってない内容は出さない
