@@ -196,11 +196,19 @@ h2, h3, h4, .outline-text-2 > :not(.note), .outline-text-3 > :not(.note), .outli
     /* animation-iteration-count: infinite; */
 }
 
+
+
 @keyframes emerge {
     from {
+	-moz-transform:translateX(20px);
 	opacity: 0.0;
     }
+    30% {
+	-moz-transform:translateX(0px);
+	opacity: 0.1;
+    }
     to {
+	-moz-transform:translateX(0px);
 	opacity: 1.0;
     }
 }
@@ -230,6 +238,9 @@ img:hover {
 	color: #000000;
     }
     2.5% {
+	color: #ff0000;
+    }
+    12.5% {
 	color: #ff0000;
     }
     35% {
