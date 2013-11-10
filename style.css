@@ -338,6 +338,13 @@ img:hover, .emphasized img {
     text-align: left;
 }
 
+.larger {
+    font-size: larger;
+    line-height:90%;
+    margin: auto;
+    padding: auto;
+}
+
 .smaller {
     font-size: smaller;
     line-height:110%;
