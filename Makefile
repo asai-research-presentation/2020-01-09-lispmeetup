@@ -5,7 +5,7 @@ styles=
 
 .PHONY: all imgs clean allclean
 
-all: presen.org.html compile-main-org.elc imgs
+all: presen.org.html imgs
 
 imgs:
 	make -C img
