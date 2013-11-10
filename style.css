@@ -32,7 +32,7 @@ i {
 
 body {
     font: 22px 'Rounded M+ 1m';
-    line-height: 140%;
+    line-height: 1.25em;
     text-indent: 0.5em;
     background-color: whitesmoke;
 }
@@ -44,7 +44,7 @@ body {
 pre, code {
     font-family: 'Ricty';
     font-size:   13pt;
-    line-height: 13pt;
+    line-height: 1.05em;
     text-indent: 0em;
     padding: 0.5em !important;
 }
@@ -55,6 +55,7 @@ pre, code {
 
 h1 {
     /* font-size: 400%; */
+    line-height: 1.25em;
     text-align: center;
     margin-bottom: 1em;
     font: 'Rounded M+ 1m';
