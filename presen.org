@@ -6,6 +6,7 @@
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
 #+infojs_opt: view:info path:./org-info.js toc:nil ltoc:nil ftoc:nil
 #+infojs_opt: mouse:#eeeeee buttons:nil
+#+HTML_MATHJAX: path:"file:///home/guicho/repos/mathjax/MathJax.js"
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
 #+HTML_POSTAMBLE: nil
 
