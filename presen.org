@@ -1,5 +1,5 @@
-#+title: 
-#+author: 
+#+title: title
+#+author: 浅井 政太郎
 #+latex_class: jsarticle
 #+latex_class_options: [landscape,9pt]
 #+OPTIONS:   H:4 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t

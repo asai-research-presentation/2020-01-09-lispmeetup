@@ -2,6 +2,6 @@
 
 d=$(dirname $0)
 
-cp $d/org-info.js ./
-cp $d/style.css ./
-cp $d/template.org ./
+ls -1 $d | while read line ; do cp -n $d/$line ./ ; done
+
+
