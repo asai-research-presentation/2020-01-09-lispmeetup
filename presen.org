@@ -1,7 +1,5 @@
-#+title: title
-#+author: 浅井 政太郎
-#+latex_class: jsarticle
-#+latex_class_options: [landscape,9pt]
+#+title: Yet Another Org-mode Presentation Script
+#+author: Masataro Asai
 #+OPTIONS:   H:4 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
 #+infojs_opt: view:nil path:./org-info.js toc:nil ltoc:nil ftoc:nil
@@ -9,32 +7,50 @@
 #+HTML_MATHJAX: path:"file://@HOME/repos/mathjax/MathJax.js"
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
 #+HTML_HEAD: <script type="text/javascript" src="./jquery.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="./test.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="./code.js"></script>
 #+HTML_POSTAMBLE: nil
 
-
 #+BEGIN_outline-text-1
-発表の時はわかってない内容は出さない
+test test test
+
+press "n"
 #+END_outline-text-1
 
-* テスト
+* Usage (simple!)
 
-+ n で 次のセクションに移動/リストを表示
-+ s で 好きなセクションに
-+ p で 前のセクションに戻る
++ n -- go to the next section/expand a list
++ p -- back to the previous section
++ s -- pop up an input dialog and go to an arbitrary section
+
+* Dependency
+
++ jQuery 1.10.2 (included)
++ org-mode v8.1 (not presicely)
+  + modify your =site-lisp= in =compile-org-html.el= accordingly
++ Mathjax
+  + also modify the path to the installed MathJax accordingly
+  + if you need it
+  + if you don't, then remove the corresponding line in =presen.org=
++ inotifywait, notify-send
+  + if you use make-periodically
+    + which is a simple script that watches the changes in the directory and MAKE
+      whenever needed
+
+This one is truly a hack. Not meant for the public use.
+Its only virtue is the simplicity; the code of =code.js= currently only has 200 lines.
 
 * test
 
-+ これは
-+ てすと
-+ ですよ
++ This
++ Is
++ A Test
 
-** てすと
+** test
 
-あはは
+HOOA!
 
-* 戻る
+* back
 
 #+BEGIN_CENTER
-もどった
+back to the larger section
 #+END_CENTER
