@@ -4,11 +4,16 @@
 #+latex_class_options: [landscape,9pt]
 #+OPTIONS:   H:4 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
-#+infojs_opt: view:info path:./org-info.js toc:nil ltoc:nil ftoc:nil
+#+infojs_opt: view:nil path:./org-info.js toc:nil ltoc:nil ftoc:nil
 #+infojs_opt: mouse:#eeeeee buttons:nil
 #+HTML_MATHJAX: path:"file://@HOME/repos/mathjax/MathJax.js"
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
+#+HTML_HEAD: <script type="text/javascript" src="./jquery.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="./test.js"></script>
 #+HTML_POSTAMBLE: nil
 
 
+#+BEGIN_outline-text-1
 発表の時はわかってない内容は出さない
+#+END_outline-text-1
+
