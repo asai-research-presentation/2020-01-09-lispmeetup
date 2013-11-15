@@ -63,6 +63,7 @@ function outline(n){
 function outlineContents(n){
     return ".outline-text-"+n+", h"+n;
 }
+
 function container(){
     return Array.prototype.reduce.call(
         arguments,
@@ -73,10 +74,17 @@ function container(){
     );
 }
 
+function unparseSection(id){
+    var re = /outline-container-sec-(.*)/;
+    return (id.match(re)||[null,"1"])[1].split("-");
+}
+
+
 var nullp = $.isEmptyObject;
 var keyManager = {};
 
-function Slide(arg){
+function Slide(arg,prev){
+    this.previous = prev;
     if (!nullp(arg) && arg.length!=0){
         this.current = arg;
         var matched = arg.get(0).className.match(/outline-([0-9]*)/);
@@ -93,6 +101,7 @@ function Slide(arg){
 
 Slide.prototype = {
     current : undefined,
+    previous : undefined,
     level : 1,
     // hide: function(){
     //   this.current.hide();  
@@ -118,18 +127,22 @@ Slide.prototype = {
         this.hideSiblings();
         this.hideChildren();
         this.showSelf();
+        return this;
     },
     nochild : function(){
         return nullp(this.current.children(outline(1+this.level)));
     },
-    up : function(){
-        return new Slide(this.current.parent());
+    new : function(next,sustain){
+        return new Slide(next,(sustain?this.previous:this));
     },
-    down : function(){
-        return new Slide(this.current.children(outline(1+this.level)).first());
+    up : function(sustain){
+        return this.new(this.current.parent(),sustain);
     },
-    left : function(){return new Slide(this.current.prev())},
-    right : function(){return new Slide(this.current.next())},
+    down : function(sustain){
+        return this.new(this.current.children(outline(1+this.level)).first(),sustain);
+    },
+    left : function(sustain){return this.new(this.current.prev(),sustain)},
+    right : function(sustain){return this.new(this.current.next(),sustain)},
     next : function(){
         try{
             return this.down();
@@ -138,18 +151,12 @@ Slide.prototype = {
             return this.right();
         } catch (x) {}
         try{
-            return this.up().right();
+            return this.up().right(true);
         } catch (x) {}
         throw new Error("next");
     },
     prev : function(){
-        try{
-            return this.left();
-        } catch (x) {}
-        try{
-            return this.up();
-        } catch (x) {}
-        throw new Error("prev");
+        return (this.previous || new Error("no previous slide"));
     },
 };
 
@@ -186,13 +193,18 @@ keyManager.p = function(){
 };
 
 keyManager.s = function(){
-    var result = window.prompt("Enter a section No. \nseparated by '.'", "5.2");
+    sectionPrompt("Enter a section No. \nseparated by '.'");
+};
+
+function sectionPrompt(message){
+    var result = window.prompt(message,
+                               unparseSection(slide.current.get(0).id).join("."));
     result = result.split(".");
     try{
         console.log(container.apply(this,result));
-        slide = new Slide($(container.apply(this,result)));
+        slide = slide.new($(container.apply(this,result)));
         slide.show();
     } catch (x) {
-        window.alert(container.apply(this,result) + " does not exists");
+        sectionPrompt(container.apply(this,result) + " does not exists.");
     }
-};
+}
