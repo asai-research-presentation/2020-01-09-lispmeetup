@@ -1,3 +1,15 @@
+////////////////////////////////////////////////////////////////
+////
+//// code.js -- a replacement for org-info.js
+////
+//// Written by Masataro Asai (guicho2.71828@gmail.com)
+//// Licenced under Creative Commons.
+////
+////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////
+// helper functions ////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
 jQuery.fn.visible = function() {
     return this.css('visibility', 'visible');
@@ -79,9 +91,11 @@ function unparseSection(id){
     return (id.match(re)||[null,"1"])[1].split("-");
 }
 
+////////////////////////////////////////////////////////////////
+//// Slide objects /////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
 var nullp = $.isEmptyObject;
-var keyManager = {};
 
 function Slide(arg,prev){
     this.previous = prev;
@@ -156,20 +170,39 @@ Slide.prototype = {
         throw new Error("next");
     },
     prev : function(){
-        return (this.previous || new Error("no previous slide"));
+        if (this.previous){
+            return this.previous;
+        }else{
+            throw new Error("no previous slide");
+        }
     },
 };
 
 var slide;
+
+
+////////////////////////////////////////////////////////////////
+//// Keyboard event handlers ///////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+var keyManager = {};
 
 window.onload = function(){
     $("#content").addClass("outline-1");
     slide = new Slide($("#content"));
     slide.show();
     setExpanders();
+
+    var keystroke = "";
     $(window).keypress(
         function(e){
-            (keyManager[String.fromCharCode(e.charCode)] || $.noop)(e);
+            keystroke = keystroke.concat(String.fromCharCode(e.charCode));
+            var fn = keyManager[keystroke];
+            if (typeof fn == "function"){
+                fn(e);
+                keystroke = "";
+            }
+            console.log(keystroke);
         });
 };
 
@@ -181,21 +214,32 @@ keyManager.n = function(){
         exps.first().click();
     }else{
         console.log(slide.level);
-        slide = slide.next();
-        slide.show();
+        try{
+            slide = slide.next();
+            slide.show();
+        } catch (x) {
+            console.warn("This is the last slide!");
+        }
     }
 };
 
 keyManager.p = function(){
     console.log(slide.level);
-    slide = slide.prev();
-    slide.show();
+    try{
+        slide = slide.prev();
+        slide.show();
+    } catch (x) {
+        console.warn("This is the first slide!");
+    }
 };
 
 keyManager.s = function(){
     sectionPrompt("Enter a section No. \nseparated by '.'");
 };
 
+keyManager.go = function(){
+    sectionPrompt("Enter a section No. \nseparated by '.'");
+};
 function sectionPrompt(message){
     var result = window.prompt(message,
                                unparseSection(slide.current.get(0).id).join("."));
