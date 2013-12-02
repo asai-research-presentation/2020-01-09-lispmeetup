@@ -29,8 +29,9 @@ i {
 }
 
 body {
+    overflow: hidden;
     color: #1C2024;
-    font: 22px 'M+ 2c';
+    font: 26px 'M+ 2c';
     line-height: 1.25em;
     text-indent: 0.5em;
     background-color: #9ab;
@@ -39,16 +40,16 @@ body {
 }
 
 #content {
-    padding: 2em 2em 0em 2em;               /* top から時計回り*/
+    padding: 0em;
 }
 
 pre, code {
     font-family: 'Ricty';
-    font-size:   13pt;
+    font-size:   18pt;
     line-height: 1.05em;
     text-indent: 0em;
     text-shadow: none;
-    background-color: #89A;
+    background-color: #abc;
 }
 
 pre {
@@ -73,7 +74,7 @@ h1 {
 
 h2, h3, h4 {
     text-align: center;
-    margin: 1em;
+    margin: 0 0 1em;
     /* font-weight: normal; */
     text-shadow: 1px 1px 1px lightgray;
 }
@@ -103,6 +104,12 @@ ol li, ul li {
     font-size: 125%;
     line-height: 1.25em;
 }
+
+.xlarge .center {
+    font-size: inherit;
+    line-height: inherit;
+}
+
 
 /* notes */
 
@@ -179,6 +186,9 @@ th.right, td.right {
 
 .right {
     float: right;
+}
+.right p, .center p {
+    margin: 0.3em;
 }
 
 .right img {
@@ -382,8 +392,14 @@ img:hover, .emphasized img {
 }
 
 .xlarge {
-    font-size: xx-large;
+    font-size: 250%;
+    font-weight: bold;
     line-height:110%;
+    text-shadow: 1px 1px 1px lightgray;
+}
+
+.vertical {
+    writing-mode: vertical-rl;
 }
 
 /* taken from bootstrap */

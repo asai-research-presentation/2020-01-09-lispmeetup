@@ -91,6 +91,14 @@ function unparseSection(id){
     return (id.match(re)||[null,"1"])[1].split("-");
 }
 
+function adjustVerticalCenter(){
+    var top = 0.4 * ($(window).height() - $(document.body).height());
+    $(document.body)
+        .delay( 500 )
+        .animate(
+            {"margin-top": ((top > 0) ? top : 0)});
+}
+
 ////////////////////////////////////////////////////////////////
 //// Slide objects /////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
@@ -141,6 +149,7 @@ Slide.prototype = {
         this.hideSiblings();
         this.hideChildren();
         this.showSelf();
+        adjustVerticalCenter();
         return this;
     },
     nochild : function(){
@@ -232,17 +241,18 @@ keyManager.n = function(){
     $(".title").hide();
 
     var exps=$(".expander:visible, .sibling-expander:visible");
-    if(exps.length>0){
-        exps.first().click();
-    }else{
-        console.log(slide.level);
-        try{
+    console.log(slide.level);
+    try{
+        if(exps.length>0){
+            exps.first().click();
+        }else{
             slide = slide.next();
-            slide.show();
-        } catch (x) {
-            console.warn("This is the last slide!");
         }
+        slide.show();
+    } catch (x) {
+        console.warn("This is the last slide!");
     }
+
 };
 
 keyManager.p = function(){
