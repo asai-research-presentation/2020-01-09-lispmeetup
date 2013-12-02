@@ -187,6 +187,16 @@ var slide;
 
 var keyManager = {};
 
+function available_p(e){
+    return ( (32 <= e.charCode && e.charCode <= 126)
+           );
+}
+
+function cancel_p(e){
+    return (e.charCode == 103 && e.ctrlKey) // Ctrl-g
+        || (e.keyCode == 27);  // Esc
+}
+
 window.onload = function(){
     $("#content").addClass("outline-1");
     slide = new Slide($("#content"));
@@ -196,11 +206,23 @@ window.onload = function(){
     var keystroke = "";
     $(window).keypress(
         function(e){
-            keystroke = keystroke.concat(String.fromCharCode(e.charCode));
-            var fn = keyManager[keystroke];
-            if (typeof fn == "function"){
-                fn(e);
+            if (cancel_p(e)){
+                e.stopPropagation();
+                e.preventDefault();
                 keystroke = "";
+            } else if (available_p(e)){
+                keystroke = keystroke.concat(
+                    String.fromCharCode(e.charCode));
+                var fn = keyManager[keystroke];
+                if (typeof fn == "function"){
+                    try{
+                        fn(e);                        
+                    } catch (x) {
+                        console.error(x);
+                    } finally {
+                        keystroke = "";                        
+                    }
+                }
             }
             console.log(keystroke);
         });
