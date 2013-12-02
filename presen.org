@@ -12,7 +12,6 @@
 
 #+LINK: img file:img/%s
 
-
 #+BEGIN_outline-text-1
 test test test
 
@@ -23,24 +22,31 @@ press "n"
 
 + n -- go to the next section/expand a list
 + p -- back to the previous section
-+ s -- pop up an input dialog and go to an arbitrary section
++ s, or "go" -- pop up an input dialog and go to an arbitrary section
++ <Ctrl-g> or <Esc> -- cancel current key strokes
+
+* virtue
+
++ simplicity
+  + -- the code of =code.js= currently only has 200 lines.
++ extensibility
+  + you can easily write your own extension
+  + set a function to =keyManager.<your-key-strokes>=
+  + however, all the char codes of the keystrokes must be within 32..126
+    + Space,!,",...A,B,C,...x,y,z,{,|,~
 
 * Dependency
 
 + jQuery 1.10.2 (included)
 + org-mode v8.1 (not presicely)
-  + modify your =site-lisp= in =compile-org-html.el= accordingly
-+ Mathjax
-  + also modify the path to the installed MathJax accordingly
-  + if you need it
-  + if you don't, then remove the corresponding line in =presen.org=
-+ inotifywait, notify-send
-  + if you use make-periodically
-    + which is a simple script that watches the changes in the directory and MAKE
-      whenever needed
 
-This one is truly a hack. Not meant for the public use.
-Its only virtue is the simplicity; the code of =code.js= currently only has 200 lines.
+** Utility
+
++ ./make-periotically.sh [args]
+  + all arguments are passed to =make=
+  + A simple shell script
+  + Watches the changes in the directory and =make=
+  + dependency : inotifywait, notify-send
 
 * test
 
