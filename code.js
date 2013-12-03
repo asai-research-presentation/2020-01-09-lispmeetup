@@ -91,12 +91,31 @@ function unparseSection(id){
     return (id.match(re)||[null,"1"])[1].split("-");
 }
 
+function clip(low,x,high,when_low,when_high){
+    if (x < low){
+        return when_low || low;
+    }else if (high || x > high){
+        return when_high || high;
+    }else {
+        return x;
+    }
+}
+
 function adjustVerticalCenter(){
     var top = 0.4 * ($(window).height() - $(document.body).height());
-    $(document.body)
-        .delay( 500 )
-        .animate(
-            {"margin-top": ((top > 0) ? top : 0)});
+    var high = 0.2 * $(window).height();
+    if (top > high){
+        $(document.body)
+            .delay( 100 )
+            .animate({"margin-top": high});
+        slide.headline()
+            .delay( 300 )
+            .animate({"margin-bottom": top - high});
+    }else{
+        $(document.body)
+            .delay( 100 )
+            .animate({"margin-top": clip(20,top)});
+    }
 }
 
 ////////////////////////////////////////////////////////////////
@@ -122,12 +141,15 @@ function Slide(arg,prev){
 }
 
 Slide.prototype = {
-    current : undefined,
-    previous : undefined,
+    current : undefined, // jquery object
+    previous : undefined, // Slide object
     level : 1,
     // hide: function(){
     //   this.current.hide();  
     // },
+    headline: function(){
+        return $("h1,h2,h3,h4",slide.current).first();
+    },
     hideParents: function(){
         for(var i = 1;i<this.level;i++){
             $(outlineContents(i)).hide();
