@@ -24,14 +24,15 @@ outline-1, outline-2, outline-3, outline-4 {
 /* } */
 
 i {
-    font-family: 'LMRoman10';
+    font-family: 'LMRoman10',serif;
     font-style: 'Italic';
 }
 
 body {
     overflow: hidden;
     color: #1C2024;
-    font: 26px 'M+ 2c';
+    font-size: 26px;
+    font-family: 'M+ 2c',Helvetica, Arial,'Lucida Grande', Meiryo, メイリオ, sans-serif;
     line-height: 1.25em;
     text-indent: 0.5em;
     background-color: #9ab;
@@ -44,7 +45,7 @@ body {
 }
 
 pre, code {
-    font-family: 'Ricty';
+    font-family: 'Ricty','Ubuntu Mono',monospace;
     font-size:   18pt;
     line-height: 1.05em;
     text-indent: 0em;
