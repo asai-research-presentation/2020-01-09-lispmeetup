@@ -188,9 +188,13 @@ th.right, td.right {
 .right {
     float: right;
 }
-.right p, .center p {
-    margin: 0.3em;
+.alignright {
+    text-align:right;
 }
+
+/* .right p, .center p { */
+/*     margin: 0.3em; */
+/* } */
 
 .right img {
     float: right;
