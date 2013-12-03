@@ -284,3 +284,27 @@ function sectionPrompt(message){
         sectionPrompt(container.apply(this,result) + " does not exists.");
     }
 }
+
+// debug
+
+var debug = false;
+
+function toggleDebug(){
+    if (!debug){
+        debug = true;
+        return (function(){
+                    $(this).addClass("debug-border");
+                });
+    }else{
+        debug = false;
+        return (function(){
+                    $(this).removeClass("debug-border");
+                });
+    }
+}
+
+keyManager.d = function(){
+    $(".outline-1,.outline-2,.outline-3,.outline-4,li,ul,ol,h1,h2,h3,h4,.outline-text-2, .outline-text-3, .outline-text-4")
+        .map(toggleDebug());
+    console.log("debug : "+debug);
+};
