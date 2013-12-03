@@ -7,6 +7,9 @@ styles=
 
 all: presen.org.html imgs
 
+index: all
+	cp -f presen.org.html index.html
+
 imgs:
 	make -C img
 
