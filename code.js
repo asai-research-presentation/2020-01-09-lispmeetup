@@ -3,7 +3,7 @@
 //// code.js -- a replacement for org-info.js
 ////
 //// Written by Masataro Asai (guicho2.71828@gmail.com)
-//// Licenced under Creative Commons.
+//// Licenced under GPLv3.
 ////
 ////////////////////////////////////////////////////////////////
 
