@@ -4,7 +4,9 @@
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
 #+infojs_opt: view:nil path:./org-info.js toc:nil ltoc:nil ftoc:nil
 #+infojs_opt: mouse:#eeeeee buttons:nil
-#+HTML_MATHJAX: path:"file://@HOME/repos/mathjax/MathJax.js"
+#+HTML_MATHJAX: path:"mathjax/MathJax.js"
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="animation.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="colors-and-fonts.css" />
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
 #+HTML_HEAD: <script type="text/javascript" src="./jquery.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="./code.js"></script>
@@ -39,6 +41,8 @@ press "n"
   + set a function to =keyManager.<your-key-strokes>=
   + however, all the char codes of the keystrokes must be within 32..126
     + Space,!,",...A,B,C,...x,y,z,{,|,~
++ LICENSE
+  + GPLv3
 
 * Dependency
 
@@ -58,6 +62,12 @@ press "n"
 + This
 + Is
 + A Test
+
+Mathjax formula:
+
+\[
+ E=mc^2
+\]
 
 ** test
 

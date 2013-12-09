@@ -14,30 +14,13 @@ outline-1, outline-2, outline-3, outline-4 {
 #text-before-first-headline {
     display: none;
 }
-.org-info-js_info-navigation {
-    font-size: 60%;
-}
 
-/* #org-info-js-window { */
-/*     height: 100%; */
-/*     min-height: 100%; */
-/* } */
-
-i {
-    font-family: 'LMRoman10',serif;
-    font-style: 'Italic';
-}
 
 body {
     overflow: hidden;
-    color: #1C2024;
     font-size: 26px;
-    font-family: 'M+ 2c',Helvetica, Arial,'Lucida Grande', Meiryo, メイリオ, sans-serif;
     line-height: 1.25em;
     text-indent: 0.5em;
-    background-color: #9ab;
-    /* background-color: whitesmoke; */
-    text-shadow: 0px 1px 1px #abc;
 }
 
 #content {
@@ -45,43 +28,23 @@ body {
 }
 
 pre, code {
-    font-family: 'Ricty','Ubuntu Mono',monospace;
     font-size:   18pt;
     line-height: 1.05em;
     text-indent: 0em;
-    text-shadow: none;
-    background-color: #abc;
 }
 
 pre {
     padding: 0.5em !important;
 }
+
 code {
-    border: 1px dashed #222222;
-    border-radius: 2px;
     padding: 0.12em;
 }
 
-#org-info-js_console-container, .org-info-js_info-navigation {
-    display: none;
-}
-
-h1 {
+h1, h2, h3, h4 {
     line-height: 1.25em;
     text-align: center;
-    margin-bottom: 1em;
-    text-shadow: 1px 1px 1px lightgray;
-}
-
-h2, h3, h4 {
-    text-align: center;
     margin: 0 0 1em;
-    /* font-weight: normal; */
-    text-shadow: 1px 1px 1px lightgray;
-}
-
-b {
-    text-shadow: 1px 1px 1px lightgray;
 }
 
 .section-number-2, .section-number-3 {
@@ -111,19 +74,9 @@ ol li, ul li {
     line-height: inherit;
 }
 
-
 /* notes */
 
 .note {
-    animation-name: emerge;
-    animation-delay: 0s;
-    animation-duration: 1s;
-    animation-timing-function: ease-in;
-    font-style: italic;
-    font-size: 70%;
-    /* color: #f7f7f7; */
-    /* color: #f0f0f0; */
-    color: #555;
     position: absolute;
     bottom: 10px;
     max-width: 90%;
@@ -153,21 +106,12 @@ ol li, ul li {
     padding: 0px;
 }
 
-
 img {
     -moz-box-sizing: content-box;
-    padding: 2px;
-    border-width: 3px;
-    border-radius: 3px;
-    border-style: solid;
-    border-color: #222;
     max-height: 600px;
     max-width:  100%;
 }
 
-.figure img {
-    background-color: #777;
-}
 /* .maximized { */
 /*     /\* position: relative; *\/ */
 /*     margin: 0 auto; */
@@ -209,12 +153,6 @@ table {
 }
 
 blockquote {
-    font-style: italic;
-    border-style: solid;
-    border-radius: 0.3em;
-    border-width: 1px;
-    border-color: lightgray;
-    box-shadow: 3px 3px 3px #777;
     padding: 0.3em 1em;
 }
 
@@ -222,155 +160,6 @@ blockquote {
     position:absolute;
     bottom: 5%;
     left: 5%;
-}
-
-
-/* animation */
-
-.emerging {
-    animation-name: emergeX;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-}
-
-@keyframes emergeX {
-    from {
-	-moz-transform:translateX(20px);
-	opacity: 0.0;
-    }
-    30% {
-	-moz-transform:translateX(0px);
-	opacity: 0.1;
-    }
-    to {
-	-moz-transform:translateX(0px);
-	opacity: 1.0;
-    }
-}
-
-.emerging-list {
-    animation-name: emergeY;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-}
-
-@keyframes emergeY {
-    from {
-	-moz-transform:translateY(-20px);
-	opacity: 0.0;
-    }
-    30% {
-	-moz-transform:translateY(0px);
-	opacity: 0.1;
-    }
-    to {
-	-moz-transform:translateY(0px);
-	opacity: 1.0;
-    }
-}
-
-li > .li-content:hover {
-    color: #833;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-}
-
-.li-highlighted {
-    animation-name: highlight;
-    animation-duration: 6s;
-    animation-timing-function: ease;
-    animation-iteration-count: infinite;
-}
-
-
-img:hover, .emphasized img {
-    animation-name: highlight-border;
-    animation-duration: 1.8s;
-    animation-timing-function: ease;
-    animation-iteration-count: infinite;
-}
-.twocolumn .left:hover, .twocolumn .right:hover, blockqute:hover {
-    animation-name: highlight-border-black;
-    animation-duration: 2.5s;
-    animation-timing-function: ease;
-    animation-iteration-count: infinite;
-}
-
-@keyframes highlight {
-    0% {
-	color: #000;
-    }
-    2.5% {
-	color: #522;
-    }
-    12.5% {
-	color: #522;
-    }
-    25% {
-	color: #000;
-    }
-    50% {
-	color: #000;
-    }
-    100% {
-	color: #000;
-    }
-}
-
-@keyframes highlight-border {
-    0% {
-	border-color: #222;
-    }
-    5% {
-	border-color: #c00;
-    }
-    70% {
-	border-color: #222;
-    }
-}
-
-@keyframes highlight-border-black {
-    0% {
-	border-color: #000;
-	background-color: #fff;
-    }
-    5% {
-	border-color: #f00;
-	background-color: #fee;
-    }
-    70% {
-	border-color: #000;
-	background-color: #fff;
-    }
-}
-
-
-
-/* twocolumn */
-.twocolumn {
-    /* width: 75%; */
-    padding: auto;
-}
-.twocolumn .left{
-    border-width: 1px;
-    border-radius: 5px;
-    border-style: solid;
-    max-width: 40%;
-    display: inline-block;
-    /* min-width: 40%; */
-    /* margin: 0 0 0 auto; */
-    padding: 0 2.5% 0 0;
-}
-.twocolumn .right{
-    border-width: 1px;
-    border-radius: 5px;
-    border-style: solid;
-    max-width: 40%;
-    display: inline-block;
-    /* min-width: 40%; */
-    /* margin: 0 auto 0 0; */
-    padding: 0 2.5% 0 0;
-    text-align: left;
 }
 
 .smaller {
@@ -407,7 +196,32 @@ img:hover, .emphasized img {
     writing-mode: vertical-rl;
 }
 
-/* taken from bootstrap */
+/* debug */
+
+.debug-border {
+    position: relative;
+}
+
+.debug-border:after {
+    position: absolute;
+    border-color: rgba(255,255,0,0.5);
+    border-width: 1px;
+    border-style: solid;
+    z-index: -1;
+    top: 0;
+    left:0;
+    bottom:0;
+    right:0;
+    content: '';
+}
+
+
+/* //////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////////////////// */
+/* below codes are taken from twitter-bootstrap */
 
 .row {
   margin-left: -20px;
@@ -794,21 +608,3 @@ img:hover, .emphasized img {
   clear: both;
 }
 
-/* debug */
-
-.debug-border {
-    position: relative;
-}
-
-.debug-border:after {
-    position: absolute;
-    border-color: rgba(255,255,0,0.5);
-    border-width: 1px;
-    border-style: solid;
-    z-index: -1;
-    top: 0;
-    left:0;
-    bottom:0;
-    right:0;
-    content: '';
-}

@@ -1,0 +1,91 @@
+/* animation */
+
+.emerging {
+    animation-name: emergeX;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes emergeX {
+    from {
+	-moz-transform:translateX(20px);
+	opacity: 0.0;
+    }
+    30% {
+	-moz-transform:translateX(0px);
+	opacity: 0.1;
+    }
+    to {
+	-moz-transform:translateX(0px);
+	opacity: 1.0;
+    }
+}
+
+.emerging-list {
+    animation-name: emergeY;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes emergeY {
+    from {
+	-moz-transform:translateY(-20px);
+	opacity: 0.0;
+    }
+    30% {
+	-moz-transform:translateY(0px);
+	opacity: 0.1;
+    }
+    to {
+	-moz-transform:translateY(0px);
+	opacity: 1.0;
+    }
+}
+
+@keyframes highlight {
+    0% {
+	color: #000;
+    }
+    2.5% {
+	color: #522;
+    }
+    12.5% {
+	color: #522;
+    }
+    25% {
+	color: #000;
+    }
+    50% {
+	color: #000;
+    }
+    100% {
+	color: #000;
+    }
+}
+
+@keyframes highlight-border {
+    0% {
+	border-color: #222;
+    }
+    5% {
+	border-color: #c00;
+    }
+    70% {
+	border-color: #222;
+    }
+}
+
+@keyframes highlight-border-black {
+    0% {
+	border-color: #000;
+	background-color: #fff;
+    }
+    5% {
+	border-color: #f00;
+	background-color: #fee;
+    }
+    70% {
+	border-color: #000;
+	background-color: #fff;
+    }
+}
