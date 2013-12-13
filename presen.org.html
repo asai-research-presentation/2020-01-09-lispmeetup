@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Yet Another Org-mode Presentation Script</title>
-<!-- 2013-12-02 月 14:31 -->
+<!-- 2013-12-14 土 04:05 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Masataro Asai" />
@@ -86,6 +86,8 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
+<link rel="stylesheet" type="text/css" href="animation.css" />
+<link rel="stylesheet" type="text/css" href="colors-and-fonts.css" />
 <link rel="stylesheet" type="text/css" href="style.css" />
 <script type="text/javascript" src="./jquery.js"></script>
 <script type="text/javascript" src="./code.js"></script>
@@ -135,10 +137,54 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/javascript" src="mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
 </head>
 <body>
 <div id="content">
 <h1 class="title">Yet Another Org-mode Presentation Script</h1>
+<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+
 <div class="outline-text-1">
 <p>
 test test test
@@ -158,56 +204,83 @@ press "n"
 </li>
 <li>p &#x2013; back to the previous section
 </li>
-<li>s &#x2013; pop up an input dialog and go to an arbitrary section
+<li>s, or "go" &#x2013; pop up an input dialog and go to an arbitrary section
+</li>
+<li>&lt;Ctrl-g&gt; or &lt;Esc&gt; &#x2013; cancel current key strokes
 </li>
 </ul>
 </div>
 </div>
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Dependency</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> virtue</h2>
 <div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>simplicity
+<ul class="org-ul">
+<li>&#x2013; the code of <code>code.js</code> currently only has 200 lines.
+</li>
+</ul>
+</li>
+<li>extensibility
+<ul class="org-ul">
+<li>you can easily write your own extension
+</li>
+<li>set a function to <code>keyManager.&lt;your-key-strokes&gt;</code>
+</li>
+<li>however, all the char codes of the keystrokes must be within 32..126
+<ul class="org-ul">
+<li>Space,!,",&#x2026;A,B,C,&#x2026;x,y,z,{,|,~
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>LICENSE
+<ul class="org-ul">
+<li>GPLv3
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Dependency</h2>
+<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>jQuery 1.10.2 (included)
 </li>
 <li>org-mode v8.1 (not presicely)
-<ul class="org-ul">
-<li>modify your <code>site-lisp</code> in <code>compile-org-html.el</code> accordingly
 </li>
 </ul>
-</li>
-<li>Mathjax
-<ul class="org-ul">
-<li>also modify the path to the installed MathJax accordingly
-</li>
-<li>if you need it
-</li>
-<li>if you don't, then remove the corresponding line in <code>presen.org</code>
-</li>
-</ul>
-</li>
-<li>inotifywait, notify-send
-<ul class="org-ul">
-<li>if you use make-periodically
-<ul class="org-ul">
-<li>which is a simple script that watches the changes in the directory and MAKE
-whenever needed
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+</div>
 
-<p>
-This one is truly a hack. Not meant for the public use.
-Its only virtue is the simplicity; the code of <code>code.js</code> currently only has 200 lines.
-</p>
-</div>
-</div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> test</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Utility</h3>
+<div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
+<li>./make-periotically.sh [args]
+<ul class="org-ul">
+<li>all arguments are passed to <code>make</code>
+</li>
+<li>A simple shell script
+</li>
+<li>Watches the changes in the directory and <code>make</code>
+</li>
+<li>dependency : inotifywait, notify-send
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> test</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><a href="http://www.google.com">Link</a>
+</li>
 <li>This
 </li>
 <li>Is
@@ -215,20 +288,30 @@ Its only virtue is the simplicity; the code of <code>code.js</code> currently on
 <li>A Test
 </li>
 </ul>
+
+<p>
+Mathjax formula:
+</p>
+
+<p>
+\[
+ E=mc^2
+\]
+</p>
 </div>
 
-<div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> test</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> test</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 HOOA!
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> back</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> back</h2>
+<div class="outline-text-2" id="text-5">
 <div class="center">
 <p>
 back to the larger section
@@ -239,7 +322,7 @@ back to the larger section
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Masataro Asai</p>
-<p class="date">Created: 2013-12-02 月 14:31</p>
+<p class="date">Created: 2013-12-14 土 04:05</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 23.3.1 (<a href="http://orgmode.org">Org</a> mode 8.1.1)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

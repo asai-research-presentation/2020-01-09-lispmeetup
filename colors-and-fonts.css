@@ -1,4 +1,18 @@
 
+
+a {
+    color: #234;
+}
+a:hover {
+    color: #bcd;
+}
+a:visited {
+    color: #567;
+}
+a:visited:hover {
+    color: #bcd;
+}
+
 i {
     font-family: 'LMRoman10',serif;
     font-style: 'Italic';
