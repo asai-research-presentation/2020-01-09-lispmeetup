@@ -218,11 +218,69 @@ var slide;
 
 var keyManager = {};
 
-function available_p(e){
-    return ( (32 <= e.charCode && e.charCode <= 126)
-           );
-}
+var keystrokeManager = {
+    _stroke: "",
+    _minibuffer: $("<div id='minibuffer'></div>"),
+    _prompt: $("<span id='prompt'></span>"),
+    _input: $("<span id='input'></span>"),
+    reset: function(){
+        this.stroke="";
+        this.prompt.text("");
+        return this;
+    },
+    push: function(c){
+        this.stroke=this.stroke.concat(c);
+        return this;
+    },
+    backspace: function(){
+        this.stroke=this.stroke.slice(0,-1);
+        return this;
+    },
+    setup: function(){
+        this._minibuffer
+            .append(this._prompt)
+            .append(this._input);
+        $("body").prepend(this._minibuffer);
+    },
+    
+    wrapper: function(fn){
+        return function(e){
+            try{
+                enterHandler(
+                    backspaceHandler(
+                        cancelHandler()))(e);
+            } catch (x) {
+                if (x=="enter")
+                    return fn(e);
+                else throw x;
+            } finally {
+                keystrokeManager.reset();
+            }
+        };
+    },
+    query: function(message,fn,def){
+        var old = this._prompt.text();
+        this._prompt.text(message);
+        this.stroke=(def||"");
+        $(window).on("keypress.prompt",this.wrapper(fn));        
+    }
+};
 
+keystrokeManager.__defineSetter__(
+    "stroke",function(str){
+        this._stroke = str;
+        this._input.text(str);
+        return this;
+    });
+keystrokeManager.__defineGetter__(
+    "stroke",function(){
+        return this._stroke;
+    });
+
+
+function available_p(e){ return (32 <= e.charCode && e.charCode <= 126)}
+function backspace_p(e){ return (e.keyCode == 8)}
+function enter_p(e){ return (e.keyCode == 13)}
 function cancel_p(e){
     return (e.charCode == 103 && e.ctrlKey) // Ctrl-g
         || (e.keyCode == 27);  // Esc
