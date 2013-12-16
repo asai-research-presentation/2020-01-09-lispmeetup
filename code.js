@@ -227,7 +227,7 @@ var keystrokeManager = {
     _input: $("<span id='input'></span>"),
     init: function(def_stroke,def_prompt){
         this.stroke=(def_stroke||"");
-        this.prompt.text(def_prompt||"");
+        this._prompt.text(def_prompt||"");
         return this;
     },
     push: function(c){
