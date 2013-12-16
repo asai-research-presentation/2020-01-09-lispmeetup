@@ -244,10 +244,11 @@ var keystrokeManager = {
             .append(this._input);
         $("body").prepend(this._minibuffer);
     },
-    query: function(message,fn,def){
+    query: function(message,fn,def,enteredByDefault){
         var old = this._prompt.text();
         $(window).off("keypress",keyboardHandler);
-        this.init(def,message);
+        this.init(enteredByDefault?def:"",
+                  enteredByDefault?message:(message+" (Default:"+def+") "));
         var handler=(function(e){
             try{
                 enterHandler(
@@ -260,7 +261,7 @@ var keystrokeManager = {
                     keystrokeManager.init("",old);
                     $(window).off("keypress",handler);
                     $(window).on("keypress",keyboardHandler);
-                    fn(result);
+                    fn((result=="")?def:result);
                 }
                 else throw x;
             }
@@ -416,8 +417,8 @@ function sectionPrompt2(message){
             } catch (x) {
                 sectionPrompt2(container.apply(this,result) + " does not exists.");
             }
-        }
-        );                      // unparseSection(slide.current.get(0).id).join(".")
+        },
+        unparseSection(slide.current.get(0).id).join("."));
 }
 
 // debug
