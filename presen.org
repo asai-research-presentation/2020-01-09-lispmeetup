@@ -12,42 +12,112 @@
 #+HTML_HEAD: <script type="text/javascript" src="./code.js"></script>
 #+HTML_POSTAMBLE: nil
 
+#+HTML_HEAD: <a href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+
 #+LINK: img file:img/%s
 #+LINK: png file:img/%s.png
 #+LINK: svg file:img/%s.svg
 #+LINK: jpg file:img/%s.jpg
 
-#+BEGIN_HTML
-<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
-#+END_HTML
+
 
 #+BEGIN_outline-text-1
-test test test
+#+BEGIN_XLARGE
+#+BEGIN_CENTER
+To Start Press "n"
+#+END_CENTER
+#+END_XLARGE
 
-press "n"
+#+BEGIN_CENTER
+*WARN* Turn off your custom keyboard shortcuts
+#+END_CENTER
 
+#+BEGIN_NOTE
+#+BEGIN_ALIGNRIGHT
+Made by guicho2.71828 (Masataro Asai)
+#+END_ALIGNRIGHT
+#+END_NOTE
 #+END_outline-text-1
 
-* Usage (simple!)
+* What Is It?
 
-+ n -- go to the next section/expand a list
-+ p -- back to the previous section
-+ s, or "go" -- pop up an input dialog and go to an arbitrary section
-+ <Ctrl-g> or <Esc> -- cancel current key strokes
+#+BEGIN_XLARGE
+An Alternative to
+#+BEGIN_CENTER
+Org-based Presentation
+#+END_CENTER
+#+BEGIN_ALIGNRIGHT
+Method
+#+END_ALIGNRIGHT
+#+END_XLARGE
 
-* virtue
+#+BEGIN_CENTER
+Proceed with "n"
+#+END_CENTER
 
-+ simplicity
-  + -- the code of =code.js= currently only has 200 lines.
-+ extensibility
-  + you can easily write your own extension
+* Usage (on browsers)
+
++ n :: go to the next section/expand a list
++ p :: back to the previous section
++ s, or "go" :: pop up an input dialog and go to an arbitrary section
++ d :: debugging mode (shows content border)
++ <Ctrl-g> or <Esc> :: cancel current key strokes
+
+* Usage (on emacs)
+
+1. clone [[https://github.com/guicho271828/another-org-info][our repo]]
+
+2. run =(org-html-export-as-html)= to publish
+
+3. show it on your browser!
+
+* Virtue
+
++ Simplicity
+  + =code.js= only has 200 lines
++ Extensibility
+  + you can write your own extension and its easy
   + set a function to =keyManager.<your-key-strokes>=
-  + however, all the char codes of the keystrokes must be within 32..126
-    + Space,!,",...A,B,C,...x,y,z,{,|,~
+  + any char code $c$ in the keystrokes must be $32 < c < 126$
+    + =Space,!,",...A,B,C,...x,y,z,{,|,~=
 + LICENSE
-  + GPLv3
+  + GPLv3 ?? < not attatched a lisence yet
+
+* Example: Expanding a List
+
++ *the dots* tell "/here are more contents/" $\rightarrow$
++ *an arrow* tells "/here are expandable contents/" $\rightarrow$
+  + These remind you that there are
+  + *still more sub-contents* you have to talk
+  + and where it ends
++ list
++ list
+
+* Org-block templates
+
+=another-org-info= knows are:
+
++ <S -- smaller
++ <lar -- larger
++ <t -- twocolumn
+  + implemented using a part of CSS in [[http://getbootstrap.com/][twitter-bootstrap]]
++ <n -- footnote
++ <r -- float right
++ <ar -- align right
++ <lcr -- "left,center,right" format with x-large fonts
++ <E -- latex `equation' environment
++ still more...
+
+** copy-paste it
+
+to your =.emacs=
+
+#+BEGIN_CENTER
+[[file:config.el]]
+#+END_CENTER
 
 * Dependency
+<<dependency>>
 
 + jQuery 1.10.2 (included)
 + org-mode v8.1 (not presicely)
@@ -55,12 +125,12 @@ press "n"
 ** Utility
 
 + ./make-periotically.sh [args]
-  + all arguments are passed to =make=
-  + A simple shell script
   + Watches the changes in the directory and =make=
+  + A simple shell script
+  + all arguments are passed to =make=
   + dependency : inotifywait, notify-send
 
-* test
+* Test
 
 + [[http://www.google.com][Link]]
 + This
@@ -73,12 +143,93 @@ Mathjax formula:
  E=mc^2
 \]
 
-** test
+\begin{equation}
+ E=mc^2 + \frac{1}{2} mv^2
+\end{equation}
 
-HOOA!
+** Twocolumn Test
 
-* back
+#+BEGIN_CONTAINER-FLUID
+#+BEGIN_ROW-FLUID
+#+BEGIN_SPAN6
++ HOOA!
++ *HOOA!*
++ HOOA!
+#+END_SPAN6
+#+BEGIN_SPAN6
+This is a LISP ALIEN IN A CAGE!
+
+[[img:alien.svg]]
+#+END_SPAN6
+#+END_ROW-FLUID
+#+END_CONTAINER-FLUID
+
+* A Slide with Too Little Contents
 
 #+BEGIN_CENTER
-back to the larger section
+#+BEGIN_SMALLER
+Hi, I'm small!
+#+END_SMALLER
 #+END_CENTER
+
+#+BEGIN_NOTE
+See the headline is correctly adjusted
+#+END_NOTE
+
+* Left-Center-Right template
+
+#+BEGIN_XLARGE
+x-large left
+#+BEGIN_CENTER
+centered
+#+END_CENTER
+#+BEGIN_ALIGNRIGHT
+right
+#+END_ALIGNRIGHT
+#+END_XLARGE
+
+#+BEGIN_NOTE
+This is a footnote
+#+END_NOTE
+
+* TODOs
+
+
+#+BEGIN_CONTAINER-FLUID
+#+BEGIN_ROW-FLUID
+#+BEGIN_SPAN6
+#+BEGIN_SMALLER
++ Features
+  + Table of contents
+  + =<dl>= does not expand
+  + Showing current keystrokes
+  + auto-scroll/auto-zoom with big contents
+  + Showing current/total page number
+  + Changing Stylesheet
+  + Up-Section command
+  + Slide thumbnail
+  + stopwatch/countdown timer
+  + link to #section
+#+END_SMALLER
+#+END_SPAN6
+#+BEGIN_SPAN6
+#+BEGIN_SMALLER
++ Features inspired by other tools
+  + Content Search (in org-infojs)
+  + Drawing mode (in [[http://code.google.com/p/jessyink/][jessyink]])
+  + 'Paused' mode (in [[http://lab.hakim.se/reveal-js/#/][reveal.js]])
+  + Export to PDF (also in reveal.js)
+  + Slide with an image covering entire background (slideshare)
+  + present one paragraph/word/letter at a time
+    + those in [[http://docutils.sourceforge.net/docs/user/slide-shows.s5.html][s5]]
++ Implementation
+  + "C-M-x" style notation in the command definition
+  + [[https://github.com/davazp/jscl][Common Lisp REPL on browser!]]
+  + complete rewrite with CL
+#+END_SMALLER
+#+END_SPAN6
+#+END_ROW-FLUID
+#+END_CONTAINER-FLUID
+
+
+

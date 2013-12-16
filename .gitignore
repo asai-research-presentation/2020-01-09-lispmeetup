@@ -2,3 +2,6 @@
 *.log
 *.elc
 #*
+presen.org.html
+/img/alien.png
+/img/alien.sbb
