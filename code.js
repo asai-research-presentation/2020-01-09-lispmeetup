@@ -223,9 +223,9 @@ var keystrokeManager = {
     _minibuffer: $("<div id='minibuffer'></div>"),
     _prompt: $("<span id='prompt'></span>"),
     _input: $("<span id='input'></span>"),
-    reset: function(){
-        this.stroke="";
-        this.prompt.text("");
+    init: function(def_stroke,def_prompt){
+        this.stroke=(def_stroke||"");
+        this.prompt.text(def_prompt||"");
         return this;
     },
     push: function(c){
