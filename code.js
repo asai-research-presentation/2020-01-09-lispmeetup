@@ -416,8 +416,8 @@ function sectionPrompt2(message){
             } catch (x) {
                 sectionPrompt2(container.apply(this,result) + " does not exists.");
             }
-        },
-        unparseSection(slide.current.get(0).id).join("."));
+        }
+        );                      // unparseSection(slide.current.get(0).id).join(".")
 }
 
 // debug
