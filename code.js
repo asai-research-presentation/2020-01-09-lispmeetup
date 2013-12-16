@@ -286,6 +286,71 @@ function cancel_p(e){
         || (e.keyCode == 27);  // Esc
 }
 
+
+
+function enterHandler(fn){
+    return function(e){
+        if (enter_p(e)){
+            e.stopPropagation();
+            e.preventDefault();
+            throw "enter";
+        } else return fn(e);        
+    };
+}
+
+function backspaceHandler(fn){
+    return function(e){
+        if (backspace_p(e)){
+            e.stopPropagation();
+            e.preventDefault();
+            keystrokeManager.backspace();
+        } else return fn(e); 
+    };
+}
+
+function cancelHandler(fn){
+    return function(e){
+        if (cancel_p(e)){
+            e.stopPropagation();
+            e.preventDefault();
+            keystrokeManager.init();
+        } else return fn(e); 
+    };
+}
+
+function dispatchHandler(fn){
+    return function(e){
+        if (available_p(e)){
+            keystrokeManager.push(String.fromCharCode(e.charCode));
+            var fn = keyManager[keystrokeManager.stroke];
+            if (typeof fn == "function"){
+                try{
+                    fn(e);                        
+                } catch (x) {
+                    console.error(x);
+                } finally {
+                    keystrokeManager.init();
+                }
+            }
+        } else return fn(e); 
+    };
+}
+
+function keyboardHandler(e){
+    console.log("charCode:"+e.charCode
+                +" keyCode:"+e.keyCode
+                +" Modifier:"
+                +(e.ctrlKey?"Ctrl":"")
+                +(e.shiftKey?"Shift":"")
+                +(e.metaKey?"Meta":"")
+                +(e.altKey?"Alt":""));
+    backspaceHandler(
+        cancelHandler(
+            dispatchHandler(
+                function(e){})))(e);
+    console.log(keystrokeManager.stroke);
+}
+
 window.onload = function(){
     $("#content").addClass("outline-1");
     slide = new Slide($("#content"));
