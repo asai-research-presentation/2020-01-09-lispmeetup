@@ -441,3 +441,28 @@ keyManager.d = function(){
         .map(toggleDebug());
     console.log("debug : "+debug);
 };
+
+// unfolding
+
+
+keyManager.unfold = function(){
+    $("*").visible().show();
+    $(".note").css({position:"static",top:"1em"});
+    $("body").css({overflow:"auto"});
+};
+
+keyManager["-"] = function(){
+    var maxwidth = parseFloat($("#content").css("max-width"))*0.91;
+    var size = parseFloat($("body").css("font-size"))*0.91;
+    $("#content").css("max-width",maxwidth);
+    $("body").css("font-size",size);
+};
+
+
+keyManager["+"] = function(){
+    var maxwidth = parseFloat($("#content").css("max-width"))*1.1;
+    var size = parseFloat($("body").css("font-size"))*1.1;
+    $("#content").css("max-width",maxwidth);
+    $("body").css("font-size",size);
+};
+

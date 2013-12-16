@@ -12,7 +12,7 @@
 #+HTML_HEAD: <script type="text/javascript" src="./code.js"></script>
 #+HTML_POSTAMBLE: nil
 
-#+HTML_HEAD: <a href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+#+HTML_HEAD: <a href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
 #+LINK: img file:img/%s
 #+LINK: png file:img/%s.png
@@ -57,11 +57,14 @@ Proceed with "n"
 
 * Usage (on browsers)
 
+#+BEGIN_SMALLER
 + n :: go to the next section/expand a list
 + p :: back to the previous section
-+ s, or "go" :: pop up an input dialog and go to an arbitrary section
++ s, or "go" :: jump to an arbitrary section (using minibuffer)
 + d :: debugging mode (shows content border)
 + <Ctrl-g> or <Esc> :: cancel current key strokes
+
+#+END_SMALLER
 
 * Usage (on emacs)
 
@@ -202,7 +205,7 @@ This is a footnote
 + Features
   + Table of contents
   + =<dl>= does not expand
-  + Showing current keystrokes
+  + +Showing current keystrokes+ *DONE*
   + auto-scroll/auto-zoom with big contents
   + Showing current/total page number
   + Changing Stylesheet
