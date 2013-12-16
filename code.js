@@ -316,6 +316,7 @@ function cancelHandler(next){
         if (cancel_p(e)){
             e.stopPropagation();
             e.preventDefault();
+            console.log("cancelled");
             keystrokeManager.init();
         } else return (next||identity)(e); 
     };
@@ -351,6 +352,7 @@ function dispatchHandler(next){
 function keyboardHandler(e){
     console.log("charCode:"+e.charCode
                 +" keyCode:"+e.keyCode
+                +" which:"+e.which
                 +" Modifier:"
                 +(e.ctrlKey?"Ctrl":"")
                 +(e.shiftKey?"Shift":"")
