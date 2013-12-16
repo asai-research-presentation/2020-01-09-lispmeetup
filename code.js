@@ -262,7 +262,7 @@ window.onload = function(){
 keyManager.n = function(){
     $(".title").hide();
 
-    var exps=$(".expander:visible, .sibling-expander:visible");
+    var exps=$(".expander:visible, .sibling-expander:visible",slide.current);
     console.log(slide.level);
     try{
         if(exps.length>0){
