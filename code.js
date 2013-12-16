@@ -399,25 +399,9 @@ keyManager.p = function(){
     }
 };
 
-keyManager.s = function(){
-    return sectionPrompt2("Enter a section number:");
+keyManager.s = keyManager.go = function(){
+    return sectionPrompt2("Enter a section number");
 };
-
-keyManager.go = function(){
-    return sectionPrompt2("Enter a section number:");
-};
-function sectionPrompt(message){
-    var result = window.prompt(message,
-                               unparseSection(slide.current.get(0).id).join("."));
-    result = result.split(".");
-    try{
-        console.log(container.apply(this,result));
-        slide = slide.new($(container.apply(this,result)));
-        slide.show();
-    } catch (x) {
-        sectionPrompt(container.apply(this,result) + " does not exists.");
-    }
-}
 
 function sectionPrompt2(message){
     return keystrokeManager.query(

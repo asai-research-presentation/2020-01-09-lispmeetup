@@ -219,16 +219,20 @@ blockquote {
 
 #minibuffer {
     position: absolute;
-    right: 1.5em;
-    top:1.5em;
+    left: 0.3em;
+    right: 0.3em;
+    top:0.3em;
     opacity:0.5;
-    font-size: smaller;
+    font-size: small;
+    text-align:left;
 }
 
 #prompt {
     margin-left: 0.5em;
 }
-
+#prompt:after {
+    content: ':'
+}
 
 /* //////////////////////////////////////////////////////////////// */
 /* //////////////////////////////////////////////////////////////// */
