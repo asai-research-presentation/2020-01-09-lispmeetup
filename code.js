@@ -246,24 +246,27 @@ var keystrokeManager = {
     },
     query: function(message,fn,def){
         var old = this._prompt.text();
+        $(window).off("keypress",keyboardHandler);
         this.init(def,message);
-        var handler;
-        $(window).on(
-            "keypress.prompt",
-            (handler=function(e){
-                try{
-                    enterHandler(
-                        backspaceHandler(
-                            cancelHandler()))(e);
-                } catch (x) {
-                    if (x=="enter")
-                        return fn(this._input.text());
-                    else throw x;
-                } finally {
+        var handler=(function(e){
+            try{
+                enterHandler(
+                    backspaceHandler(
+                        cancelHandler(
+                            printHandler())))(e);
+            } catch (x) {
+                if (x=="enter") {
+                    var result = this._input.text();
                     keystrokeManager.init("",old);
-                    $(window).off("keypress.prompt",handler);
+                    $(window).off("keypress",handler);
+                    $(window).on("keypress",keyboardHandler);
+                    fn(result);
                 }
-            }));
+                else throw x;
+            }
+        }).bind(this);
+        $(window).on("keypress", handler);
+        return true;
     }
 };
 
@@ -397,11 +400,11 @@ keyManager.p = function(){
 };
 
 keyManager.s = function(){
-    sectionPrompt("Enter a section No. \nseparated by '.'");
+    return sectionPrompt("Enter a section No. \nseparated by '.'");
 };
 
 keyManager.go = function(){
-    sectionPrompt("Enter a section No. \nseparated by '.'");
+    return sectionPrompt2("Enter a section number:");
 };
 function sectionPrompt(message){
     var result = window.prompt(message,
@@ -414,6 +417,21 @@ function sectionPrompt(message){
     } catch (x) {
         sectionPrompt(container.apply(this,result) + " does not exists.");
     }
+}
+
+function sectionPrompt2(message){
+    return keystrokeManager.query(
+        message,function(result){
+            result = result.split(".");
+            try{
+                console.log(container.apply(this,result));
+                slide = slide.new($(container.apply(this,result)));
+                slide.show();
+            } catch (x) {
+                sectionPrompt2(container.apply(this,result) + " does not exists.");
+            }
+        },
+        unparseSection(slide.current.get(0).id).join("."));
 }
 
 // debug
