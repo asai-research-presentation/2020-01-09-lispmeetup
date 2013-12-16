@@ -215,6 +215,20 @@ blockquote {
     content: '';
 }
 
+/* minibuffer */
+
+#minibuffer {
+    position: absolute;
+    right: 1.5em;
+    top:1.5em;
+    opacity:0.5;
+    font-size: smaller;
+}
+
+#prompt {
+    margin-left: 0.5em;
+}
+
 
 /* //////////////////////////////////////////////////////////////// */
 /* //////////////////////////////////////////////////////////////// */
