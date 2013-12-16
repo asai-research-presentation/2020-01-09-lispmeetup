@@ -355,30 +355,8 @@ window.onload = function(){
     slide = new Slide($("#content"));
     slide.show();
     setExpanders();
-
-    var keystroke = "";
-    $(window).keypress(
-        function(e){
-            if (cancel_p(e)){
-                e.stopPropagation();
-                e.preventDefault();
-                keystroke = "";
-            } else if (available_p(e)){
-                keystroke = keystroke.concat(
-                    String.fromCharCode(e.charCode));
-                var fn = keyManager[keystroke];
-                if (typeof fn == "function"){
-                    try{
-                        fn(e);                        
-                    } catch (x) {
-                        console.error(x);
-                    } finally {
-                        keystroke = "";                        
-                    }
-                }
-            }
-            console.log(keystroke);
-        });
+    keystrokeManager.setup();
+    $(window).keypress(keyboardHandler);
 };
 
 keyManager.n = function(){
