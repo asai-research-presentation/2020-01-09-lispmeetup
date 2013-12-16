@@ -400,7 +400,7 @@ keyManager.p = function(){
 };
 
 keyManager.s = function(){
-    return sectionPrompt("Enter a section No. \nseparated by '.'");
+    return sectionPrompt2("Enter a section number:");
 };
 
 keyManager.go = function(){
