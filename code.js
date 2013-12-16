@@ -242,27 +242,26 @@ var keystrokeManager = {
             .append(this._input);
         $("body").prepend(this._minibuffer);
     },
-    
-    wrapper: function(fn){
-        return function(e){
-            try{
-                enterHandler(
-                    backspaceHandler(
-                        cancelHandler()))(e);
-            } catch (x) {
-                if (x=="enter")
-                    return fn(e);
-                else throw x;
-            } finally {
-                keystrokeManager.reset();
-            }
-        };
-    },
     query: function(message,fn,def){
         var old = this._prompt.text();
-        this._prompt.text(message);
-        this.stroke=(def||"");
-        $(window).on("keypress.prompt",this.wrapper(fn));        
+        this.init(def,message);
+        var handler;
+        $(window).on(
+            "keypress.prompt",
+            (handler=function(e){
+                try{
+                    enterHandler(
+                        backspaceHandler(
+                            cancelHandler()))(e);
+                } catch (x) {
+                    if (x=="enter")
+                        return fn(this._input.text());
+                    else throw x;
+                } finally {
+                    keystrokeManager.init("",old);
+                    $(window).off("keypress.prompt",handler);
+                }
+            }));
     }
 };
 
