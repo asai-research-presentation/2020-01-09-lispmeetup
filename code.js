@@ -288,52 +288,60 @@ function cancel_p(e){
 }
 
 
-
-function enterHandler(fn){
+function enterHandler(next){
     return function(e){
         if (enter_p(e)){
             e.stopPropagation();
             e.preventDefault();
             throw "enter";
-        } else return fn(e);        
+        } else return (next||identity)(e);        
     };
 }
 
-function backspaceHandler(fn){
+function backspaceHandler(next){
     return function(e){
         if (backspace_p(e)){
             e.stopPropagation();
             e.preventDefault();
             keystrokeManager.backspace();
-        } else return fn(e); 
+        } else return (next||identity)(e); 
     };
 }
 
-function cancelHandler(fn){
+function cancelHandler(next){
     return function(e){
         if (cancel_p(e)){
             e.stopPropagation();
             e.preventDefault();
             keystrokeManager.init();
-        } else return fn(e); 
+        } else return (next||identity)(e); 
     };
 }
 
-function dispatchHandler(fn){
+function printHandler(next){
     return function(e){
         if (available_p(e)){
             keystrokeManager.push(String.fromCharCode(e.charCode));
-            var fn = keyManager[keystrokeManager.stroke];
-            if (typeof fn == "function"){
+        } else return (next||identity)(e);
+    };
+}
+
+function dispatchHandler(next){
+    return function(e){
+        if (available_p(e)){
+            keystrokeManager.push(String.fromCharCode(e.charCode));
+            var handler = keyManager[keystrokeManager.stroke];
+            if (typeof handler == "function"){
                 try{
-                    fn(e);                        
+                    if (!handler(e)){
+                        keystrokeManager.init();
+                    }
                 } catch (x) {
                     console.error(x);
-                } finally {
                     keystrokeManager.init();
                 }
             }
-        } else return fn(e); 
+        } else return (next||identity)(e);
     };
 }
 
@@ -347,8 +355,7 @@ function keyboardHandler(e){
                 +(e.altKey?"Alt":""));
     backspaceHandler(
         cancelHandler(
-            dispatchHandler(
-                function(e){})))(e);
+            dispatchHandler()))(e);
     console.log(keystrokeManager.stroke);
 }
 
