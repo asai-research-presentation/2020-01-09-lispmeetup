@@ -1,10 +1,12 @@
 
 
-\newcommand{\xlarge}[1]{{\large #1}}
-\newcommand{\alignright}[1]{\flushright{#1}}
-\newcommand{\alignleft}[1]{\flushleft{#1}}
+\newenvironment{xlarge}{\large}{}
+\newenvironment{alignright}{\begin{flushright}}{\end{flushright}}
+\newenvironment{alignleft}{\begin{flushleft}}{\end{flushleft}}
 % \newcommand{\outline-text-1}[1]{{\large #1}}
-\newcommand{\smaller}[1]{{\small #1}}
+\newenvironment{smaller}{\small}{}
+
+\newenvironment{note}{}{}
 
 % \newcommand{\container-fluid}[1]{#1}
 % \newcommand{\row-fluid}[1]{#1}
