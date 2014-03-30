@@ -12,7 +12,7 @@
 #+HTML_HEAD: <script type="text/javascript" src="./code.js"></script>
 #+HTML_POSTAMBLE: nil
 
-#+HTML_HEAD: <a href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+#+HTML_HEAD: <a id="banner" href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
 #+LATEX_HEADER: \usepackage{anorg}
 
@@ -164,10 +164,32 @@ Mathjax formula:
 #+BEGIN_SPAN6
 This is a LISP ALIEN IN A CAGE!
 
-[[img:alien.svg]]
+[[png:alien]]
+
 #+END_SPAN6
 #+END_ROW-FLUID
 #+END_CONTAINER-FLUID
+
+** many columns test
+
+
+#+BEGIN_CONTAINER-FLUID
+#+BEGIN_ROW-FLUID
+#+BEGIN_SPAN3
+ a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
+#+END_SPAN3
+#+BEGIN_SPAN3
+ b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b
+#+END_SPAN3
+#+BEGIN_SPAN3
+ c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c
+#+END_SPAN3
+#+BEGIN_SPAN3
+ d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d
+#+END_SPAN3
+#+END_ROW-FLUID
+#+END_CONTAINER-FLUID
+
 
 * A Slide with Too Little Contents
 
@@ -222,19 +244,15 @@ This is a footnote
 + Features inspired by other tools
   + Content Search (in org-infojs)
   + Drawing mode (in [[http://code.google.com/p/jessyink/][jessyink]])
-  + 'Paused' mode (in [[http://lab.hakim.se/reveal-js/#/][reveal.js]])
+  + 'Paused' mode (in [[http://lab.hakim.se/reveal-js/][reveal.js]])
   + Export to PDF (also in reveal.js)
   + Slide with an image covering entire background (slideshare)
   + present one paragraph/word/letter at a time
     + those in [[http://docutils.sourceforge.net/docs/user/slide-shows.s5.html][s5]]
 + Implementation
   + "C-M-x" style notation in the command definition
-  + [[https://github.com/davazp/jscl][Common Lisp REPL on browser!]]
-  + complete rewrite with CL
 #+END_SMALLER
 #+END_SPAN6
+
 #+END_ROW-FLUID
 #+END_CONTAINER-FLUID
-
-
-

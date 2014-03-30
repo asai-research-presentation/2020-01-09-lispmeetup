@@ -1,23 +1,18 @@
 
-SBB=$(shell ls *.svg | sed -e "s/svg/sbb/g")
-MBB=$(shell ls *.svg | sed -e "s/svg/mbb/g")
-XBB=$(shell ls *.svg | sed -e "s/svg/xbb/g")
-PNG=$(shell ls *.svg | sed -e "s/svg/png/g")
+SBB=find ./ -regex ".*\.png" | sed -e "s/png/sbb/g"
+MBB=find ./ -regex ".*\.png" | sed -e "s/png/mbb/g"
+XBB=find ./ -regex ".*\.png" | sed -e "s/png/xbb/g"
+
+PNG=find ./ -regex ".*\.svg" | sed -e "s/svg/png/g"
 
 .SUFFIXES: .svg .png
 .PHONY:	clean all
 
-all: $(PNG) $(SBB)
-	$(shell ./overwritebb.sh $(SBB))
-
-dvipdfm: $(PNG) $(MBB) always
-	$(shell ./overwritebb.sh $(MBB))
-
-dvipdfmx: $(PNG) $(XBB) always
-	$(shell ./overwritebb.sh $(XBB))
+all: $(shell $(PNG))
+	$(MAKE) -C ./ $(shell $(XBB))
 
 %.png : %.svg
-	inkscape -f $< -e $*.png -d 600
+	inkscape -f $< -e $*.png -d 300
 
 %.mbb : %.png
 	ebb -O -m $< > $@

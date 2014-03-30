@@ -59,7 +59,7 @@ img {
 }
 
 .figure img {
-    background-color: #777;
+    /* background-color: #777; */
 }
 
 blockquote {
@@ -77,15 +77,14 @@ li > .li-content:hover {
     animation-timing-function: ease-out;
 }
 
-.li-highlighted {
+.highlighted {
     animation-name: highlight;
-    animation-duration: 6s;
+    animation-duration: 2s;
     animation-timing-function: ease;
     animation-iteration-count: infinite;
 }
 
-
-img:hover, .emphasized img {
+img:hover {
     animation-name: highlight-border;
     animation-duration: 1.8s;
     animation-timing-function: ease;

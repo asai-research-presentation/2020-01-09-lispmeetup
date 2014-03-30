@@ -47,15 +47,15 @@ function makeitspan(li){
 function expandSibling(e){
     console.log("double clicked!");
     
-    $(".li-highlighted").removeClass("li-highlighted");
-    $(this).parent().next().emergeList().visible().children(":first-child").addClass("li-highlighted");
+    $(".highlighted").removeClass("highlighted");
+    $(this).parent().next().emergeList().visible().children(":first-child").addClass("highlighted");
     $(this).parent().get(0).removeChild(this);
 }
 
 function expandChild(e){
     console.log("clicked!");
-    $(".li-highlighted").removeClass("li-highlighted");
-    $(this).next().emergeList().visible().children(":first-child").addClass("li-highlighted");
+    $(".highlighted").removeClass("highlighted");
+    $(this).next().emergeList().visible().children(":first-child").addClass("highlighted");
     $(this).parent().get(0).removeChild(this);
 }
 
@@ -197,10 +197,22 @@ Slide.prototype = {
         try{
             return this.right();
         } catch (x) {}
-        try{
-            return this.up().right(true);
-        } catch (x) {}
-        throw new Error("next");
+        
+        var slide = this;
+        while(true){
+            try{
+                slide = slide.up();
+            } catch (x) {
+                throw new Error("next");
+                // tells that there is no next slide
+            }
+            try{
+                // if the upper slide has the following slide,
+                // then it is the next slide
+                return slide.right(true);
+            } catch (x) {
+            }
+        }        
     },
     prev : function(){
         if (this.previous){
@@ -245,10 +257,16 @@ var keystrokeManager = {
         $("body").prepend(this._minibuffer);
     },
     query: function(message,fn,def,enteredByDefault){
+        // message : string
+        // fn : callback
+        // def : string -- default value
+        // enteredByDefault : boolean
         var old = this._prompt.text();
         $(window).off("keypress",keyboardHandler);
-        this.init(enteredByDefault?def:"",
-                  enteredByDefault?message:(message+" (Default:"+def+") "));
+        this.init(((def && enteredByDefault) ?
+                   def : ""),
+                  (enteredByDefault ?
+                   message : (message+" (Default:"+def+") ")));
         var handler=(function(e){
             try{
                 enterHandler(
@@ -337,9 +355,15 @@ function dispatchHandler(next){
             keystrokeManager.push(String.fromCharCode(e.charCode));
             var handler = keyManager[keystrokeManager.stroke];
             if (typeof handler == "function"){
+                console.log("Handler function "
+                            + keystrokeManager.stroke +" found");
                 try{
                     if (!handler(e)){
+                        console.log(
+                            "Handler function returned a false value.  Resetting the strokemanager state.");
                         keystrokeManager.init();
+                    }else {
+                        console.log("Handler function returned!");
                     }
                 } catch (x) {
                     console.error(x);
@@ -418,7 +442,7 @@ function sectionPrompt2(message){
                 sectionPrompt2(container.apply(this,result) + " does not exists.");
             }
         },
-        unparseSection(slide.current.get(0).id).join("."));
+        unparseSection(slide.current.get(0).id).join("-"));
 }
 
 // debug
@@ -469,3 +493,83 @@ keyManager["+"] = function(){
     $("body").css("font-size",size);
 };
 
+keyManager.toggle = function(){
+    $("#minibuffer").toggle();
+};
+
+keyManager.banner = function(){
+    $("#banner").toggle();
+};
+
+keyManager.help = function(){
+    keystrokeManager.query("Supported commands: "+
+                           Object.keys(keyManager).join(", "),
+                           function(result){
+                               console.log("help message");},
+                           "Hit Enter to escape this dialog",
+                           true);
+    return true;
+};
+
+keyManager.R = keyManager.reload = function(){
+    location.href = location.href
+    return true;
+};
+
+// a simple countdown timer
+
+var timers = [];
+
+function Timer(){
+    this._timer = $("<span class='timer'></span>");
+    keystrokeManager._minibuffer.append(this._timer);
+}
+
+Timer.prototype.destroy = function(){
+    this._timer.remove();
+    this.stop();
+}
+
+Timer.prototype.start = function(seconds,callback){
+    var self = this;
+    var update = function(){
+        var rem = (seconds%60);
+        var quo = (seconds-rem)/60;
+        console.log("timer updated: "+quo+":"+rem);
+        self._timer.text(quo+":"+rem);
+    }
+    var decrease = function(){
+        --seconds;
+        update();
+        if(seconds<=0){
+            stop();
+        }
+    }
+    var stop = function(){
+        (callback||identity)();
+        clearInterval(id);
+    }
+    this.stop = stop;
+    var id = setInterval(decrease,1000);
+}
+
+keyManager.timer = function(){
+    var t = new Timer();
+    keystrokeManager.query(
+        "Enter the limit by sec",
+        function(result){
+            t.start(parseInt(result,10),
+                    function(){
+                        t._timer
+                            .addClass("highlighted")
+                            .css({"font-weight":"bold"});
+                    });
+        }, 300, false);
+    return true;
+};
+
+keyManager["remove-timer"] = function(){
+    timers.map(function(t){
+        t.destroy();
+    });
+}
