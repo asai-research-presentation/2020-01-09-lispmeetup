@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Yet Another Org-mode Presentation Script</title>
-<!-- 2013-12-16 月 23:52 -->
+<!-- 2014-04-12 土 17:02 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Masataro Asai" />
@@ -55,6 +55,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -91,13 +93,13 @@
 <link rel="stylesheet" type="text/css" href="style.css" />
 <script type="text/javascript" src="./jquery.js"></script>
 <script type="text/javascript" src="./code.js"></script>
-<a href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+<a id="banner" href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012  Free Software Foundation, Inc.
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -255,6 +257,8 @@ Proceed with "n"
 </dd>
 <dt> &lt;Ctrl-g&gt; or &lt;Esc&gt; </dt><dd>cancel current key strokes
 </dd>
+<dt> "help" </dt><dd>shows the available commands in the minibuffer!
+</dd>
 </dl>
 
 </div>
@@ -267,7 +271,7 @@ Proceed with "n"
 <li>clone <a href="https://github.com/guicho271828/another-org-info">our repo</a>
 </li>
 
-<li>run <code>(org-html-export-as-html)</code> to publish
+<li><code>make</code> to publish
 </li>
 
 <li>show it on your browser!
@@ -383,7 +387,7 @@ to your <code>.emacs</code>
 <h2 id="sec-7"><span class="section-number-2">7</span> Dependency</h2>
 <div class="outline-text-2" id="text-7">
 <p>
-<a id="dependency" name="dependency"></a>
+<a id="dependency"></a>
 </p>
 
 <ul class="org-ul">
@@ -418,7 +422,7 @@ to your <code>.emacs</code>
 <h2 id="sec-8"><span class="section-number-2">8</span> Test</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
-<li><a href="http://www.google.com">Link</a>
+<li><a href="http://www.google.com/">Link</a>
 </li>
 <li>This
 </li>
@@ -466,7 +470,7 @@ This is a LISP ALIEN IN A CAGE!
 
 
 <div class="figure">
-<p><img src="img/alien.svg" alt="alien.svg" />
+<p><img src="img/alien.png" alt="alien.png" />
 </p>
 </div>
 
@@ -477,7 +481,43 @@ This is a LISP ALIEN IN A CAGE!
 </div>
 </div>
 </div>
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> many columns test</h3>
+<div class="outline-text-3" id="text-8-2">
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span3">
+<p>
+a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
+</p>
+
 </div>
+<div class="span3">
+<p>
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b
+</p>
+
+</div>
+<div class="span3">
+<p>
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c
+</p>
+
+</div>
+<div class="span3">
+<p>
+d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d
+</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9"><span class="section-number-2">9</span> A Slide with Too Little Contents</h2>
 <div class="outline-text-2" id="text-9">
@@ -553,7 +593,7 @@ This is a footnote
 </li>
 <li>Slide thumbnail
 </li>
-<li>stopwatch/countdown timer
+<li><del>stopwatch/countdown timer</del> <b>DONE</b>
 </li>
 <li>link to #section
 </li>
@@ -573,9 +613,13 @@ This is a footnote
 </li>
 <li>Drawing mode (in <a href="http://code.google.com/p/jessyink/">jessyink</a>)
 </li>
-<li>'Paused' mode (in <a href="http://lab.hakim.se/reveal-js/#/">reveal.js</a>)
+<li>'Paused' mode (in <a href="http://lab.hakim.se/reveal-js/">reveal.js</a>)
 </li>
-<li>Export to PDF (also in reveal.js)
+<li><del>Export to PDF (also in reveal.js)</del>
+<ul class="org-ul">
+<li>implemented as the resume output
+</li>
+</ul>
 </li>
 <li>Slide with an image covering entire background (slideshare)
 </li>
@@ -585,15 +629,7 @@ This is a footnote
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li>Implementation
-<ul class="org-ul">
 <li>"C-M-x" style notation in the command definition
-</li>
-<li><a href="https://github.com/davazp/jscl">Common Lisp REPL on browser!</a>
-</li>
-<li>complete rewrite with CL
 </li>
 </ul>
 </li>
@@ -611,8 +647,8 @@ This is a footnote
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Masataro Asai</p>
-<p class="date">Created: 2013-12-16 月 23:52</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 23.3.1 (<a href="http://orgmode.org">Org</a> mode 8.1.1)</p>
+<p class="date">Created: 2014-04-12 土 17:02</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

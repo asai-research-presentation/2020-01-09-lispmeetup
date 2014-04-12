@@ -42,6 +42,7 @@ Proceed with "n"
 \item[{s, or "go"}] jump to an arbitrary section (using minibuffer)
 \item[{d}] debugging mode (shows content border)
 \item[{<Ctrl-g> or <Esc>}] cancel current key strokes
+\item[{"help"}] shows the available commands in the minibuffer!
 \end{description}
 \end{smaller}
 \section{Usage (on emacs)}
@@ -50,7 +51,7 @@ Proceed with "n"
 \begin{enumerate}
 \item clone \href{https://github.com/guicho271828/another-org-info}{our repo}
 
-\item run \texttt{(org-html-export-as-html)} to publish
+\item \texttt{make} to publish
 
 \item show it on your browser!
 \end{enumerate}
@@ -246,7 +247,7 @@ This is a footnote
 \item Changing Stylesheet
 \item Up-Section command
 \item Slide thumbnail
-\item stopwatch/countdown timer
+\item \sout{stopwatch/countdown timer} \textbf{DONE}
 \item link to \#section
 \end{itemize}
 \end{itemize}
@@ -260,15 +261,15 @@ This is a footnote
 \item Content Search (in org-infojs)
 \item Drawing mode (in \href{http://code.google.com/p/jessyink/}{jessyink})
 \item 'Paused' mode (in \href{http://lab.hakim.se/reveal-js/}{reveal.js})
-\item Export to PDF (also in reveal.js)
+\item \sout{Export to PDF (also in reveal.js)}
+\begin{itemize}
+\item implemented as the resume output
+\end{itemize}
 \item Slide with an image covering entire background (slideshare)
 \item present one paragraph/word/letter at a time
 \begin{itemize}
 \item those in \href{http://docutils.sourceforge.net/docs/user/slide-shows.s5.html}{s5}
 \end{itemize}
-\end{itemize}
-\item Implementation
-\begin{itemize}
 \item "C-M-x" style notation in the command definition
 \end{itemize}
 \end{itemize}
