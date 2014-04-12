@@ -65,6 +65,7 @@ Proceed with "n"
 + s, or "go" :: jump to an arbitrary section (using minibuffer)
 + d :: debugging mode (shows content border)
 + <Ctrl-g> or <Esc> :: cancel current key strokes
++ "help" :: shows the available commands in the minibuffer!
 
 #+END_SMALLER
 
@@ -72,7 +73,7 @@ Proceed with "n"
 
 1. clone [[https://github.com/guicho271828/another-org-info][our repo]]
 
-2. run =(org-html-export-as-html)= to publish
+2. =make= to publish
 
 3. show it on your browser!
 
@@ -235,7 +236,7 @@ This is a footnote
   + Changing Stylesheet
   + Up-Section command
   + Slide thumbnail
-  + stopwatch/countdown timer
+  + +stopwatch/countdown timer+ *DONE*
   + link to #section
 #+END_SMALLER
 #+END_SPAN6
@@ -245,11 +246,11 @@ This is a footnote
   + Content Search (in org-infojs)
   + Drawing mode (in [[http://code.google.com/p/jessyink/][jessyink]])
   + 'Paused' mode (in [[http://lab.hakim.se/reveal-js/][reveal.js]])
-  + Export to PDF (also in reveal.js)
+  + +Export to PDF (also in reveal.js)+
+    + implemented as the resume output
   + Slide with an image covering entire background (slideshare)
   + present one paragraph/word/letter at a time
     + those in [[http://docutils.sourceforge.net/docs/user/slide-shows.s5.html][s5]]
-+ Implementation
   + "C-M-x" style notation in the command definition
 #+END_SMALLER
 #+END_SPAN6
