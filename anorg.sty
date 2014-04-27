@@ -1,9 +1,11 @@
 
+\usepackage{relsize}
+\newenvironment{xlarge}{\huge}{}
+\renewenvironment{larger}{\relsize{1}}{}
+\renewenvironment{smaller}{\relsize{-1}}{}
 
-\newenvironment{xlarge}{\large}{}
 \newenvironment{alignright}{\begin{flushright}}{\end{flushright}}
 \newenvironment{alignleft}{\begin{flushleft}}{\end{flushleft}}
-\newenvironment{smaller}{\small}{}
 \newenvironment{outline-text-1}{}{}
 \newenvironment{note}{}{}
 \newenvironment{container-fluid}{\bgroup}{\egroup}
