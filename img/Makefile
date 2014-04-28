@@ -10,9 +10,12 @@ PNG=find ./ -regex ".*\.svg" | sed -e "s/svg/png/g"
 
 all: $(shell $(PNG))
 	$(MAKE) -C ./ $(shell $(XBB))
+# for systems without dvipdfmx, use SBB or MBB accordingly
 
 %.png : %.svg
 	inkscape -f $< -e $*.png -d 300
+#	convert $< $*.png
+#	if you want to use imagemagick, comment out 'inkscape...' and use 'convert...'
 
 %.mbb : %.png
 	ebb -O -m $< > $@
@@ -24,5 +27,5 @@ all: $(shell $(PNG))
 	ebb -O -x $< > $@
 
 clean:
-	rm -f *.png *bb
-
+	-rm -f $$(find ./ -regex ".*bb")
+	-rm -f $(shell $(PNG)) # only those made from svg

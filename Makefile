@@ -1,20 +1,27 @@
 
-EMACS = emacs
+EMACS      = emacs
 EMACSFLAGS =
-styles= anorg.sty
+styles     = anorg.sty user.sty
+latex      = pdflatex
+# latex      = platex
 
-.PHONY: all imgs clean allclean
+.PHONY: all img clean allclean html pdf resume index css
+.SECONDLY: *.elc *.org.*
 
-all: presen.org.html presen.pdf resume.pdf imgs
-
-index: all
+all: index pdf resume
+html: img css presen.org.html 
+pdf: img presen.pdf
+resume: img resume.pdf
+index: html
 	cp -f presen.org.html index.html
 
-imgs:
+img:
 	make -C img
+css:
+	make -C css
 
-presen.tex: presen.org.tex
-resume.tex: presen.org.tex
+presen.dvi: presen.org.tex
+resume.dvi: presen.org.tex
 
 %.org.tex: %.org compile-org-latex.elc
 	emacs --batch --quick --eval "(progn (load-file \"compile-org-latex.el\")(compile-org \"$<\" \"$@\"))"
@@ -22,15 +29,18 @@ resume.tex: presen.org.tex
 %.org.html: %.org compile-org-html.elc
 	emacs --batch --quick --eval "(progn (load-file \"compile-org-html.el\")(compile-org \"$<\" \"$@\"))"
 
-%.dvi: %.tex imgs $(styles)
-	platex -halt-on-error $<
-	platex -halt-on-error $<
-# pbibtex $*
-# platex -halt-on-error $<
-# platex -halt-on-error $<
+ifeq ($(latex),platex)
+%.dvi: %.tex img $(styles)
+	$(latex) -halt-on-error $<
+	$(latex) -halt-on-error $<
+else
+%.dvi: %.tex img $(styles)
+	$(latex) -output-format=dvi -halt-on-error $<
+	$(latex) -output-format=dvi -halt-on-error $<
+endif
 
 %.pdf : %.dvi
-	dvipdfm -o $@ $*
+	dvipdfmx -o $@ $*
 
 %.elc : %.el
 	$(EMACS) -Q --batch $(EMACSFLAGS) -f batch-byte-compile $<
@@ -41,3 +51,4 @@ clean:
 
 allclean: clean
 	make -C img clean
+	make -C css clean

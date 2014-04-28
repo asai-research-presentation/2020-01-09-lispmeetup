@@ -1,5 +1,18 @@
-
+\usepackage[dvipdfmx]{graphicx,xcolor,hyperref}
+% \usepackage{svg} % do not recommend becasue it is buggy
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{relsize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% user field
+
+\usepackage{user}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% default style 
+
 \newenvironment{xlarge}{\huge}{}
 \renewenvironment{larger}{\relsize{1}}{}
 \renewenvironment{smaller}{\relsize{-1}}{}
@@ -7,11 +20,14 @@
 \newenvironment{alignright}{\begin{flushright}}{\end{flushright}}
 \newenvironment{alignleft}{\begin{flushleft}}{\end{flushleft}}
 \newenvironment{outline-text-1}{}{}
-\newenvironment{note}{}{}
-\newenvironment{container-fluid}{\bgroup}{\egroup}
-\newenvironment{row-fluid}{\vbox\bgroup}{\egroup}
 
 \usepackage{environ}
+
+\NewEnviron{note}{\footnote{\BODY}}
+\NewEnviron{container-fluid}{\BODY}
+\NewEnviron{row-fluid}{\BODY}
+% \newenvironment{container-fluid}{\bgroup}{\egroup}
+% \newenvironment{row-fluid}{\vbox\bgroup}{\egroup}
 
 % \strip@pt removes pt from the expression
 \newcommand{\ddwidth}[1]{\dimexpr (\linewidth * #1 / 12) - 1.5em \relax}% duodecimal width

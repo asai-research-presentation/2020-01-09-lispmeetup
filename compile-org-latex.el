@@ -1,14 +1,7 @@
-(defvar site-lisp "~/Dropbox/site-lisp/")
-(defun site (subdir)
-  (concat site-lisp subdir))
-(add-to-list 'load-path (site "org-mode/lisp/"))
-(add-to-list 'load-path (site "org-mode/contrib/lisp/"))
-(add-to-list 'load-path (site "org-mode/contrib/babel/langs/"))
 
-(require 'org)
-(autoload 'org-latex-export-as-latex "ox-latex")
-
+(add-to-list 'load-path (concat default-directory "org-mode/lisp/"))
 (defun compile-org (in out)
+  (require 'ox-latex)
   (find-file in)
   (org-latex-export-as-latex nil nil nil t)
   (write-file out))

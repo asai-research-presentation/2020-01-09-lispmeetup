@@ -1,22 +1,23 @@
-\documentclass[12pt,landscape,twocolumn]{jsarticle}
+\documentclass[12pt,landscape,twocolumn]{article}
 \AtBeginDvi{\special{pdf:tounicode 90ms-RKSJ-UCS2}}
 \usepackage[margin=15mm]{geometry}
-\usepackage[dvipdfmx]{graphicx}
-\usepackage[normalem]{ulem}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage[dvipdfmx]{hyperref}
-\tolerance=1000
 \usepackage{anorg}
-\title{NTT研究所 プレゼンテーション}
-\hypersetup{
- pdfkeywords={},
-  pdfsubject={},
-  pdfcreator={Emacs 24.3.1 (Org mode 8.2.5h)}}
 
 \setlength{\columnseprule}{0.4pt}
 
-\renewenvironment{note}{\footnote\bgroup}{\egroup}
+\usepackage{needspace}
+\let\oldsection\section
+\let\oldsubsection\subsection
+\let\oldsubsubsection\subsubsection
+
+\renewcommand{\section}[1]{\needspace{0.3\textheight}\oldsection{#1}}
+\renewcommand{\subsection}[1]{\needspace{0.3\textheight}\oldsubsection{#1}} 
+\renewcommand{\subsubsection}[1]{\needspace{0.3\textheight}\oldsubsubsection{#1}}
+
+% \renewcommand{\section}{\clearpage\oldsection}
+% \renewcommand{\subsection}{\clearpage\oldsubsection}
+% \renewcommand{\subsubsection}{\clearpage\oldsubsubsection}
+
 
 \begin{document}
 

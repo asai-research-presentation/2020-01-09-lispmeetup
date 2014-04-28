@@ -32,6 +32,7 @@ Method
 \begin{center}
 Proceed with "n"
 \end{center}
+
 \section{Usage (on browsers)}
 \label{sec-2}
 
@@ -45,38 +46,42 @@ Proceed with "n"
 \item[{"help"}] shows the available commands in the minibuffer!
 \end{description}
 \end{smaller}
+
 \section{Usage (on emacs)}
 \label{sec-3}
 
 \begin{enumerate}
 \item clone \href{https://github.com/guicho271828/another-org-info}{our repo}
 
-\item \texttt{make} to publish
+\item \texttt{make html} to publish
 
 \item show it on your browser!
 \end{enumerate}
+
 \section{Virtue}
 \label{sec-4}
 
 \begin{itemize}
 \item Simplicity
 \begin{itemize}
-\item \texttt{code.js} only has 200 lines
+\item \texttt{code.js} is a pure javascript, only has 200 lines (increasing as new features
+are added)
 \end{itemize}
 \item Extensibility
 \begin{itemize}
 \item you can write your own extension and its easy
 \item set a function to \texttt{keyManager.<your-key-strokes>}
-\item any char code \(c\) in the keystrokes must be \(32 < c < 126\)
+\item the key strokes should contain character \(c\) within char code \(32 < c < 126\)
 \begin{itemize}
 \item \texttt{Space,!,",...A,B,C,...x,y,z,\{,|,\textasciitilde{}}
 \end{itemize}
 \end{itemize}
 \item LICENSE
 \begin{itemize}
-\item GPLv3 ?? < not attatched a lisence yet
+\item GPLv3 ?? < not attatched a license yet
 \end{itemize}
 \end{itemize}
+
 \section{Example: Expanding a List}
 \label{sec-5}
 
@@ -91,18 +96,42 @@ Proceed with "n"
 \item list
 \item list
 \end{itemize}
+
+
 \section{Org-block templates}
 \label{sec-6}
 
-\texttt{another-org-info} knows are:
+We mark the html tag with org-mode blocks such as \texttt{\#+BEGIN\_EXAMPLE}.
+Using \href{http://orgmode.org/manual/Easy-Templates.html}{block template} (by modifying \texttt{org-structure-template-alist}),
+you can quickly write such blocks i.e.:
 
+\begin{verbatim}
+at the beginning of line, hit
+
+<s<tab>
+
+in normal org-mode destribution in emacs,
+it would expand into:
+
+#+BEGIN_SRC 
+
+#+END_SRC
+\end{verbatim}
+
+\subsection{customizing templates}
+\label{sec-6-1}
+
+We provide custom \texttt{org-structure-template-alist}.
+These blocks are recognized by the stylesheet we provide,
+so they are highlighted correctly.
+
+\begin{container-fluid}
+\begin{row-fluid}
+\begin{span6}
 \begin{itemize}
 \item <S -- smaller
 \item <lar -- larger
 \item <t -- twocolumn
-\begin{itemize}
-\item implemented using a part of CSS in \href{http://getbootstrap.com/}{twitter-bootstrap}
-\end{itemize}
 \item <n -- footnote
 \item <r -- float right
 \item <ar -- align right
@@ -110,38 +139,92 @@ Proceed with "n"
 \item <E -- latex `equation' environment
 \item still more\ldots{}
 \end{itemize}
-
-\subsection{copy-paste it}
-\label{sec-6-1}
-
+\end{span6}
+\begin{span6}
+copy-paste it
 to your \texttt{.emacs}
 
 \begin{center}
 \url{config.el}
 \end{center}
-\section{Dependency}
+\end{span6}
+\end{row-fluid}
+\end{container-fluid}
+
+\section{Images}
 \label{sec-7}
+
+\begin{itemize}
+\item Put images into \texttt{img/} directory.
+\item svg files are converted into png.
+\begin{itemize}
+\item We recommend it because
+\begin{enumerate}
+\item In html presentation, the inserted svg images capture the keyboard and mouse event
+and the presentation sometimes does not work right.
+\item In resume output and pdf presentation, the \texttt{svg} and \texttt{svg-inkscape} package is a
+bit buggy and I personally failed make it work.
+\end{enumerate}
+\end{itemize}
+\item svg-png conversion is done by \texttt{inkscape}
+\begin{itemize}
+\item but you can also use ImageMagick \texttt{convert} command.
+\item See \texttt{img/Makefile} for more information.
+\end{itemize}
+\end{itemize}
+
+\section{Dependencies}
+\label{sec-8}
 \label{dependency}
 
 \begin{itemize}
-\item jQuery 1.10.2 (included)
-\item org-mode v8.1 (not presicely)
+\item jQuery (included)
+\item Inkscape (image conversion)
+\item org-mode (optional submodule)
+\item MathJax (optional submodule)
 \end{itemize}
 
-\subsection{Utility}
-\label{sec-7-1}
+\section{\LaTeX{} output}
+\label{sec-9}
+
+\begin{itemize}
+\item just \texttt{make pdf} on your shell
+\item need the latest \$\TeX\$live installation
+\begin{itemize}
+\item see \texttt{Makefile}
+\item \texttt{pdflatex}
+\item alternatively, \texttt{platex} and \texttt{dvipdfmx}
+\end{itemize}
+\item presen.pdf -- presentation in pdf with similar appearance. Useful when
+browser-based presentation is not allowed
+\item resume.pdf -- short and printed version.
+\end{itemize}
+
+\section{Utility}
+\label{sec-10}
 
 \begin{itemize}
 \item ./make-periotically.sh [args]
 \begin{itemize}
 \item Watches the changes in the directory and \texttt{make}
-\item A simple shell script
+\item Build statuses are notified in inotify pop-up
 \item all arguments are passed to \texttt{make}
 \item dependency : inotifywait, notify-send
 \end{itemize}
 \end{itemize}
+
+\section{Makefile Target}
+\label{sec-11}
+
+\begin{itemize}
+\item \texttt{make html} -- builds the html version
+\item \texttt{make resume} -- builds the resume version
+\item \texttt{make pdf} -- builds the pdf version
+\item \texttt{make} -- build all
+\end{itemize}
+
 \section{Test}
-\label{sec-8}
+\label{sec-12}
 
 \begin{itemize}
 \item \href{http://www.google.com}{Link}
@@ -161,7 +244,7 @@ Mathjax formula:
 \end{equation}
 
 \subsection{Twocolumn Test}
-\label{sec-8-1}
+\label{sec-12-1}
 
 \begin{container-fluid}
 \begin{row-fluid}
@@ -179,8 +262,10 @@ This is a LISP ALIEN IN A CAGE!
 \end{span6}
 \end{row-fluid}
 \end{container-fluid}
+
+
 \subsection{many columns test}
-\label{sec-8-2}
+\label{sec-12-2}
 
 
 \begin{container-fluid}
@@ -200,8 +285,9 @@ d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d
 \end{row-fluid}
 \end{container-fluid}
 
+
 \section{A Slide with Too Little Contents}
-\label{sec-9}
+\label{sec-13}
 
 \begin{center}
 \begin{smaller}
@@ -212,8 +298,9 @@ Hi, I'm small!
 \begin{note}
 See the headline is correctly adjusted
 \end{note}
+
 \section{Left-Center-Right template}
-\label{sec-10}
+\label{sec-14}
 
 \begin{xlarge}
 x-large left
@@ -228,8 +315,9 @@ right
 \begin{note}
 This is a footnote
 \end{note}
+
 \section{TODOs}
-\label{sec-11}
+\label{sec-15}
 
 
 \begin{container-fluid}

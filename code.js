@@ -230,6 +230,9 @@ var slide;
 //// Keyboard event handlers ///////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
+// a hash table with {"key strokes":function}.
+// functions should take zero argument and
+// should return true on success, false otherwise.
 var keyManager = {};
 
 var keystrokeManager = {
@@ -389,6 +392,10 @@ function keyboardHandler(e){
     console.log(keystrokeManager.stroke);
 }
 
+////////////////////////////////////////////////////////////////
+//// Initialization
+////
+
 window.onload = function(){
     $("#content").addClass("outline-1");
     slide = new Slide($("#content"));
@@ -397,6 +404,9 @@ window.onload = function(){
     keystrokeManager.setup();
     $(window).keypress(keyboardHandler);
 };
+
+////////////////////////////////////////////////////////////////
+//// keymanager function
 
 keyManager.n = function(){
     $(".title").hide();
@@ -572,4 +582,13 @@ keyManager["remove-timer"] = function(){
     timers.map(function(t){
         t.destroy();
     });
+}
+
+keyManager.color = function(){
+    keystrokeManager.query(
+        "Enter the style file name",
+        function(result){
+            $(document.head).append("<link rel='stylesheet' href='css/" + result + ".css' />");
+        }, "", false);
+    return true;
 }

@@ -1,0 +1,89 @@
+
+
+a {
+    color: #222;
+    &:hover {
+        color: #bbb;
+    }
+    &:visited {
+        color: #555;
+    }
+    &:visited:hover {
+        color: #bbb;
+    }
+}
+
+body {
+    color: #555;
+    font-family: 'M+ 2c',Helvetica, Arial,'Lucida Grande', Meiryo, メイリオ, sans-serif;
+    background-color: #eee;
+    text-shadow: 0px 1px 1px #abc;
+}
+
+pre, code {
+    font-family: 'Ricty','Ubuntu Mono',monospace;
+    text-shadow: none;
+    background-color: #ddd;
+}
+
+code {
+}
+
+h1, h2, h3, h4, b {
+    text-shadow: 1px 1px 1px lightgray;
+}
+
+img {
+    padding: 2px;
+    border-width: 3px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #222;
+}
+
+blockquote {
+    font-style: italic;
+    border-style: solid;
+    border-radius: 0.3em;
+    border-width: 1px;
+    border-color: lightgray;
+    box-shadow: 3px 3px 3px #777;
+}
+
+li > .li-content:hover {
+    color: #833;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+.highlighted {
+    animation-name: highlight;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+img:hover {
+    animation-name: highlight-border;
+    animation-duration: 1.8s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+.twocolumn .left:hover, .twocolumn .right:hover, blockqute:hover {
+    animation-name: highlight-border-black;
+    animation-duration: 2.5s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+
+#minibuffer {
+    background-color: white;
+    border: 1px solid #222222;
+}
+#prompt {
+    color: forestgreen;
+}
+#input {
+    color: #123;
+}

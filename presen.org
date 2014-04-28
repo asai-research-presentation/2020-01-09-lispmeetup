@@ -5,23 +5,18 @@
 #+infojs_opt: view:nil path:./org-info.js toc:nil ltoc:nil ftoc:nil
 #+infojs_opt: mouse:#eeeeee buttons:nil
 #+HTML_MATHJAX: path:"mathjax/MathJax.js"
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="animation.css" />
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="colors-and-fonts.css" />
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/animation.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/layout.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/default.css" />
 #+HTML_HEAD: <script type="text/javascript" src="./jquery.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="./code.js"></script>
 #+HTML_POSTAMBLE: nil
 
 #+HTML_HEAD: <a id="banner" href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
-#+LATEX_HEADER: \usepackage{anorg}
-
 #+LINK: img file:img/%s
 #+LINK: png file:img/%s.png
-#+LINK: svg file:img/%s.svg
 #+LINK: jpg file:img/%s.jpg
-
-
 
 #+BEGIN_outline-text-1
 #+BEGIN_XLARGE
@@ -73,21 +68,22 @@ Proceed with "n"
 
 1. clone [[https://github.com/guicho271828/another-org-info][our repo]]
 
-2. =make= to publish
+2. =make html= to publish
 
 3. show it on your browser!
 
 * Virtue
 
 + Simplicity
-  + =code.js= only has 200 lines
+  + =code.js= is a pure javascript, only has 200 lines (increasing as new features
+    are added)
 + Extensibility
   + you can write your own extension and its easy
   + set a function to =keyManager.<your-key-strokes>=
-  + any char code $c$ in the keystrokes must be $32 < c < 126$
+  + the key strokes should contain character $c$ within char code $32 < c < 126$
     + =Space,!,",...A,B,C,...x,y,z,{,|,~=
 + LICENSE
-  + GPLv3 ?? < not attatched a lisence yet
+  + GPLv3 ?? < not attatched a license yet
 
 * Example: Expanding a List
 
@@ -99,42 +95,103 @@ Proceed with "n"
 + list
 + list
 
+
 * Org-block templates
 
-=another-org-info= knows are:
+We mark the html tag with org-mode blocks such as =#+BEGIN_EXAMPLE=.
+Using [[http://orgmode.org/manual/Easy-Templates.html][block template]] (by modifying =org-structure-template-alist=),
+you can quickly write such blocks i.e.:
 
+#+BEGIN_EXAMPLE
+at the beginning of line, hit
+
+<s<tab>
+
+in normal org-mode destribution in emacs,
+it would expand into:
+
+#+BEGIN_SRC 
+
+#+END_SRC
+#+END_EXAMPLE
+
+** customizing templates
+
+We provide custom =org-structure-template-alist=.
+These blocks are recognized by the stylesheet we provide,
+so they are highlighted correctly.
+
+#+BEGIN_CONTAINER-FLUID
+#+BEGIN_ROW-FLUID
+#+BEGIN_SPAN6
 + <S -- smaller
 + <lar -- larger
 + <t -- twocolumn
-  + implemented using a part of CSS in [[http://getbootstrap.com/][twitter-bootstrap]]
 + <n -- footnote
 + <r -- float right
 + <ar -- align right
 + <lcr -- "left,center,right" format with x-large fonts
 + <E -- latex `equation' environment
 + still more...
-
-** copy-paste it
-
+#+END_SPAN6
+#+BEGIN_SPAN6
+copy-paste it
 to your =.emacs=
 
 #+BEGIN_CENTER
 [[file:config.el]]
 #+END_CENTER
 
-* Dependency
+#+END_SPAN6
+#+END_ROW-FLUID
+#+END_CONTAINER-FLUID
+
+* Images
+
++ Put images into =img/= directory.
++ svg files are converted into png.
+  + We recommend it because
+    1. In html presentation, the inserted svg images capture the keyboard and mouse event
+       and the presentation sometimes does not work right.
+    2. In resume output and pdf presentation, the =svg= and =svg-inkscape= package is a
+       bit buggy and I personally failed make it work.
++ svg-png conversion is done by =inkscape=
+  + but you can also use ImageMagick =convert= command.
+  + See =img/Makefile= for more information.
+
+* Dependencies
 <<dependency>>
 
-+ jQuery 1.10.2 (included)
-+ org-mode v8.1 (not presicely)
++ jQuery (included)
++ Inkscape (image conversion)
++ org-mode (optional submodule)
++ MathJax (optional submodule)
 
-** Utility
+* LaTeX output
+
++ just =make pdf= on your shell
++ need the latest $\TeX$live installation
+  + see =Makefile=
+  + =pdflatex=
+  + alternatively, =platex= and =dvipdfmx=
++ presen.pdf -- presentation in pdf with similar appearance. Useful when
+  browser-based presentation is not allowed
++ resume.pdf -- short and printed version.
+
+* Utility
 
 + ./make-periotically.sh [args]
   + Watches the changes in the directory and =make=
-  + A simple shell script
+  + Build statuses are notified in inotify pop-up
   + all arguments are passed to =make=
   + dependency : inotifywait, notify-send
+
+* Makefile Target
+
++ =make html= -- builds the html version
++ =make resume= -- builds the resume version
++ =make pdf= -- builds the pdf version
++ =make= -- build all
 
 * Test
 
@@ -170,6 +227,7 @@ This is a LISP ALIEN IN A CAGE!
 #+END_SPAN6
 #+END_ROW-FLUID
 #+END_CONTAINER-FLUID
+
 
 ** many columns test
 

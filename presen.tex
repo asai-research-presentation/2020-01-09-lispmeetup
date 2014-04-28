@@ -1,32 +1,20 @@
-\documentclass[21pt,slide,papersize]{jsarticle}
-
-\usepackage[dvipdfmx]{graphicx,xcolor,hyperref}
-\pagecolor[HTML]{99AABB}
-
-\usepackage[normalem]{ulem}
-\usepackage{amsmath}
-\usepackage{amssymb}
-
-\tolerance=1000
+\documentclass[20pt,landscape]{extarticle}
+\AtBeginDvi{\special{pdf:tounicode 90ms-RKSJ-UCS2}}
+\usepackage[margin=20mm]{geometry}
 \usepackage{anorg}
-\author{Masataro Asai}
-\date{\today}
-\title{NTT研究所 プレゼンテーション}
-\hypersetup{
- pdfkeywords={},
-  pdfsubject={},
-  pdfcreator={Emacs 24.3.1 (Org mode 8.2.5h)}}
+\pagecolor[HTML]{EEEEEE}
 
-
+\let\oldsection\section
 \let\oldsubsection\subsection
 \let\oldsubsubsection\subsubsection
 
+\renewcommand{\section}{\clearpage\oldsection}
 \renewcommand{\subsection}{\clearpage\oldsubsection}
 \renewcommand{\subsubsection}{\clearpage\oldsubsubsection}
 
 \begin{document}
-
 \maketitle
+\relsize{1}
 
 \input{presen.org.tex}
 
