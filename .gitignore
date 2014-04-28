@@ -15,6 +15,6 @@
 *.utf8
 *.blg
 #*
-presen.org.html
+*.org.*
 /img/alien.png
 /img/alien.sbb

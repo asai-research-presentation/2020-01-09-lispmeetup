@@ -169,14 +169,14 @@ to your =.emacs=
 
 * LaTeX output
 
++ [[file:presen.pdf][pdf presentaiton]] presen.pdf -- presentation in pdf with similar
+  appearance. Useful when browser-based presentation is not allowed
++ [[file:resume.pdf][Printable Resume]] resume.pdf -- short and printed version.
 + just =make pdf= on your shell
 + need the latest $\TeX$live installation
   + see =Makefile=
   + =pdflatex=
   + alternatively, =platex= and =dvipdfmx=
-+ presen.pdf -- presentation in pdf with similar appearance. Useful when
-  browser-based presentation is not allowed
-+ resume.pdf -- short and printed version.
 
 * Utility
 
