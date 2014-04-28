@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Yet Another Org-mode Presentation Script</title>
-<!-- 2014-04-28 月 10:44 -->
+<!-- 2014-04-28 月 10:51 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Masataro Asai" />
@@ -340,11 +340,86 @@ are added)
 </ul>
 </div>
 </div>
-
-
 <div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Org-block templates</h2>
+<h2 id="sec-6"><span class="section-number-2">6</span> Dependencies</h2>
 <div class="outline-text-2" id="text-6">
+<p>
+<a id="dependency"></a>
+</p>
+
+<ul class="org-ul">
+<li>jQuery (included)
+</li>
+<li>Inkscape (image conversion)
+</li>
+<li>org-mode (optional submodule)
+</li>
+<li>MathJax (optional submodule)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> LaTeX output</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li><a href="presen.pdf">pdf presentaiton</a> presen.pdf &#x2013; presentation in pdf with similar
+appearance. Useful when browser-based presentation is not allowed
+</li>
+<li><a href="resume.pdf">Printable Resume</a> resume.pdf &#x2013; short and printed version.
+</li>
+<li>just <code>make pdf</code> on your shell
+</li>
+<li>need the latest $\TeX$live installation
+<ul class="org-ul">
+<li>see <code>Makefile</code>
+</li>
+<li><code>pdflatex</code>
+</li>
+<li>alternatively, <code>platex</code> and <code>dvipdfmx</code>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Images</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li>Put images into <code>img/</code> directory.
+</li>
+<li>svg files are converted into png.
+<ul class="org-ul">
+<li>We recommend it because
+<ol class="org-ol">
+<li>In html presentation, the inserted svg images capture the keyboard and mouse event
+and the presentation sometimes does not work right.
+</li>
+<li>In resume output and pdf presentation, the <code>svg</code> and <code>svg-inkscape</code> package is a
+bit buggy and I personally failed make it work.
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>svg-png conversion is done by <code>inkscape</code>
+<ul class="org-ul">
+<li>but you can also use ImageMagick <code>convert</code> command.
+</li>
+<li>See <code>img/Makefile</code> for more information.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Org-block templates</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 We mark the html tag with org-mode blocks such as <code>#+BEGIN_EXAMPLE</code>.
 Using <a href="http://orgmode.org/manual/Easy-Templates.html">block template</a> (by modifying <code>org-structure-template-alist</code>),
@@ -365,9 +440,9 @@ it would expand into:
 </pre>
 </div>
 
-<div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> customizing templates</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> customizing templates</h3>
+<div class="outline-text-3" id="text-9-1">
 <p>
 We provide custom <code>org-structure-template-alist</code>.
 These blocks are recognized by the stylesheet we provide,
@@ -420,83 +495,6 @@ to your <code>.emacs</code>
 </div>
 </div>
 
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> Images</h2>
-<div class="outline-text-2" id="text-7">
-<ul class="org-ul">
-<li>Put images into <code>img/</code> directory.
-</li>
-<li>svg files are converted into png.
-<ul class="org-ul">
-<li>We recommend it because
-<ol class="org-ol">
-<li>In html presentation, the inserted svg images capture the keyboard and mouse event
-and the presentation sometimes does not work right.
-</li>
-<li>In resume output and pdf presentation, the <code>svg</code> and <code>svg-inkscape</code> package is a
-bit buggy and I personally failed make it work.
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>svg-png conversion is done by <code>inkscape</code>
-<ul class="org-ul">
-<li>but you can also use ImageMagick <code>convert</code> command.
-</li>
-<li>See <code>img/Makefile</code> for more information.
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> Dependencies</h2>
-<div class="outline-text-2" id="text-8">
-<p>
-<a id="dependency"></a>
-</p>
-
-<ul class="org-ul">
-<li>jQuery (included)
-</li>
-<li>Inkscape (image conversion)
-</li>
-<li>org-mode (optional submodule)
-</li>
-<li>MathJax (optional submodule)
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> LaTeX output</h2>
-<div class="outline-text-2" id="text-9">
-<ul class="org-ul">
-<li><a href="presen.pdf">pdf presentaiton</a> presen.pdf &#x2013; presentation in pdf with similar
-appearance. Useful when browser-based presentation is not allowed
-</li>
-<li><a href="resume.pdf">Printable Resume</a> resume.pdf &#x2013; short and printed version.
-</li>
-<li>just <code>make pdf</code> on your shell
-</li>
-<li>need the latest $\TeX$live installation
-<ul class="org-ul">
-<li>see <code>Makefile</code>
-</li>
-<li><code>pdflatex</code>
-</li>
-<li>alternatively, <code>platex</code> and <code>dvipdfmx</code>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-
 <div id="outline-container-sec-10" class="outline-2">
 <h2 id="sec-10"><span class="section-number-2">10</span> Utility</h2>
 <div class="outline-text-2" id="text-10">
@@ -518,7 +516,7 @@ appearance. Useful when browser-based presentation is not allowed
 </div>
 
 <div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> Makefile Target</h2>
+<h2 id="sec-11"><span class="section-number-2">11</span> Makefile Targets</h2>
 <div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li><code>make html</code> &#x2013; builds the html version
@@ -707,7 +705,7 @@ This is a footnote
 </li>
 <li>Showing current/total page number
 </li>
-<li>Changing Stylesheet
+<li><del>Changing Stylesheet</del> <b>DONE</b>
 </li>
 <li>Up-Section command
 </li>
@@ -767,7 +765,7 @@ This is a footnote
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Masataro Asai</p>
-<p class="date">Created: 2014-04-28 月 10:44</p>
+<p class="date">Created: 2014-04-28 月 10:51</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode N/A-fixup)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

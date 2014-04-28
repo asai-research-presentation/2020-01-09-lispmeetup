@@ -94,7 +94,37 @@ Proceed with "n"
   + and where it ends
 + list
 + list
+* Dependencies
+<<dependency>>
 
++ jQuery (included)
++ Inkscape (image conversion)
++ org-mode (optional submodule)
++ MathJax (optional submodule)
+
+* LaTeX output
+
++ [[file:presen.pdf][pdf presentaiton]] presen.pdf -- presentation in pdf with similar
+  appearance. Useful when browser-based presentation is not allowed
++ [[file:resume.pdf][Printable Resume]] resume.pdf -- short and printed version.
++ just =make pdf= on your shell
++ need the latest $\TeX$live installation
+  + see =Makefile=
+  + =pdflatex=
+  + alternatively, =platex= and =dvipdfmx=
+
+* Images
+
++ Put images into =img/= directory.
++ svg files are converted into png.
+  + We recommend it because
+    1. In html presentation, the inserted svg images capture the keyboard and mouse event
+       and the presentation sometimes does not work right.
+    2. In resume output and pdf presentation, the =svg= and =svg-inkscape= package is a
+       bit buggy and I personally failed make it work.
++ svg-png conversion is done by =inkscape=
+  + but you can also use ImageMagick =convert= command.
+  + See =img/Makefile= for more information.
 
 * Org-block templates
 
@@ -146,38 +176,6 @@ to your =.emacs=
 #+END_ROW-FLUID
 #+END_CONTAINER-FLUID
 
-* Images
-
-+ Put images into =img/= directory.
-+ svg files are converted into png.
-  + We recommend it because
-    1. In html presentation, the inserted svg images capture the keyboard and mouse event
-       and the presentation sometimes does not work right.
-    2. In resume output and pdf presentation, the =svg= and =svg-inkscape= package is a
-       bit buggy and I personally failed make it work.
-+ svg-png conversion is done by =inkscape=
-  + but you can also use ImageMagick =convert= command.
-  + See =img/Makefile= for more information.
-
-* Dependencies
-<<dependency>>
-
-+ jQuery (included)
-+ Inkscape (image conversion)
-+ org-mode (optional submodule)
-+ MathJax (optional submodule)
-
-* LaTeX output
-
-+ [[file:presen.pdf][pdf presentaiton]] presen.pdf -- presentation in pdf with similar
-  appearance. Useful when browser-based presentation is not allowed
-+ [[file:resume.pdf][Printable Resume]] resume.pdf -- short and printed version.
-+ just =make pdf= on your shell
-+ need the latest $\TeX$live installation
-  + see =Makefile=
-  + =pdflatex=
-  + alternatively, =platex= and =dvipdfmx=
-
 * Utility
 
 + ./make-periotically.sh [args]
@@ -186,7 +184,7 @@ to your =.emacs=
   + all arguments are passed to =make=
   + dependency : inotifywait, notify-send
 
-* Makefile Target
+* Makefile Targets
 
 + =make html= -- builds the html version
 + =make resume= -- builds the resume version
@@ -280,7 +278,6 @@ This is a footnote
 
 * TODOs
 
-
 #+BEGIN_CONTAINER-FLUID
 #+BEGIN_ROW-FLUID
 #+BEGIN_SPAN6
@@ -291,7 +288,7 @@ This is a footnote
   + +Showing current keystrokes+ *DONE*
   + auto-scroll/auto-zoom with big contents
   + Showing current/total page number
-  + Changing Stylesheet
+  + +Changing Stylesheet+ *DONE*
   + Up-Section command
   + Slide thumbnail
   + +stopwatch/countdown timer+ *DONE*
