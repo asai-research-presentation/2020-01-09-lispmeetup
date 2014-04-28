@@ -46,8 +46,10 @@ endif
 	$(EMACS) -Q --batch $(EMACSFLAGS) -f batch-byte-compile $<
 
 clean:
-	rm -f *~ *.org.*  *.elc
-	rm -f __*
+	-rm -f *~ *.org.* *.pdf \
+		*~ *.aux *.dvi *.log *.toc *.bbl \
+		*.blg *.utf8 *.elc \
+		*.fdb_latexmk __* *.fls *.mtc *.maf *.out index.html
 
 allclean: clean
 	make -C img clean
