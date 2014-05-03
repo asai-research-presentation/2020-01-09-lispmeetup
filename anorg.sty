@@ -17,11 +17,12 @@
 \renewenvironment{larger}{\relsize{1}}{}
 \renewenvironment{smaller}{\relsize{-1}}{}
 
-\newenvironment{alignright}{\begin{flushright}}{\end{flushright}}
-\newenvironment{alignleft}{\begin{flushleft}}{\end{flushleft}}
 \newenvironment{outline-text-1}{}{}
 
 \usepackage{environ}
+
+\NewEnviron{alignright}{\raggedleft\BODY}
+\NewEnviron{alignleft}{\raggedright\BODY}
 
 \NewEnviron{note}{\footnote{\BODY}}
 \NewEnviron{container-fluid}{\BODY}
