@@ -2,8 +2,8 @@
 EMACS      = emacs
 EMACSFLAGS =
 styles     = anorg.sty user.sty
-latex      = pdflatex
-# latex      = platex
+# latex      = pdflatex
+latex      = platex
 
 .PHONY: all img clean allclean html pdf resume index css
 .SECONDLY: *.elc *.org.*
@@ -33,14 +33,15 @@ ifeq ($(latex),platex)
 %.dvi: %.tex img $(styles)
 	$(latex) -halt-on-error $<
 	$(latex) -halt-on-error $<
+%.pdf : %.dvi
+	dvipdfmx -f ipa.map -o $@ $*
 else
 %.dvi: %.tex img $(styles)
 	$(latex) -output-format=dvi -halt-on-error $<
 	$(latex) -output-format=dvi -halt-on-error $<
-endif
-
 %.pdf : %.dvi
 	dvipdfmx -o $@ $*
+endif
 
 %.elc : %.el
 	$(EMACS) -Q --batch $(EMACSFLAGS) -f batch-byte-compile $<
