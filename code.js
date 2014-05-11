@@ -426,6 +426,29 @@ keyManager.n = function(){
 
 };
 
+keyManager.N = function(){
+    $(".title").hide();
+
+    console.log(slide.level);
+    try{
+        var exps=$(".expander:visible, .sibling-expander:visible",slide.current);
+        if(exps.length>0){
+            expandAll();
+        }
+    } catch (x) {
+        console.warn("This is the last slide!");
+    }
+};
+
+function expandAll(){
+    var exps=$(".expander:visible, .sibling-expander:visible",slide.current);
+    exps.first().click();
+    if(exps.length>1){
+        expandAll();
+    }
+}
+
+
 keyManager.p = function(){
     console.log(slide.level);
     try{
