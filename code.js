@@ -406,9 +406,9 @@ window.onload = function(){
 };
 
 ////////////////////////////////////////////////////////////////
-//// keymanager function
+//// keymanager functions
 
-keyManager.n = function(){
+keyManager.n = keyManager[" "] = function(){
     $(".title").hide();
 
     var exps=$(".expander:visible, .sibling-expander:visible",slide.current);
@@ -426,6 +426,7 @@ keyManager.n = function(){
 
 };
 
+// expand the list in the current slide
 keyManager.N = function(){
     $(".title").hide();
 
