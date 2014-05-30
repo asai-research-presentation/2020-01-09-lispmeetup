@@ -535,13 +535,19 @@ keyManager.banner = function(){
     $("#banner").toggle();
 };
 
-keyManager.help = function(){
-    keystrokeManager.query("Supported commands: "+
-                           Object.keys(keyManager).join(", "),
-                           function(result){
-                               console.log("help message");},
-                           "Hit Enter to escape this dialog",
-                           true);
+keyManager.help = keyManager.h = keyManager["?"] = function(){
+    keystrokeManager.query(
+        "Supported commands: \""+
+            Object.keys(keyManager).join("\", \"") +
+            "\". Hit Enter to escape.",
+        function(result){
+            if (result==""){
+                console.log("empty help message");
+            }else{
+                console.log("help message:" + result);
+            }},
+        "",
+        true);
     return true;
 };
 
