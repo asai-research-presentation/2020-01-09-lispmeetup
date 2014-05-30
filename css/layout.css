@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* ************ Contents and Control ********** */
 body {
   overflow: hidden;
@@ -153,9 +152,6 @@ dd:not(.expanded), li:not(.expanded) {
     content: '...'; }
 dd.expanded > dl, dd.expanded > ul, li.expanded > dl, li.expanded > ul {
   visibility: hidden; }
-  dd.expanded > dl:before, dd.expanded > ul:before, li.expanded > dl:before, li.expanded > ul:before {
-    visibility: visible;
-    content: '→'; }
 
 .expanded {
   visibility: visible !important; }

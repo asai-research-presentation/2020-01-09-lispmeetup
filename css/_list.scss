@@ -23,10 +23,6 @@ dd, li {
     &.expanded > {
         dl, ul {
             visibility : hidden;
-            &:before {
-                visibility : visible;
-                content : '→';
-            }
         }
     }
 }
