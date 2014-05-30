@@ -373,6 +373,20 @@ window.onload = function(){
     setExpanders();
     keystrokeManager.setup();
     $(window).keypress(keyboardHandler);
+    
+    var href = location.href;
+    var re = /.*#(.*)/;
+    var result = href.match(re);
+    if(result){
+        var secnums = result[1].split("-");
+        try{
+            console.log(container.apply(this,secnums));
+            slide = slide.new($(container.apply(this,secnums)));
+            slide.show();
+        } catch (x) {
+            
+        }
+    }
 };
 
 ////////////////////////////////////////////////////////////////
@@ -427,13 +441,13 @@ keyManager.s = keyManager.go = function(){
 function sectionPrompt2(message){
     return keystrokeManager.query(
         message,function(result){
-            result = result.split(".");
+            var secnums = result.split(".");
             try{
-                console.log(container.apply(this,result));
-                slide = slide.new($(container.apply(this,result)));
+                console.log(container.apply(this,secnums));
+                slide = slide.new($(container.apply(this,secnums)));
                 slide.show();
             } catch (x) {
-                sectionPrompt2(container.apply(this,result) + " does not exists.");
+                sectionPrompt2(container.apply(this,secnums) + " does not exists.");
             }
         },
         unparseSection(slide.current.get(0).id).join("-"));
