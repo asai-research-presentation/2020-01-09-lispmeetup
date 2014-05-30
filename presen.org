@@ -279,7 +279,8 @@ This is a footnote
   + +Up-Section command+ *DONE*
   + Slide thumbnail
   + +stopwatch/countdown timer+ *DONE*
-  + link to #section
+  + +link to #section+ *DONE*.
+    #+HTML: <a href="index.html#6">sample link</a>
 #+END_SMALLER
 #+END_SPAN6
 #+BEGIN_SPAN6
