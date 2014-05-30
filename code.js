@@ -203,7 +203,7 @@ Slide.prototype = {
             try{
                 slide = slide.up();
             } catch (x) {
-                throw new Error("next");
+                throw new Error("no next slide");
                 // tells that there is no next slide
             }
             try{
@@ -212,7 +212,7 @@ Slide.prototype = {
                 return slide.right(true);
             } catch (x) {
             }
-        }        
+        }
     },
     prev : function(){
         if (this.previous){
