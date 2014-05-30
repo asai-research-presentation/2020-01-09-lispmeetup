@@ -37,9 +37,12 @@ function expand(){
     console.log("clicked!");
     var tx = text();
     var result =
-        $("li.expanded + li:not(.expanded),"+
-          "li:first-child:not(.expanded)",tx).first().addClass("expanded emerging-list");
-    $("li.expanded > ul:not(.expanded)",tx).first().addClass("expanded emerging");
+        $(".expanded + li:not(.expanded),"+
+          ".expanded + dt + dd:not(.expanded),"+
+          "li:first-child:not(.expanded),"+
+          "dd:first-of-type:not(.expanded)",tx).first().addClass("expanded emerging-list");
+    $(".expanded > ul:not(.expanded)"+
+      ".expanded > dl:not(.expanded)",tx).first().addClass("expanded emerging");
     return result;
 }
 
