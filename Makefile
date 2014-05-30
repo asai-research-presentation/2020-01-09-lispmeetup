@@ -22,6 +22,9 @@ css:
 
 presen.dvi: presen.org.tex
 resume.dvi: presen.org.tex
+presen.org: head.org
+	touch presen.org
+
 
 %.org.tex: %.org compile-org-latex.elc
 	emacs --batch --quick --eval "(progn (load-file \"compile-org-latex.el\")(compile-org \"$<\" \"$@\"))"
