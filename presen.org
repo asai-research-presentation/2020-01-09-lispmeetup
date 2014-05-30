@@ -42,12 +42,23 @@ Proceed with "n"
 * Usage (on browsers)
 
 #+BEGIN_SMALLER
-+ n :: go to the next section/expand a list
-+ p :: back to the previous section
-+ s, or "go" :: jump to an arbitrary section (using minibuffer)
+
+#+BEGIN_CONTAINER-FLUID
+#+BEGIN_ROW-FLUID
+#+BEGIN_SPAN6
++ n,<Space> :: go to the next slide/expand a list
++ p :: back to the previous slide
++ u, ^ :: go to the parent section
++ N :: expand all list in the current slide
+#+END_SPAN6
+#+BEGIN_SPAN6
++ s, or typing "go" :: jump to an arbitrary section (using minibuffer)
 + d :: debugging mode (shows content border)
 + <Ctrl-g> or <Esc> :: cancel current key strokes
-+ "help" :: shows the available commands in the minibuffer!
++ typing "help" :: show available commands in the minibuffer!
+#+END_SPAN6
+#+END_ROW-FLUID
+#+END_CONTAINER-FLUID
 
 #+END_SMALLER
 
@@ -74,11 +85,7 @@ Proceed with "n"
 
 * Example: Expanding a List
 
-+ *the dots* tell "/here are more contents/" $\rightarrow$
-+ *an arrow* tells "/here are expandable contents/" $\rightarrow$
-  + These remind you that there are
-  + *still more sub-contents* you have to talk
-  + and where it ends
++ *the dots* tell "/this is a content/"
 + list
 + list
 * Dependencies
@@ -86,19 +93,19 @@ Proceed with "n"
 
 + jQuery (included)
 + Inkscape (image conversion)
-+ org-mode (optional submodule)
++ org-mode (included)
 + MathJax (optional submodule)
 
 * LaTeX output
 
-+ [[file:presen.pdf][pdf presentaiton]] presen.pdf -- presentation in pdf with similar
++ [[file:presen.pdf][PDF Presentaiton]] presen.pdf -- presentation in pdf with similar
   appearance. Useful when browser-based presentation is not allowed
 + [[file:resume.pdf][Printable Resume]] resume.pdf -- short and printed version.
-+ just =make pdf= on your shell
-+ need the latest $\TeX$live installation
++ =make pdf= and =make resume= on the shell
++ need the latest $\mbox{\TeX}$ live installation
   + see =Makefile=
-  + =pdflatex=
-  + alternatively, =platex= and =dvipdfmx=
+  + =platex= and =dvipdfmx=
+  + alternatively, =pdflatex=
 
 * Images
 
@@ -234,7 +241,6 @@ This is a LISP ALIEN IN A CAGE!
 #+END_ROW-FLUID
 #+END_CONTAINER-FLUID
 
-
 * A Slide with Too Little Contents
 
 #+BEGIN_CENTER
@@ -271,14 +277,14 @@ This is a footnote
 #+BEGIN_SMALLER
 + Features
   + Table of contents
-  + =<dl>= does not expand
+  + +=<dl>= does not expand+ *DONE*
   + +Showing current keystrokes+ *DONE*
   + auto-scroll/auto-zoom with big contents
   + Showing current/total page number
-  + +Changing Stylesheet+ *DONE*
-  + +Up-Section command+ *DONE*
+  + +Changing Stylesheet+ *DONE*. "style"
+  + +Up-Section command+ *DONE*. "u"
   + Slide thumbnail
-  + +stopwatch/countdown timer+ *DONE*
+  + +stopwatch/countdown timer+ *DONE*. "timer"
   + +link to #section+ *DONE*.
     #+HTML: <a href="index.html#6">sample link</a>
 #+END_SMALLER
