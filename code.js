@@ -28,13 +28,26 @@ jQuery.fn.emergeList = function() {
     return this.addClass("emerging-list");
 };
 
-
 function makeitspan(li){
     if(li.childNodes){
         var ns = li.childNodes;
         var len = ns.length;
         for(var i=0;i<len;i++){
             var node = ns[i];
+            // https://developer.mozilla.org/ja/docs/Web/API/Node.nodeType
+            // 
+            // ELEMENT_NODE 	1
+            // ATTRIBUTE_NODE 	2
+            // TEXT_NODE 	3
+            // CDATA_SECTION_NODE 	4
+            // ENTITY_REFERENCE_NODE 	5
+            // ENTITY_NODE 	6
+            // PROCESSING_INSTRUCTION_NODE 	7
+            // COMMENT_NODE 	8
+            // DOCUMENT_NODE 	9
+            // DOCUMENT_TYPE_NODE 	10
+            // DOCUMENT_FRAGMENT_NODE 	11
+            // NOTATION_NODE 	12
             if (node.nodeType==3){
                 var nnode = document.createElement("span");
                 li.replaceChild(nnode,node);
@@ -46,7 +59,6 @@ function makeitspan(li){
 
 function expandSibling(e){
     console.log("double clicked!");
-    
     $(".highlighted").removeClass("highlighted");
     $(this).parent().next().emergeList().visible().children(":first-child").addClass("highlighted");
     $(this).parent().get(0).removeChild(this);
@@ -179,24 +191,18 @@ Slide.prototype = {
     nochild : function(){
         return nullp(this.current.children(outline(1+this.level)));
     },
+    // if sustain is true, it doesn't add the current slide to the slide history
     new : function(next,sustain){
         return new Slide(next,(sustain?this.previous:this));
     },
-    up : function(sustain){
-        return this.new(this.current.parent(),sustain);
-    },
+    up : function(sustain){return this.new(this.current.parent(),sustain);},
     down : function(sustain){
-        return this.new(this.current.children(outline(1+this.level)).first(),sustain);
-    },
+        return this.new(this.current.children(outline(1+this.level)).first(),sustain);},
     left : function(sustain){return this.new(this.current.prev(),sustain)},
     right : function(sustain){return this.new(this.current.next(),sustain)},
     next : function(){
-        try{
-            return this.down();
-        } catch (x) {}
-        try{
-            return this.right();
-        } catch (x) {}
+        try{return this.down();} catch (x) {}
+        try{return this.right();} catch (x) {}
         
         var slide = this;
         while(true){
@@ -408,6 +414,7 @@ window.onload = function(){
 ////////////////////////////////////////////////////////////////
 //// keymanager functions
 
+// expand one element in the list in the current slide, or go to the next slide
 keyManager.n = keyManager[" "] = function(){
     $(".title").hide();
 
@@ -423,21 +430,18 @@ keyManager.n = keyManager[" "] = function(){
     } catch (x) {
         console.warn("This is the last slide!");
     }
-
 };
 
-// expand the list in the current slide
+// expand all elements in the current slide
 keyManager.N = function(){
     $(".title").hide();
 
     console.log(slide.level);
-    try{
-        var exps=$(".expander:visible, .sibling-expander:visible",slide.current);
-        if(exps.length>0){
-            expandAll();
-        }
-    } catch (x) {
-        console.warn("This is the last slide!");
+    var exps=$(".expander:visible, .sibling-expander:visible",slide.current);
+    if(exps.length>0){
+        expandAll();
+    }else{
+        keyManager.n();
     }
 };
 
@@ -448,7 +452,6 @@ function expandAll(){
         expandAll();
     }
 }
-
 
 keyManager.p = function(){
     console.log(slide.level);
@@ -508,14 +511,13 @@ function toggleDebug(){
 }
 
 keyManager.d = function(){
-    $(".outline-1,.outline-2,.outline-3,.outline-4,li,ul,ol,h1,h2,h3,h4,.outline-text-2, .outline-text-3, .outline-text-4")
+    $(".outline-1,.outline-2,.outline-3,.outline-4"+
+      ",li,ul,ol,h1,h2,h3,h4,.outline-text-2, .outline-text-3, .outline-text-4")
         .map(toggleDebug());
     console.log("debug : "+debug);
 };
 
-// unfolding
-
-
+// unfolding the presentation and shows all slides at once
 keyManager.unfold = function(){
     $("*").visible().show();
     $(".note").css({position:"static",top:"1em"});
