@@ -276,7 +276,7 @@ This is a footnote
   + auto-scroll/auto-zoom with big contents
   + Showing current/total page number
   + +Changing Stylesheet+ *DONE*
-  + Up-Section command
+  + +Up-Section command+ *DONE*
   + Slide thumbnail
   + +stopwatch/countdown timer+ *DONE*
   + link to #section
@@ -288,9 +288,9 @@ This is a footnote
   + Content Search (in org-infojs)
   + Drawing mode (in [[http://code.google.com/p/jessyink/][jessyink]])
   + 'Paused' mode (in [[http://lab.hakim.se/reveal-js/][reveal.js]])
-  + +Export to PDF (also in reveal.js)+
-    + implemented as the resume output
-  + Slide with an image covering entire background (slideshare)
+  + +Export to PDF (also in reveal.js)+ *DONE*
+  + +resume output+ *DONE*
+  + Slide with an image covering the entire background (slideshare)
   + present one paragraph/word/letter at a time
     + those in [[http://docutils.sourceforge.net/docs/user/slide-shows.s5.html][s5]]
   + "C-M-x" style notation in the command definition
