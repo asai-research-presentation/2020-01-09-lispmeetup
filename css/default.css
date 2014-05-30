@@ -50,7 +50,8 @@ img {
   /* background-color: #777; */ }
 
 blockquote {
-  font-style: italic;
+  /* font-style: italic; */
+  line-height: 1.8em;
   border-style: solid;
   border-radius: 0.3em;
   border-width: 1px;

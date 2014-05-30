@@ -1,0 +1,57 @@
+/* ***************** Markup ****************** */
+
+pre, code {
+    font-size:   18pt;
+    line-height: 1.05em;
+    text-indent: 0em;
+}
+
+pre {
+    padding: 0.5em !important;
+}
+
+code {
+    padding: 0.12em;
+}
+
+/* notes */
+
+.note {
+    position: absolute;
+    bottom: 10px;
+    max-width: 90%;
+    p {margin: 0;}
+    ol li, ul li{
+        margin: -0.6em;
+        padding: 0em;
+    }
+}
+
+blockquote {
+    padding: 0.3em 1em;
+}
+
+.smaller {
+    font-size: smaller;
+    line-height:110%;
+    margin: auto;
+    padding: auto;
+}
+
+.larger {
+    font-size: larger;
+    line-height:110%;
+    margin: auto;
+    padding: auto;
+}
+
+.xlarge {
+    font-size: 250%;
+    font-weight: bold;
+    line-height:110%;
+    text-shadow: 1px 1px 1px lightgray;
+}
+
+.vertical {
+    writing-mode: vertical-rl;
+}
