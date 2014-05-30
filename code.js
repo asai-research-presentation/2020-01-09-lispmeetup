@@ -21,66 +21,30 @@ jQuery.fn.invisible = function() {
     return this.css('visibility', 'hidden');
 };
 
+
 jQuery.fn.emerge = function() {
-    return this.addClass("emerging");
-};
-jQuery.fn.emergeList = function() {
-    return this.addClass("emerging-list");
+    return this.addClass("emerge");
 };
 
-function makeitspan(li){
-    if(li.childNodes){
-        var ns = li.childNodes;
-        var len = ns.length;
-        for(var i=0;i<len;i++){
-            var node = ns[i];
-            // https://developer.mozilla.org/ja/docs/Web/API/Node.nodeType
-            // 
-            // ELEMENT_NODE 	1
-            // ATTRIBUTE_NODE 	2
-            // TEXT_NODE 	3
-            // CDATA_SECTION_NODE 	4
-            // ENTITY_REFERENCE_NODE 	5
-            // ENTITY_NODE 	6
-            // PROCESSING_INSTRUCTION_NODE 	7
-            // COMMENT_NODE 	8
-            // DOCUMENT_NODE 	9
-            // DOCUMENT_TYPE_NODE 	10
-            // DOCUMENT_FRAGMENT_NODE 	11
-            // NOTATION_NODE 	12
-            if (node.nodeType==3){
-                var nnode = document.createElement("span");
-                li.replaceChild(nnode,node);
-                $(nnode).addClass("li-content").text(node.textContent);
-            }
-        }
-    }
+function text(){
+    return $(".outline-text-1,"+
+             ".outline-text-2,"+
+             ".outline-text-3,"+
+             ".outline-text-4",slide.current).first();
 }
 
-function expandSibling(e){
-    console.log("double clicked!");
-    $(".highlighted").removeClass("highlighted");
-    $(this).parent().next().emergeList().visible().children(":first-child").addClass("highlighted");
-    $(this).parent().get(0).removeChild(this);
-}
-
-function expandChild(e){
+function expand(){
     console.log("clicked!");
-    $(".highlighted").removeClass("highlighted");
-    $(this).next().emergeList().visible().children(":first-child").addClass("highlighted");
-    $(this).parent().get(0).removeChild(this);
+    var tx = text();
+    var result =
+        $("li.expanded + li:not(.expanded),"+
+          "li:first-child:not(.expanded)",tx).first().addClass("expanded emerging-list");
+    $("li.expanded > ul:not(.expanded)",tx).first().addClass("expanded emerging");
+    return result;
 }
 
 function setExpanders(){
-    $("li").map(
-        function(i,li){
-            makeitspan(li);
-        });
-    $("li ~ li").invisible();
-    $("li:not(:last-child)").append('<span class="sibling-expander">...</span>');
-    $("li > ul").invisible().before('<span class="expander">→</span>');
-    $(".expander").click(expandChild);
-    $(".sibling-expander").click(expandSibling);
+    $("outline-1,outline-2,outline-3,outline-4").click(expand);
 }
 
 function outline(n){
@@ -417,16 +381,12 @@ window.onload = function(){
 // expand one element in the list in the current slide, or go to the next slide
 keyManager.n = keyManager[" "] = function(){
     $(".title").hide();
-
-    var exps=$(".expander:visible, .sibling-expander:visible",slide.current);
     console.log(slide.level);
     try{
-        if(exps.length>0){
-            exps.first().click();
-        }else{
+        if(expand().length==0){
             slide = slide.next();
+            slide.show();
         }
-        slide.show();
     } catch (x) {
         console.warn("This is the last slide!");
     }
@@ -435,23 +395,10 @@ keyManager.n = keyManager[" "] = function(){
 // expand all elements in the current slide
 keyManager.N = function(){
     $(".title").hide();
-
     console.log(slide.level);
-    var exps=$(".expander:visible, .sibling-expander:visible",slide.current);
-    if(exps.length>0){
-        expandAll();
-    }else{
-        keyManager.n();
-    }
+    if(expand().length==0){keyManager.n();}
+    while (expand().length>0){}
 };
-
-function expandAll(){
-    var exps=$(".expander:visible, .sibling-expander:visible",slide.current);
-    exps.first().click();
-    if(exps.length>1){
-        expandAll();
-    }
-}
 
 keyManager.p = function(){
     console.log(slide.level);

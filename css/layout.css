@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ************ Contents and Control ********** */
 body {
   overflow: hidden;
@@ -137,12 +138,31 @@ h1, h2, h3, h4 {
   padding: 0px 5% 0px 5%;
   margin: 0px; }
 
-/* ***************** List expansion ******************* */
-ol li, ul li {
+/* ***************** List ******************* */
+ul {
+  padding-left: 20px; }
+
+li {
   margin: 0.45em; }
 
-.org-ul {
-  padding-left: 20px; }
+/* ***************** List expansion ******************* */
+.expanded {
+  visibility: visible !important; }
+  .expanded:before, .expanded:after {
+    visibility: hidden !important;
+    display: none; }
+
+li:not(.expanded) {
+  visibility: hidden; }
+  li:not(.expanded):after {
+    visibility: visible;
+    content: '...'; }
+
+li.expanded > ul {
+  visibility: hidden; }
+  li.expanded > ul:before {
+    visibility: visible;
+    content: '→'; }
 
 /* ***************** Markup ****************** */
 pre, code {
