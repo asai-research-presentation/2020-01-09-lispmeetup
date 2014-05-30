@@ -146,23 +146,22 @@ li {
   margin: 0.45em; }
 
 /* ***************** List expansion ******************* */
+dd:not(.expanded), li:not(.expanded) {
+  visibility: hidden; }
+  dd:not(.expanded):before, li:not(.expanded):before {
+    visibility: visible;
+    content: '...'; }
+dd.expanded > dl, dd.expanded > ul, li.expanded > dl, li.expanded > ul {
+  visibility: hidden; }
+  dd.expanded > dl:before, dd.expanded > ul:before, li.expanded > dl:before, li.expanded > ul:before {
+    visibility: visible;
+    content: '→'; }
+
 .expanded {
   visibility: visible !important; }
   .expanded:before, .expanded:after {
     visibility: hidden !important;
     display: none; }
-
-li:not(.expanded) {
-  visibility: hidden; }
-  li:not(.expanded):after {
-    visibility: visible;
-    content: '...'; }
-
-li.expanded > ul {
-  visibility: hidden; }
-  li.expanded > ul:before {
-    visibility: visible;
-    content: '→'; }
 
 /* ***************** Markup ****************** */
 pre, code {

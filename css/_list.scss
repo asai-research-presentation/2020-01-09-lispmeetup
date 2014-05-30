@@ -10,6 +10,28 @@ li {
 
 /* ***************** List expansion ******************* */
 
+
+
+dd, li {
+    &:not(.expanded) {
+        visibility : hidden;
+        &:before {
+            visibility : visible;
+            content : '...';
+        }
+    }
+    &.expanded > {
+        dl, ul {
+            visibility : hidden;
+            &:before {
+                visibility : visible;
+                content : '→';
+            }
+        }
+    }
+}
+
+
 .expanded {
     visibility : visible !important;
     &:before, &:after {
@@ -17,23 +39,3 @@ li {
         display: none;
     }
 }
-
-
-li:not(.expanded) {
-    visibility : hidden;
-    &:after {
-        visibility : visible;
-        content : '...';
-    }
-}
-
-
-
-li.expanded > ul {
-    visibility : hidden;
-    &:before {
-        visibility : visible;
-        content : '→';
-    }
-}
-
