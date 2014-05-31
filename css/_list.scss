@@ -28,7 +28,7 @@ dd, li {
 }
 
 
-.expanded {
+.expanded, .expanded > dl > dt {
     visibility : visible !important;
     &:before, &:after {
         visibility : hidden !important;

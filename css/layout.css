@@ -153,9 +153,9 @@ dd:not(.expanded), li:not(.expanded) {
 dd.expanded > dl, dd.expanded > ul, li.expanded > dl, li.expanded > ul {
   visibility: hidden; }
 
-.expanded {
+.expanded, .expanded > dl > dt {
   visibility: visible !important; }
-  .expanded:before, .expanded:after {
+  .expanded:before, .expanded:after, .expanded > dl > dt:before, .expanded > dl > dt:after {
     visibility: hidden !important;
     display: none; }
 
