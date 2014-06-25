@@ -33,17 +33,62 @@ function text(){
              ".outline-text-4",slide.current).first();
 }
 
-function expand(){
+function resume(all){
+    return all ?
+        $(".resume")
+        : $(".outline-text-1 > .resume,"+
+           ".outline-text-2 > .resume,"+
+           ".outline-text-3 > .resume,"+
+           ".outline-text-4 > .resume",slide.current).first();
+}
+
+function notResume(all){
+    return all ?
+        $(".outline-text-1 > :not(.resume),"+
+          ".outline-text-2 > :not(.resume),"+
+          ".outline-text-3 > :not(.resume),"+
+          ".outline-text-4 > :not(.resume)")
+        : $(".outline-text-1 > :not(.resume),"+
+            ".outline-text-2 > :not(.resume),"+
+            ".outline-text-3 > :not(.resume),"+
+            ".outline-text-4 > :not(.resume)",slide.current);
+}
+
+var previousResumeExpansion;
+function expand(tx){
     console.log("clicked!");
-    var tx = text();
-    var result =
-        $(".expanded + li:not(.expanded),"+
-          ".expanded + dt + dd:not(.expanded),"+
-          "li:first-child:not(.expanded),"+
-          "dd:first-of-type:not(.expanded)",tx).first().addClass("expanded emerging-list");
-    $(".expanded > ul:not(.expanded)"+
-      ".expanded > dl:not(.expanded)",tx).first().addClass("expanded emerging");
-    return result;
+    if (tx) {
+        var result =
+            $(".expanded + li:not(.expanded):not(.hideAgain),"+
+              ".expanded + dt + dd:not(.expanded):not(.hideAgain),"+
+              ".hideAgain + li:not(.expanded):not(.hideAgain),"+
+              ".hideAgain + dt + dd:not(.expanded):not(.hideAgain),"+
+              "li:first-child:not(.expanded):not(.hideAgain),"+
+              "dd:first-of-type:not(.expanded):not(.hideAgain)",tx)
+            .first().addClass("expanded emerging-list");
+        $(".expanded > ul:not(.expanded):not(.hideAgain),"+
+          ".expanded > dl:not(.expanded):not(.hideAgain),"+
+          ".hideAgain > ul:not(.expanded):not(.hideAgain),"+
+          ".hideAgain > dl:not(.expanded):not(.hideAgain)",tx)
+            .first().addClass("expanded emerging");
+        return result;
+    }else{
+        var newResumeExpansion = expand(resume());
+        console.log(previousResumeExpansion);
+        console.log(newResumeExpansion);
+        try{
+            previousResumeExpansion
+                .removeClass("expanded")
+                .addClass("hideAgain");
+        }catch (x){
+        }
+        previousResumeExpansion = newResumeExpansion;
+        return expand(text());
+    }
+}
+
+function setupResume(){
+    $(".resume > ul, .resume > ol").addClass("expanded");
 }
 
 function setExpanders(){
@@ -379,6 +424,7 @@ window.onload = function(){
     slide = new Slide($("#content"));
     slide.show();
     setExpanders();
+    setupResume();
     keystrokeManager.setup();
     $(window).keypress(keyboardHandler);
     
@@ -517,7 +563,38 @@ keyManager["+"] = function(){
     $("body").css("font-size",size);
 };
 
-keyManager.toggle = function(){
+
+var keynoteState = 0;
+var keynoteStates = ["both","no-keynote","keynote-only"];
+function circularIncrease(){
+    ++keynoteState;
+    if(keynoteState>=keynoteStates.length){keynoteState = 0;}}
+
+keyManager.k = keyManager.keynotes = function(){
+    circularIncrease();
+    console.log(keynoteStates[keynoteState]);
+    switch (keynoteState) {
+    case 0:
+        notResume(true).show();
+        resume(true).show();
+        break;
+    case 1: // no keynote
+        notResume(true).show();
+        resume(true).hide();
+        break;
+    case 2:
+        notResume(true).hide();
+        resume(true).show();
+        break;
+    }
+};
+
+keyManager.K = function(){
+    // toggle the hideAgain visibility
+    $(".hideAgain").toggleClass("expanded");
+}
+
+keyManager.mini = function(){
     $("#minibuffer").toggle();
 };
 

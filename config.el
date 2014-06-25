@@ -8,7 +8,9 @@
 ?
 </example>") ("i" "#+BEGIN_INLINE
 ?
-#+END_INLINE")("q" "#+BEGIN_QUOTE
+#+END_INLINE") ("re" "#+BEGIN_RESUME
+?
+#+END_RESUME") ("q" "#+BEGIN_QUOTE
 ?
 #+END_QUOTE" "<quote>
 ?
