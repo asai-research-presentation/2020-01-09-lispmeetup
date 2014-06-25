@@ -10,6 +10,7 @@ PNG=find ./ -regex ".*\.svg" | sed -e "s/svg/png/g"
 
 all: $(shell $(PNG))
 	$(MAKE) -C ./ $(shell $(XBB))
+	$(MAKE) -C static
 # for systems without dvipdfmx, use SBB or MBB accordingly
 
 %.png : %.svg
