@@ -57,9 +57,10 @@ function outlineContents(n){
     return ".outline-text-"+n+", h"+n;
 }
 
-function container(){
+function buildSectionHash(secnums){
+    // get an array of numbers and return outline-container-sec-*-*-*
     return Array.prototype.reduce.call(
-        arguments,
+        secnums,
         function(prev,arg){
             return prev+"-"+arg;
         },
@@ -67,9 +68,13 @@ function container(){
     );
 }
 
-function unparseSection(id){
-    var re = /outline-container-sec-(.*)/;
+function parseSectionHash(id){
+    var re = /#?(?:outline-container-sec-)?(.*)/;
     return (id.match(re)||[null,"1"])[1].split("-");
+}
+
+function currentHash(){
+    return slide.current.get(0).id;
 }
 
 function clip(low,x,high,when_low,when_high){
@@ -377,18 +382,10 @@ window.onload = function(){
     keystrokeManager.setup();
     $(window).keypress(keyboardHandler);
     
-    var href = location.href;
-    var re = /.*#(.*)/;
-    var result = href.match(re);
-    if(result){
-        var secnums = result[1].split("-");
-        try{
-            console.log(container.apply(this,secnums));
-            slide = slide.new($(container.apply(this,secnums)));
-            slide.show();
-        } catch (x) {
-            
-        }
+    if(location.hash!=""){
+        goToSection(
+            parseSectionHash(location.hash),
+            function(){});
     }
 };
 
@@ -438,22 +435,39 @@ keyManager.u = keyManager["^"] = function(){
 };
 
 keyManager.s = keyManager.go = function(){
-    return sectionPrompt2("Enter a section number");
+    return sectionPrompt2("Enter a section number (e.g. 1-2 )");
 };
 
 function sectionPrompt2(message){
     return keystrokeManager.query(
         message,function(result){
-            var secnums = result.split(".");
-            try{
-                console.log(container.apply(this,secnums));
-                slide = slide.new($(container.apply(this,secnums)));
-                slide.show();
-            } catch (x) {
-                sectionPrompt2(container.apply(this,secnums) + " does not exists.");
-            }
-        },
-        unparseSection(slide.current.get(0).id).join("-"));
+            goToSection(
+                parseSectionHash(
+                    buildSectionHash(result)),
+                function(){
+                    sectionPrompt2(
+                        buildSectionHash(result)
+                            + " does not exists.");})},
+        parseSectionHash(currentHash()).join("-"));
+}
+
+function goToSection(secnums,onFailure){
+    try{
+        console.log("go to section:" + secnums);
+        slide = slide.new($(buildSectionHash(secnums)));
+        slide.show();
+    } catch (x) {
+        onFailure();
+    }
+}
+
+function currentHashSimple(){
+    return parseSectionHash(currentHash()).join("-");
+}
+
+keyManager.f = keyManager.fix = function(){
+    console.log("fix to section:" + currentHashSimple());
+    location.hash = "#"+ currentHashSimple();
 }
 
 // debug
