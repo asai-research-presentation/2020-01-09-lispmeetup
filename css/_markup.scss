@@ -31,6 +31,15 @@ blockquote {
     padding: 0.3em 1em;
 }
 
+.inline {
+    ul,li {
+        display : inline;
+        margin : 0;
+        padding : 0.2em;
+        border : 0;
+    }
+}
+
 .smaller {
     font-size: smaller;
     line-height:110%;

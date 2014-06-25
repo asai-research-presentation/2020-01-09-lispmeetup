@@ -6,7 +6,9 @@
 ?
 #+END_EXAMPLE" "<example>
 ?
-</example>") ("q" "#+BEGIN_QUOTE
+</example>") ("i" "#+BEGIN_INLINE
+?
+#+END_INLINE")("q" "#+BEGIN_QUOTE
 ?
 #+END_QUOTE" "<quote>
 ?
