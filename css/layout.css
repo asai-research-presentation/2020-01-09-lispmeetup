@@ -38,6 +38,7 @@ body {
 /* printing */
 @page mypage {
   size: a4 landscape; }
+
 /* animation */
 .emerging {
   animation-name: emergeX;
@@ -56,6 +57,7 @@ body {
   to {
     -moz-transform: translateX(0px);
     opacity: 1.0; } }
+
 .emerging-list {
   animation-name: emergeY;
   animation-duration: 1s;
@@ -73,6 +75,7 @@ body {
   to {
     -moz-transform: translateY(0px);
     opacity: 1.0; } }
+
 @keyframes highlight {
   0% {
     color: #000; }
@@ -91,6 +94,7 @@ body {
 
   100% {
     color: #000; } }
+
 @keyframes highlight-border {
   0% {
     border-color: #222; }
@@ -100,6 +104,7 @@ body {
 
   70% {
     border-color: #222; } }
+
 @keyframes highlight-border-black {
   0% {
     border-color: #000;
@@ -112,6 +117,7 @@ body {
   70% {
     border-color: #000;
     background-color: #fff; } }
+
 /* ************** Sectioning ************** */
 #text-before-first-headline {
   display: none; }
@@ -160,8 +166,11 @@ dd.expanded > dl, dd.expanded > ul, li.expanded > dl, li.expanded > ul {
     display: none; }
 
 /* ***************** Markup ****************** */
+p {
+  margin: 0.5em 0 0 0; }
+
 pre, code {
-  font-size: 18pt;
+  font-size: 26px;
   line-height: 1.05em;
   text-indent: 0em; }
 
@@ -172,18 +181,45 @@ code {
   padding: 0.12em; }
 
 /* notes */
-.note {
+/* lighten($text,4); */
+/* .resume { */
+/*     display : none; */
+/* } */
+.note, .resume {
+  background-color: rgba(255, 255, 255, 0.7);
   position: absolute;
-  bottom: 10px;
-  max-width: 90%; }
-  .note p {
+  left: 1.5em;
+  bottom: 1.5em;
+  max-width: 90%;
+  text-indent: 0em;
+  line-height: 1em; }
+  .note p, .resume p {
     margin: 0; }
-  .note ol li, .note ul li {
-    margin: -0.6em;
-    padding: 0em; }
+  .note ol, .note ul, .resume ol, .resume ul {
+    margin: 0em 0.5em;
+    /* padding: 0em; */ }
+    .note ol > li, .note ul > li, .resume ol > li, .resume ul > li {
+      margin: 0em;
+      padding: 0em;
+      text-indent: 0em;
+      line-height: 1em; }
+
+.note {
+  font-size: smaller; }
+
+.resume {
+  font-size: 60%;
+  /* display : none; */ }
 
 blockquote {
+  line-height: 1.8em;
   padding: 0.3em 1em; }
+
+.inline ul, .inline li {
+  display: inline;
+  margin: 0;
+  padding: 0.2em;
+  border: 0; }
 
 .smaller {
   font-size: smaller;
@@ -216,9 +252,8 @@ th.right, td.right {
 .alignright {
   text-align: right; }
 
-.center {
-  font-size: 125%;
-  line-height: 1.25em; }
+.center p {
+  margin: 0.4em 0; }
 
 .xlarge .center {
   font-size: inherit;
@@ -238,6 +273,11 @@ img {
   max-height: 600px;
   max-width: 100%; }
 
+li > img {
+  display: inline;
+  max-height: 1.5em;
+  vertical-align: middle; }
+
 caption {
   margin-bottom: 0.5em; }
 
@@ -247,10 +287,10 @@ table {
 .smaller .figure {
   max-width: 30%;
   height: auto; }
-.smaller img {
-  box-sizing: content-box;
-  width: 100%;
-  height: auto; }
+  .smaller .figure img {
+    box-sizing: content-box;
+    width: 100%;
+    height: auto; }
 
 /* .maximized { */
 /*     /\* position: relative; *\/ */

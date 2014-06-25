@@ -1,9 +1,11 @@
 
 /* ************ Contents and Control ********** */
 
+$basefontsize : 26px;
+
 body {
     overflow: hidden;           /* hide the scrollbar */
-    font-size: 26px;
+    font-size: $basefontsize;
     line-height: 1.25em;
     text-indent: 0.5em;
 }

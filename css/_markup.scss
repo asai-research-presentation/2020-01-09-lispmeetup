@@ -1,7 +1,11 @@
 /* ***************** Markup ****************** */
 
+p {
+  margin: 0.5em 0 0 0;
+}
+
 pre, code {
-    font-size:   18pt;
+    font-size:   $basefontsize;
     line-height: 1.05em;
     text-indent: 0em;
 }
@@ -16,18 +20,44 @@ code {
 
 /* notes */
 
-.note {
+@import "_colors";
+
+/* .resume { */
+/*     display : none; */
+/* } */
+
+.note, .resume {
+    background-color: rgba( $background, .7 );
     position: absolute;
-    bottom: 10px;
+    left: 1.5em;
+    bottom: 1.5em;
     max-width: 90%;
+    text-indent : 0em;
+    line-height : 1em;
     p {margin: 0;}
-    ol li, ul li{
-        margin: -0.6em;
-        padding: 0em;
+    ol, ul {
+        margin: 0em 0.5em;
+        /* padding: 0em; */
+        > li {
+            margin: 0em;
+            padding: 0em;
+            text-indent : 0em;
+            line-height : 1em;
+        }
     }
 }
 
+.note {
+    font-size: smaller;
+}
+
+.resume {
+    font-size: 60%;
+    /* display : none; */
+}
+
 blockquote {
+    line-height: 1.8em;
     padding: 0.3em 1em;
 }
 

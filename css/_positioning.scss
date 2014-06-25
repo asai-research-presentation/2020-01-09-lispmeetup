@@ -13,8 +13,9 @@ th.right, td.right {
 }
 
 .center {
-    font-size: 125%;
-    line-height: 1.25em;
+    p {
+        margin : 0.4em 0;
+    }
 }
 
 .xlarge .center {
@@ -41,6 +42,12 @@ img {
     max-width:  100%;
 }
 
+li > img {
+    display: inline;
+    max-height: 1.5em;
+    vertical-align: middle;
+}
+
 caption {
     margin-bottom: 0.5em;
 }
@@ -52,11 +59,11 @@ table {
     .figure {
         max-width: 30%;
         height: auto;
-    }
-    img {
-        box-sizing: content-box;
-        width: 100%;
-        height: auto;
+        img {
+            box-sizing: content-box;
+            width: 100%;
+            height: auto;
+        }
     }
 }
 
