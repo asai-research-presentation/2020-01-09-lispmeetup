@@ -9,7 +9,7 @@ all: $(shell $(PNG))
 	./makebb.sh
 
 %.png : %.svg
-	inkscape -f $< -e $*.png -d 300
+	inkscape -f $< -e $*.png -d 150
 #	convert $< $*.png
 #	if you want to use imagemagick, comment out 'inkscape...' and use 'convert...'
 
