@@ -137,14 +137,15 @@ function adjustVerticalCenter(){
     var high = 0.2 * $(window).height();
     if (top > high){
         $(document.body)
-            .delay( 100 )
+            .finish() 
             .animate({"margin-top": high});
         slide.headline()
-            .delay( 300 )
+            .finish() 
+            .delay( 250 )
             .animate({"margin-bottom": top - high});
     }else{
         $(document.body)
-            .delay( 100 )
+            .finish() 
             .animate({"margin-top": clip(20,top)});
     }
 }
