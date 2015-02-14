@@ -2,7 +2,7 @@
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
 #+infojs_opt: view:nil path:./org-info.js toc:nil ltoc:nil ftoc:nil
 #+infojs_opt: mouse:#eeeeee buttons:nil
-#+HTML_MATHJAX: path:"mathjax/MathJax.js"
+#+HTML_MATHJAX: path:"MathJax/MathJax.js"
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/layout.css" />
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/default.css" />
 #+HTML_HEAD: <script type="text/javascript" src="./jquery.js"></script>

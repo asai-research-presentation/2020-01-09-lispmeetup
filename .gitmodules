@@ -1,6 +1,6 @@
-[submodule "mathjax"]
-	path = mathjax
-	url = https://github.com/mathjax/MathJax.git
 [submodule "org-mode"]
 	path = org-mode
 	url = git://orgmode.org/org-mode.git
+[submodule "MathJax"]
+	path = MathJax
+	url = git@github.com:guicho271828/MathJax.git
