@@ -24,9 +24,9 @@ auto:
 	scripts/make-cycle.sh -j $(ncpu)
 
 img:
-	make -C img
+	$(MAKE) -C img
 css:
-	make -C css
+	$(MAKE) -C css
 
 presen.dvi: presen.org.tex
 resume.dvi: presen.org.tex
@@ -60,5 +60,6 @@ clean:
 		*.fdb_latexmk __* *.fls *.mtc *.maf *.out index.html
 
 allclean: clean
-	make -C img clean
-	make -C css clean
+	$(MAKE) -C img clean
+	$(MAKE) -C css clean
+
