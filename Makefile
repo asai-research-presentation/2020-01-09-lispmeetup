@@ -5,6 +5,8 @@ styles     = anorg.sty user.sty
 # latex      = pdflatex
 latex      = platex
 
+ncpu       = $(shell grep "processor" /proc/cpuinfo | wc -l)
+
 .PHONY: auto all img scripts clean allclean html pdf resume index css
 .SECONDLY: *.elc *.org.*
 
@@ -15,8 +17,11 @@ resume: img resume.pdf
 index: html
 	cp -f presen.org.html index.html
 
+scripts:
+	$(MAKE) -C scripts
+
 auto:
-	scripts/make-cycle.sh
+	scripts/make-cycle.sh -j $(ncpu)
 
 img:
 	make -C img
