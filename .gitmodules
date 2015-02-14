@@ -1,8 +1,0 @@
-[submodule "org-mode"]
-	path = org-mode
-	url = git://orgmode.org/org-mode.git
-        fetchRecurseSubmodules = true
-[submodule "MathJax"]
-	path = MathJax
-	url = git@github.com:guicho271828/MathJax.git
-        fetchRecurseSubmodules = true
