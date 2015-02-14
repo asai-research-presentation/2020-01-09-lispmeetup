@@ -5,7 +5,7 @@ styles     = anorg.sty user.sty
 # latex      = pdflatex
 latex      = platex
 
-.PHONY: all img clean allclean html pdf resume index css
+.PHONY: auto all img scripts clean allclean html pdf resume index css
 .SECONDLY: *.elc *.org.*
 
 all: index pdf resume
@@ -14,6 +14,9 @@ pdf: img presen.pdf
 resume: img resume.pdf
 index: html
 	cp -f presen.org.html index.html
+
+auto:
+	scripts/make-cycle.sh
 
 img:
 	make -C img
@@ -25,12 +28,11 @@ resume.dvi: presen.org.tex
 presen.org: head.org
 	touch presen.org
 
+%.org.tex: %.org scripts
+	scripts/org-latex.sh $< $@
 
-%.org.tex: %.org compile-org-latex.elc
-	emacs --batch --quick --eval "(progn (load-file \"compile-org-latex.el\")(compile-org \"$<\" \"$@\"))"
-
-%.org.html: %.org compile-org-html.elc
-	emacs --batch --quick --eval "(progn (load-file \"compile-org-html.el\")(compile-org \"$<\" \"$@\"))"
+%.org.html: %.org scripts
+	scripts/org-html.sh $< $@
 
 ifeq ($(latex),platex)
 %.dvi: %.tex img $(styles)
@@ -45,9 +47,6 @@ else
 %.pdf : %.dvi
 	dvipdfmx -o $@ $*
 endif
-
-%.elc : %.el
-	$(EMACS) -Q --batch $(EMACSFLAGS) -f batch-byte-compile $<
 
 clean:
 	-rm -f *~ *.org.* *.pdf \
