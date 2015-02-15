@@ -11,11 +11,14 @@ ncpu       = $(shell grep "processor" /proc/cpuinfo | wc -l)
 .SECONDLY: *.elc *.org.*
 
 all: index pdf resume
-html: img css presen.org.html 
+html: img css presen.org.html MathJax
 pdf: img presen.pdf
 resume: img resume.pdf
 index: html
 	cp -f presen.org.html index.html
+
+MathJax:
+	git clone --depth=1 https://github.com/guicho271828/MathJax.git
 
 scripts:
 	$(MAKE) -C scripts
