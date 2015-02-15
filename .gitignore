@@ -16,8 +16,6 @@
 *.blg
 #*
 *.org.*
-/img/alien.png
-/img/alien.sbb
-*/TAGS
-TAGS
+*TAGS
 /scripts/org-mode/
+MathJax
