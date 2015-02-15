@@ -38,11 +38,10 @@ body {
 /* printing */
 @page mypage {
   size: a4 landscape; }
-
 /* animation */
 .emerging {
   animation-name: emergeX;
-  animation-duration: 1s;
+  animation-duration: 0.7s;
   animation-timing-function: ease-out; }
 
 @keyframes emergeX {
@@ -57,10 +56,9 @@ body {
   to {
     -moz-transform: translateX(0px);
     opacity: 1.0; } }
-
 .emerging-list {
   animation-name: emergeY;
-  animation-duration: 1s;
+  animation-duration: 0.7s;
   animation-timing-function: ease-out; }
 
 @keyframes emergeY {
@@ -75,7 +73,6 @@ body {
   to {
     -moz-transform: translateY(0px);
     opacity: 1.0; } }
-
 @keyframes highlight {
   0% {
     color: #000; }
@@ -94,7 +91,6 @@ body {
 
   100% {
     color: #000; } }
-
 @keyframes highlight-border {
   0% {
     border-color: #222; }
@@ -104,7 +100,6 @@ body {
 
   70% {
     border-color: #222; } }
-
 @keyframes highlight-border-black {
   0% {
     border-color: #000;
@@ -117,7 +112,6 @@ body {
   70% {
     border-color: #000;
     background-color: #fff; } }
-
 /* ************** Sectioning ************** */
 #text-before-first-headline {
   display: none; }

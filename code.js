@@ -135,18 +135,20 @@ function clip(low,x,high,when_low,when_high){
 function adjustVerticalCenter(){
     var top = 0.4 * ($(window).height() - $(document.body).height());
     var high = 0.2 * $(window).height();
+    var duration = 270 ;        // default: 400
+    var delay_ratio = 0.4 ;
     if (top > high){
         $(document.body)
             .finish() 
-            .animate({"margin-top": high});
+            .animate({"margin-top": high},duration);
         slide.headline()
-            .finish() 
-            .delay( 250 )
-            .animate({"margin-bottom": top - high});
+            .finish()
+            .delay( duration * delay_ratio )
+            .animate({"margin-bottom": top - high},duration);
     }else{
         $(document.body)
             .finish() 
-            .animate({"margin-top": clip(20,top)});
+            .animate({"margin-top": clip(20,top)},duration);
     }
 }
 
