@@ -423,6 +423,12 @@ function keyboardHandler(e){
 ////
 
 window.onload = function(){
+    $("img").hover(
+        function (){
+            $(keystrokeManager._minibuffer).append("<div class='imgsrc'>" + $(this).attr("src")+ "</div>");
+        }, function(){
+            $(".imgsrc",keystrokeManager._minibuffer).remove();
+        });
     $("#content").addClass("outline-1");
     slide = new Slide($("#content"));
     slide.show();
