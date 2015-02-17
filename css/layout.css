@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ************ Contents and Control ********** */
 body {
   overflow: hidden;
@@ -141,23 +142,61 @@ h1, h2, h3, h4 {
 ul {
   padding-left: 20px; }
 
+/* invisible by default */
 li {
-  margin: 0.45em; }
+  margin: 0.45em;
+  /* list-style-type: none;  /\* do not use the default list style at all*\/ */
+  list-style-type: disc;
+  visibility: hidden; }
+
+dd {
+  visibility: hidden; }
+
+dd dd:before, dd li:before, li dd:before, li li:before {
+  content: ''; }
 
 /* ***************** List expansion ******************* */
-dd:not(.expanded), li:not(.expanded) {
-  visibility: hidden; }
-  dd:not(.expanded):before, li:not(.expanded):before {
-    visibility: visible;
-    content: '...'; }
-dd.expanded > dl, dd.expanded > ul, li.expanded > dl, li.expanded > ul {
-  visibility: hidden; }
+/* expanded lists and dl (description list) is visible */
+/* display: the size is not accounted */
+/* visibility: the contents are invisible, but the size is accounted */
+dd.expanded, li.expanded {
+  visibility: visible; }
 
-.expanded, .expanded > dl > dt {
-  visibility: visible !important; }
-  .expanded:before, .expanded:after, .expanded > dl > dt:before, .expanded > dl > dt:after {
-    visibility: hidden !important;
-    display: none; }
+/* > dd, > ul, > ol { */
+/*     &:first-of-type { */
+/*         > dl, > li { */
+/*             &:not(.expanded) { */
+/*                 &:before { */
+/*                     /\* visibility : visible; *\/ */
+/*                     content : '...'; */
+/*                 } */
+/*                 ~ :not(.expanded) { */
+/*                     content : ''; */
+/*                 } */
+/*             /\* dd, li { *\/ */
+/*             /\*     &:before { *\/ */
+/*             /\*         content : ''; *\/ */
+/*             /\*     } *\/ */
+/*             /\* } *\/ */
+/*             } */
+/*         } */
+/*     } */
+/* } */
+/* **************** misc markup **************** */
+.good li {
+  list-style: none; }
+  .good li:before {
+    content: "☺";
+    margin-right: 0.3em; }
+
+.bad li {
+  list-style: none; }
+  .bad li:before {
+    content: "☹";
+    margin-right: 0.3em; }
+
+.check li {
+  list-style: check; }
 
 /* ***************** Markup ****************** */
 p {
