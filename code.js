@@ -425,7 +425,7 @@ function keyboardHandler(e){
 window.onload = function(){
     $("img").hover(
         function (){
-            $(keystrokeManager._minibuffer).append("<div class='imgsrc'>" + $(this).attr("src")+ "</div>");
+            $(keystrokeManager._minibuffer).append("<span class='imgsrc'>" + $(this).attr("src")+ "</span>");
         }, function(){
             $(".imgsrc",keystrokeManager._minibuffer).remove();
         });
