@@ -1,0 +1,20 @@
+
+.loupe {
+    background-color: white;
+    border: thin solid black ;
+    /* left:none !important; */
+    /* top:none !important; */
+    /* left:0px !important; */
+    /* top: 0px !important; */
+    /* right: 0px !important; */
+    /* bottom: 0px !important; */
+    img {
+        -moz-box-sizing: content-box;
+        max-height: none;
+        max-width:  none;
+        /* right: 0px !important; */
+        /* bottom: 0px !important; */
+        /* left:0px !important; */
+        /* top: 0px !important; */
+    }
+}

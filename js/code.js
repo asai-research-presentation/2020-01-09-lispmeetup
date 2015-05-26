@@ -428,7 +428,8 @@ window.onload = function(){
             $(keystrokeManager._minibuffer).append("<span class='imgsrc'>" + $(this).attr("src")+ "</span>");
         }, function(){
             $(".imgsrc",keystrokeManager._minibuffer).remove();
-        });
+        })
+    $(".magnifier img").loupe({width:600,height:450,loupe:'loupe'});
     $("#content").addClass("outline-1");
     slide = new Slide($("#content"));
     slide.show();

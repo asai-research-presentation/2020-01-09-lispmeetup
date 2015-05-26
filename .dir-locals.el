@@ -1,4 +1,4 @@
-(setf org-structure-template-alist (quote (("s" "#+BEGIN_SRC ?
+((org-mode . ((eval . (setf org-structure-template-alist (quote (("s" "#+BEGIN_SRC ?
 
 #+END_SRC" "<src lang=\"?\">
 
@@ -116,4 +116,4 @@
 ?
 </literal>") ("H" "#+HTML: " "<literal style=\"html\">?</literal>") ("C" "#+CAPTION: ") ("a" "#+BEGIN_ASCII
 ?
-#+END_ASCII") ("A" "#+ASCII: ") ("i" "#+INDEX: ?" "#+INDEX: ?") ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">"))))
+#+END_ASCII") ("A" "#+ASCII: ") ("i" "#+INDEX: ?" "#+INDEX: ?") ("I" "#+INCLUDE: %file ?" "<include file=%file markup=\"?\">"))))))))
