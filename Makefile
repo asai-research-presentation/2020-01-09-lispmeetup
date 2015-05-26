@@ -3,7 +3,8 @@ EMACS      = emacs
 EMACSFLAGS =
 styles     = anorg.sty user.sty
 # latex      = pdflatex
-latex      = platex
+# latex      = platex
+TEX 	   = platex
 
 ncpu       = $(shell grep "processor" /proc/cpuinfo | wc -l)
 
@@ -42,19 +43,10 @@ presen.org: head.org
 %.org.html: %.org scripts
 	scripts/org-html.sh $< $@
 
-ifeq ($(latex),platex)
 %.dvi: %.tex img $(styles)
-	$(latex) -halt-on-error $<
-	$(latex) -halt-on-error $<
+
 %.pdf : %.dvi
 	dvipdfmx -f ipa.map -o $@ $*
-else
-%.dvi: %.tex img $(styles)
-	$(latex) -output-format=dvi -halt-on-error $<
-	$(latex) -output-format=dvi -halt-on-error $<
-%.pdf : %.dvi
-	dvipdfmx -o $@ $*
-endif
 
 clean:
 	-rm -f *~ *.org.* *.pdf \
