@@ -27,8 +27,15 @@
 \NewEnviron{alignright}{\raggedleft\BODY}
 \NewEnviron{alignleft}{\raggedright\BODY}
 
-\NewEnviron{note}{\footnote{\BODY}}
-\NewEnviron{resume}{\footnote{\BODY}}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\NewEnviron{note}{\blfootnote{\BODY}}
+\NewEnviron{resume}{\blfootnote{\BODY}}
 \NewEnviron{inline}{\BODY}
 \NewEnviron{container-fluid}{\BODY}
 \NewEnviron{row-fluid}{\BODY}
@@ -53,3 +60,5 @@
 
 
 
+\NewEnviron{bad}{\BODY}
+\NewEnviron{magnifier}{\BODY}
