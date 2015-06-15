@@ -7,5 +7,8 @@
   (setf org-latex-image-default-width "\\defaultimagewidth"
         ;; org-latex-image-default-height "\\defaultimageheight"
         )
+  ;; (setf org-latex-image-default-width "\\maxwidth{\\defaultimagewidth}"
+  ;;       ;; org-latex-image-default-height "\\defaultimageheight"
+  ;;       )
   (org-latex-export-as-latex nil nil nil t)
   (write-file out))

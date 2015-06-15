@@ -10,19 +10,43 @@ outline-1, outline-2, outline-3, outline-4 {
 }
 
 h1, h2, h3, h4 {
+    font-size: 130%;
     line-height: 1.25em;
-    text-align: center;
+    text-align: left;
+    left: 6em;
     margin: 0 0 1em;
 }
 
-.section-number-2, .section-number-3 {
+@mixin secnum() {
     display: inline;
     font-size: 80%;
 }
-.section-number-4 {
-    display: none;
-    font-size: 60%;
+
+.section-number-2, {
+    @include secnum();
+    &:after{
+        content: '.　　';
+    }
 }
+
+.section-number-3, {
+    @include secnum();
+    &:after{
+        content: '.　';
+    }
+}
+
+.section-number-4, {
+    @include secnum();
+    &:after{
+        content: '.';
+    }
+}
+
+/* .section-number-4 { */
+/*     display: inline; */
+/*     font-size: 60%; */
+/* } */
 
 .outline-text-2, .outline-text-3, .outline-text-4 {
     padding: 0px 5% 0px 5%;

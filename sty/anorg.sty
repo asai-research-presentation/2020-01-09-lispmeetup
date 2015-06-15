@@ -1,11 +1,15 @@
 \usepackage[dvipdfmx]{graphicx,xcolor,hyperref}
 \usepackage{grffile} % for reading files with multiple dots e.g. X.Y.png
 % \usepackage{svg} % do not recommend because it is buggy
+
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
 \usepackage[normalem]{ulem}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{relsize}
-
+\usepackage{parskip}
 \usepackage{pxjahyper}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -63,6 +67,13 @@
 \NewEnviron{bad}{\BODY}
 \NewEnviron{magnifier}{\BODY}
 
+\makeatletter
+\def\maxwidth#1{\ifdim\Gin@nat@width>#1 #1\else\Gin@nat@width\fi}
+\makeatother
+
 \newlength{\defaultimagewidth}
-\setlength{\defaultimagewidth}{0.9\linewidth}
+\setlength{\defaultimagewidth}{0.9\textwidth}
 % \newlength{\defaultimageheight}{0.9\textwidth}
+
+\setlength{\tabcolsep}{1.5mm}
+

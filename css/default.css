@@ -10,17 +10,16 @@ a {
     color: #1f2e3d; }
 
 i {
-  font-family: 'LMRoman10',serif;
   font-style: 'Italic'; }
 
 body {
   color: #1c2024;
-  font-family: 'M+ 2c',Helvetica, Arial,'Lucida Grande', Meiryo, メイリオ, sans-serif;
+  font-family: Helvetica, Arial,'Lucida Grande', Meiryo, メイリオ, sans-serif;
   background-color: white;
-  text-shadow: 0px 1px 1px lightgrey; }
+  text-shadow: 0px 1px 1px lightgray; }
 
 pre, code {
-  font-family: 'Ricty','Ubuntu Mono',monospace;
+  font-family: 'Ubuntu Mono',monospace;
   text-shadow: none;
   background-color: white; }
 
@@ -29,7 +28,7 @@ code {
   border-radius: 2px; }
 
 h1, h2, h3, h4, b {
-  text-shadow: 1px 1px 1px lightgrey; }
+  text-shadow: 1px 1px 1px lightgray; }
 
 .note {
   animation-name: emerge;

@@ -1,4 +1,5 @@
 #+OPTIONS:   H:4 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+# #+OPTIONS:   TeX:verbatim LaTeX:verbatim skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/layout.css" />
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/default.css" />
@@ -10,5 +11,5 @@
 #+HTML_POSTAMBLE: nil
 
 # ## To remove the banner, comment out the next line.
-#+HTML_HEAD: <a id="banner" href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; right: 0; border: 0;" src="img/static/forkme.png" alt="Fork me on GitHub"></a>
+# #+HTML_HEAD: <a id="banner" href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; right: 0; border: 0;" src="img/static/forkme.png" alt="Fork me on GitHub"></a>
 

@@ -39,7 +39,6 @@ body {
 /* printing */
 @page mypage {
   size: a4 landscape; }
-
 /* animation */
 .emerging {
   animation-name: emergeX;
@@ -58,7 +57,6 @@ body {
   to {
     -moz-transform: translateX(0px);
     opacity: 1.0; } }
-
 .emerging-list {
   animation-name: emergeY;
   animation-duration: 0.7s;
@@ -76,7 +74,6 @@ body {
   to {
     -moz-transform: translateY(0px);
     opacity: 1.0; } }
-
 @keyframes highlight {
   0% {
     color: #000; }
@@ -95,7 +92,6 @@ body {
 
   100% {
     color: #000; } }
-
 @keyframes highlight-border {
   0% {
     border-color: #222; }
@@ -105,7 +101,6 @@ body {
 
   70% {
     border-color: #222; } }
-
 @keyframes highlight-border-black {
   0% {
     border-color: #000;
@@ -118,7 +113,6 @@ body {
   70% {
     border-color: #000;
     background-color: #fff; } }
-
 /* ************** Sectioning ************** */
 #text-before-first-headline {
   display: none; }
@@ -128,18 +122,34 @@ outline-1, outline-2, outline-3, outline-4 {
   page-break-before: always; }
 
 h1, h2, h3, h4 {
+  font-size: 130%;
   line-height: 1.25em;
-  text-align: center;
+  text-align: left;
+  left: 6em;
   margin: 0 0 1em; }
 
-.section-number-2, .section-number-3 {
+.section-number-2 {
   display: inline;
   font-size: 80%; }
+  .section-number-2:after {
+    content: '.　　'; }
+
+.section-number-3 {
+  display: inline;
+  font-size: 80%; }
+  .section-number-3:after {
+    content: '.　'; }
 
 .section-number-4 {
-  display: none;
-  font-size: 60%; }
+  display: inline;
+  font-size: 80%; }
+  .section-number-4:after {
+    content: '.'; }
 
+/* .section-number-4 { */
+/*     display: inline; */
+/*     font-size: 60%; */
+/* } */
 .outline-text-2, .outline-text-3, .outline-text-4 {
   padding: 0px 5% 0px 5%;
   margin: 0px; }

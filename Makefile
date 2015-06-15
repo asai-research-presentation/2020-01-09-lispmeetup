@@ -11,7 +11,7 @@ ncpu       = $(shell grep "processor" /proc/cpuinfo | wc -l)
 .PHONY: auto all img scripts clean allclean html pdf resume index css
 .SECONDLY: *.elc *.org.*
 
-all: index pdf nokey resume
+all: index nokey
 html: img css presen.org.html MathJax
 pdf: img presen.pdf
 nokey: img presen-nokey.pdf
@@ -35,6 +35,7 @@ css:
 
 presen.dvi: presen.org.tex
 resume.dvi: presen.org.tex
+presen-nokey.dvi: presen.org.tex
 presen.org: head.org
 	touch presen.org
 
