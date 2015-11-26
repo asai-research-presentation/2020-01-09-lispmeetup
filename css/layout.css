@@ -3,7 +3,7 @@
 body {
   overflow: hidden;
   /* hide the scrollbar */
-  font-size: 26px;
+  font-size: 22px;
   line-height: 1.25em;
   text-indent: 0.5em; }
 
@@ -113,6 +113,7 @@ h1, h2, h3, h4 {
   line-height: 1.25em;
   text-align: left;
   left: 6em;
+<<<<<<< HEAD
   margin-bottom: 1em; }
 
 h1 {
@@ -124,18 +125,29 @@ h2, h3, h4 {
   padding-left: 2em;
   text-indent: -2em;
   margin-left: 2em; }
+=======
+  margin: 0 0 0em; }
+>>>>>>> 6158036... submodules
 
 .section-number-2 {
   display: inline;
   font-size: 80%; }
   .section-number-2:after {
+<<<<<<< HEAD
     content: '.'; }
+=======
+    content: '.　　'; }
+>>>>>>> 6158036... submodules
 
 .section-number-3 {
   display: inline;
   font-size: 80%; }
   .section-number-3:after {
+<<<<<<< HEAD
     content: '.'; }
+=======
+    content: '.　'; }
+>>>>>>> 6158036... submodules
 
 .section-number-4 {
   display: inline;
@@ -165,9 +177,18 @@ li {
 dd {
   visibility: hidden; }
 
+dt {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em; }
+
 dd dd:before, dd li:before, li dd:before, li li:before {
   content: ''; }
 
+/* .expanded { */
+/*     li, dd { */
+/*         visibility : visible; */
+/*     } */
+/* } */
 /* ***************** List expansion ******************* */
 /* expanded lists and dl (description list) is visible */
 /* display: the size is not accounted */
@@ -213,10 +234,10 @@ dd.expanded, li.expanded {
 
 /* ***************** Markup ****************** */
 p {
-  margin: 0.5em 0 0 0; }
+  margin: 0.2em 0 0 0; }
 
 pre, code {
-  font-size: 26px;
+  font-size: 22px;
   line-height: 1.05em;
   text-indent: 0em; }
 
@@ -316,7 +337,11 @@ th.right, td.right {
 
 img {
   -moz-box-sizing: content-box;
+<<<<<<< HEAD
   max-height: 600px;
+=======
+  max-height: 700px;
+>>>>>>> 6158036... submodules
   max-width: 100%; }
 
 li > img {
@@ -328,9 +353,13 @@ caption {
   margin-bottom: 0.5em; }
 
 table {
+<<<<<<< HEAD
   margin: auto;
   margin-bottom: 26px;
   margin-top: 26px; }
+=======
+  margin: auto; }
+>>>>>>> 6158036... submodules
 
 .smaller .figure {
   max-width: 30%;

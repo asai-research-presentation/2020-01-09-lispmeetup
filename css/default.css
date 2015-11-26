@@ -81,7 +81,11 @@ img:hover {
 
 #minibuffer {
   background-color: white;
+<<<<<<< HEAD
   border: 1px solid #cccccc; }
+=======
+  border: 1px solid #222222; }
+>>>>>>> 6158036... submodules
 
 #prompt {
   color: forestgreen; }
