@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* lighten($text,4); */
 a {
-  color: #223344; }
+  color: #234; }
   a:hover {
     color: #273b4e; }
   a:visited {
@@ -13,9 +13,9 @@ i {
   font-style: 'Italic'; }
 
 body {
-  color: #1c2024;
+  color: #1C2024;
   font-family: Helvetica, Arial,'Lucida Grande', Meiryo, メイリオ, sans-serif;
-  background-color: white;
+  background-color: #fff;
   text-shadow: 0px 1px 1px lightgray; }
 
 pre, code {
@@ -81,10 +81,12 @@ img:hover {
 
 #minibuffer {
   background-color: white;
-  border: 1px solid #222222; }
+  border: 1px solid #cccccc; }
 
 #prompt {
   color: forestgreen; }
 
 #input {
   color: #123; }
+
+/*# sourceMappingURL=default.css.map */

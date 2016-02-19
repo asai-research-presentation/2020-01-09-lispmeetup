@@ -26,7 +26,7 @@ scripts:
 	$(MAKE) -C scripts
 
 auto:
-	scripts/make-cycle.sh -j $(ncpu)
+	scripts/make-cycle.sh -j $(ncpu) index
 
 img:
 	$(MAKE) -C img
@@ -48,7 +48,8 @@ presen.org: head.org
 %.dvi: %.tex img $(styles)
 
 %.pdf : %.dvi
-	dvipdfmx -f ipa.map -o $@ $*
+	dvipdfmx -f ipa.map -o $@ $* > /dev/null
+	cp $@ ~/Dropbox/repos/presentations/$(shell basename $(CURDIR)).pdf
 
 clean:
 	-rm -f *~ *.org.* *.pdf \

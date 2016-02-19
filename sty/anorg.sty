@@ -28,7 +28,7 @@
 
 \usepackage{environ}
 
-\NewEnviron{alignright}{\raggedleft\BODY}
+\NewEnviron{alignright}{\parbox{\linewidth}{\raggedleft\BODY}}
 \NewEnviron{alignleft}{\raggedright\BODY}
 
 \newcommand\blfootnote[1]{%
@@ -77,3 +77,9 @@
 
 \setlength{\tabcolsep}{1.5mm}
 
+\pagestyle{empty}
+
+\renewcommand{\baselinestretch}{1.3}
+% \setlength{\baselineskip}{4em}
+% \setlength{\parsep}{0.5em}
+% \setlength{\parskip}{0.5em}
