@@ -1,4 +1,5 @@
 
+GH_USER    = guicho271828
 EMACS      = emacs
 EMACSFLAGS =
 styles     = anorg.sty user.sty
@@ -8,7 +9,7 @@ TEX 	   = platex
 
 ncpu       = $(shell grep "processor" /proc/cpuinfo | wc -l)
 
-.PHONY: auto all img scripts clean allclean html pdf resume index css
+.PHONY: auto all img scripts clean allclean html pdf resume index css deploy
 .SECONDLY: *.elc *.org.*
 
 all: index nokey
@@ -16,6 +17,10 @@ html: img css presen.org.html MathJax
 pdf: img presen.pdf
 nokey: img presen-nokey.pdf
 resume: img resume.pdf
+
+deploy: index
+	+scripts/deploy.sh git@github.com:$(GH_USER)/$$(basename $$(readlink -ef .)).git
+
 index: html
 	cp -f presen.org.html index.html
 
