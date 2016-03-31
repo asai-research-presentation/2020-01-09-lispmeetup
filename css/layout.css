@@ -247,6 +247,10 @@ pre {
 code {
   padding: 0.12em; }
 
+b i {
+  color: red;
+  font-style: italic; }
+
 /* notes */
 /* lighten($text,4); */
 /* .resume { */
