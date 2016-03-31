@@ -1,12 +1,8 @@
 
-scss = $(shell ls *.scss)
-css = default.css layout.css projector.css
 .PHONY: all clean
 
-all: $(css)
-
-%.css: $(scss)
-	sass $< $@
+all:
+	sass --update .
 
 clean:
 	-rm *.css *.map
