@@ -666,9 +666,12 @@ Timer.prototype.destroy = function(){
 
 Timer.prototype.start = function(seconds,callback){
     var self = this;
+    var limit = seconds;
     var update = function(){
-        var rem = (seconds%60);
-        var quo = (seconds-rem)/60;
+        var displayed_time = limit - seconds; 
+        // var displayed_time = seconds;
+        var rem = (displayed_time%60);
+        var quo = (displayed_time-rem)/60;
         console.log("timer updated: "+quo+":"+rem);
         self._timer.text(quo+":"+rem);
     }
@@ -680,8 +683,7 @@ Timer.prototype.start = function(seconds,callback){
         }
     }
     var stop = function(){
-        (callback||identity)();
-        clearInterval(id);
+        (callback||identity)(id);
     }
     this.stop = stop;
     var id = setInterval(decrease,1000);
@@ -693,7 +695,8 @@ keyManager.timer = function(){
         "Enter the limit by sec",
         function(result){
             t.start(parseInt(result,10),
-                    function(){
+                    function(id){
+                        // clearInterval(id);
                         t._timer
                             .addClass("highlighted")
                             .css({"font-weight":"bold"});

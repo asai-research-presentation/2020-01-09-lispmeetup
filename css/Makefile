@@ -1,12 +1,8 @@
 
-scss = $(shell ls *.scss)
-
 .PHONY: all clean
 
-all: $(scss)
-
-%.css: %.scss
-	sass $< $@
+all:
+	sass --update .
 
 clean:
-	-rm $(scss)
+	-rm *.css *.map

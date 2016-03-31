@@ -17,6 +17,11 @@ dd {
     visibility: hidden;
 }
 
+dt {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
 dd, li {
     dd, li {
         &:before {
@@ -24,6 +29,12 @@ dd, li {
         }
     }
 }
+
+/* .expanded { */
+/*     li, dd { */
+/*         visibility : visible; */
+/*     } */
+/* } */
 
 /* ***************** List expansion ******************* */
 
@@ -81,3 +92,4 @@ dd, li {
 .check li {
     list-style:check;
 }
+
