@@ -17,6 +17,9 @@
 #*
 *.org.*
 *TAGS
-/scripts/org-mode/
-MathJax
-/css/layout.css.map
+*.map
+/_deploy/
+/MathJax/
+/org-mode/
+/htmlize/
+

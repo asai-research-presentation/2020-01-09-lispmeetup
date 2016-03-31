@@ -1,5 +1,5 @@
 
-(add-to-list 'load-path (concat default-directory "org-mode/lisp/"))
+(add-to-list 'load-path (concat default-directory "../org-mode/lisp/"))
 (defun compile-org (in out)
   (require 'ox-latex)
   (require 'org-table)
