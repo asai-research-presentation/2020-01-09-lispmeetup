@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Yet Another Org-mode Presentation Script</title>
-<!-- 2015-05-27 水 02:14 -->
+<!-- 2016-03-31 木 12:08 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Masataro Asai" />
@@ -92,10 +92,8 @@
 <link rel="stylesheet" type="text/css" href="css/default.css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.loupe.min.js"></script>
+<script type="text/javascript" src="js/jgestures/jgestures.min.js"></script>
 <script type="text/javascript" src="js/code.js"></script>
-<script type="text/javascript" src="MathJax/MathJax.js"></script>
-<script type="text/javascript" src="js/mathjaxconf.js"></script>
-<a id="banner" href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; right: 0; border: 0;" src="img/static/forkme.png" alt="Fork me on GitHub"></a>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -140,6 +138,48 @@ for the JavaScript code in this tag.
    if(elem.cacheClassTarget)
      target.className = elem.cacheClassTarget;
  }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="MathJax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+            config: ["MMLorHTML.js"], jax: ["input/TeX"],
+        //  jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "left",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
 /*]]>*///-->
 </script>
 </head>
@@ -281,7 +321,7 @@ are added)
 </li>
 <li>set a function to <code>keyManager.&lt;your-key-strokes&gt;</code>
 </li>
-<li>the key strokes should contain character $c$ within char code $32 &lt; c &lt; 126$
+<li>the key strokes should contain character \(c\) within char code \(32 < c < 126\)
 <ul class="org-ul">
 <li><code>Space,!,",...A,B,C,...x,y,z,{,|,~</code>
 </li>
@@ -343,7 +383,7 @@ appearance. Useful when browser-based presentation is not allowed
 </li>
 <li><code>make pdf</code> and <code>make resume</code> on the shell
 </li>
-<li>need the latest $\mbox{\TeX}$ live installation
+<li>need the latest \(\mbox{\TeX}\) live installation
 <ul class="org-ul">
 <li>see <code>Makefile</code>
 </li>
@@ -735,7 +775,7 @@ This is a footnote
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Masataro Asai</p>
-<p class="date">Created: 2015-05-27 水 02:14</p>
+<p class="date">Created: 2016-03-31 木 12:08</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
