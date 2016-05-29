@@ -62,8 +62,7 @@ presen.org: head.org
 %.dvi: %.tex img $(styles)
 
 %.pdf : %.dvi
-	dvipdfmx -f ipa.map -o $@ $* > /dev/null
-	cp $@ ~/Dropbox/repos/presentations/$(shell basename $(CURDIR)).pdf
+	nohup bash -c "nohup dvipdfmx -f ipa.map -o $@ $* > /dev/null ; cp $@ ~/Dropbox/repos/presentations/$(shell basename $(CURDIR)).pdf" &
 
 clean:
 	-rm *~ *.org.* *.pdf \
