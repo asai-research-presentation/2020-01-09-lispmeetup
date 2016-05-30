@@ -1,14 +1,27 @@
 #!/bin/bash
 
-git clone --mirror . $1
+try_exit (){
+    echo $*
+    $* || {
+        status=$?
+        echo "Error occured. status: $status"
+        exit $status
+    }
+}
+
+dest=${1:-~/Dropbox/repos/presentations/$(basename $(readlink -ef .)).git}
+
+read -p "upload to $dest ? [y*]: " -r
+
+try_exit test $REPLY == y
+try_exit git clone --mirror . $dest
 
 echo 
-read -p "untrack remote and track $1 ? [yYnN]" -n 1 -r
+read -p "untrack remote and track $dest ? [y*]: " -r
 
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    # do dangerous stuff
-    git remote add uploaded $1
-    git branch -u uploaded
-fi
+try_exit test $REPLY == y
+try_exit git remote add uploaded $dest
+try_exit git fetch --all
+try_exit git branch -u uploaded/$(git rev-parse --abbrev-ref HEAD)
+
 
