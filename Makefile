@@ -40,7 +40,7 @@ scripts:
 	$(MAKE) -C scripts
 
 auto:
-	scripts/make-cycle.sh -j $(ncpu) index
+	scripts/make-cycle.sh -j $(ncpu) all
 
 img:
 	$(MAKE) -C img
