@@ -61,7 +61,9 @@
 \NewEnviron{span11}{\parbox{\ddwidth{11}}{\BODY}\hbox to 1em{}}
 \NewEnviron{span12}{\parbox{\ddwidth{12}}{\BODY}\hbox to 1em{}}
 
+\usepackage{adjustbox}
 
+\renewcommand{\includegraphics}[1]{\adjustimage{max width=\linewidth}{#1}}
 
 \NewEnviron{bad}{\BODY}
 \NewEnviron{magnifier}{\BODY}
