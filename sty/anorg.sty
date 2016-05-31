@@ -44,8 +44,6 @@
 \NewEnviron{expanded}{\BODY}
 \NewEnviron{container-fluid}{\BODY}
 \NewEnviron{row-fluid}{\BODY}
-% \newenvironment{container-fluid}{\bgroup}{\egroup}
-% \newenvironment{row-fluid}{\vbox\bgroup}{\egroup}
 
 % \strip@pt removes pt from the expression
 \newcommand{\ddwidth}[1]{\dimexpr (\linewidth * #1 / 12) - 1.5em \relax}% duodecimal width
@@ -67,10 +65,6 @@
 
 \NewEnviron{bad}{\BODY}
 \NewEnviron{magnifier}{\BODY}
-
-\makeatletter
-\def\maxwidth#1{\ifdim\Gin@nat@width>#1 #1\else\Gin@nat@width\fi}
-\makeatother
 
 \newlength{\defaultimagewidth}
 \setlength{\defaultimagewidth}{0.9\textwidth}
