@@ -19,3 +19,6 @@ git commit -q -m "Deployed $(date)"
 git tag deploy-$(date +%Y%m%d%H%M)
 git push -f $remote HEAD:refs/heads/gh-pages
 
+# git@github.com:user/repo
+
+echo $remote | sed 's_[:/]_ _g' | awk '{print "https://"$2".github.io/"$3}'
