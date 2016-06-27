@@ -33,9 +33,6 @@ org-mode:
 	$(call get-archive, http://orgmode.org/org-8.2.10.tar.gz, org-8.2.10, $@)
 	$(MAKE) -C $@ compile
 
-htmlize:
-	$(call get-archive, https://github.com/emacsmirror/htmlize/archive/release/1.47.tar.gz, htmlize-release-1.47, $@)
-
 scripts:
 	$(MAKE) -C scripts
 
@@ -56,7 +53,7 @@ presen.org: head.org
 %.org.tex: %.org scripts org-mode
 	scripts/org-latex.sh $< $@
 
-%.org.html: %.org scripts org-mode htmlize
+%.org.html: %.org scripts org-mode
 	scripts/org-html.sh $< $@
 
 %.dvi: %.tex img $(styles)
