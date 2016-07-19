@@ -5,7 +5,7 @@ head=$(git rev-parse HEAD)
 
 make
 git clone . _deploy
-rsync -r --exclude=.git --exclude=MathJax --exclude=org-mode --exclude=htmlize . _deploy
+rsync -r --exclude=.git --exclude=MathJax --exclude=org-mode --exclude=htmlize --exclude=_deploy . _deploy
 
 # trap "cd $(pwd); rm -r _deploy" EXIT
 # trap "git reset $head" EXIT
