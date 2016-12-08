@@ -39,6 +39,7 @@ body {
 /* printing */
 @page mypage {
   size: a4 landscape; }
+
 /* animation */
 .emerging {
   animation-name: emergeX;
@@ -49,12 +50,15 @@ body {
   from {
     -moz-transform: translateX(20px);
     opacity: 0.0; }
+
   30% {
     -moz-transform: translateX(0px);
     opacity: 0.1; }
+
   to {
     -moz-transform: translateX(0px);
     opacity: 1.0; } }
+
 .emerging-list {
   animation-name: emergeY;
   animation-duration: 0.7s;
@@ -64,42 +68,57 @@ body {
   from {
     -moz-transform: translateY(-20px);
     opacity: 0.0; }
+
   30% {
     -moz-transform: translateY(0px);
     opacity: 0.1; }
+
   to {
     -moz-transform: translateY(0px);
     opacity: 1.0; } }
+
 @keyframes highlight {
   0% {
     color: #000; }
+
   2.5% {
     color: #822; }
+
   12.5% {
     color: #822; }
+
   25% {
     color: #000; }
+
   50% {
     color: #000; }
+
   100% {
     color: #000; } }
+
 @keyframes highlight-border {
   0% {
     border-color: #222; }
+
   5% {
     border-color: #c00; }
+
   70% {
     border-color: #222; } }
+
 @keyframes highlight-border-black {
   0% {
     border-color: #000;
     background-color: #fff; }
+
   5% {
     border-color: #f00;
     background-color: #fee; }
+
   70% {
     border-color: #000;
     background-color: #fff; } }
+
 /* ************** Sectioning ************** */
 #text-before-first-headline {
   display: none; }
@@ -238,6 +257,11 @@ code {
 b i {
   color: red;
   font-style: italic; }
+
+.underline i {
+  color: blue;
+  font-style: italic;
+  font-weight: bold; }
 
 /* notes */
 /* lighten($text,4); */
@@ -709,5 +733,3 @@ table {
     /* bottom: 0px !important; */
     /* left:0px !important; */
     /* top: 0px !important; */ }
-
-/*# sourceMappingURL=layout.css.map */

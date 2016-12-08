@@ -23,6 +23,12 @@ b i {
     font-style : italic;
 }
 
+.underline i {
+    color : blue;
+    font-style : italic;
+    font-weight: bold;
+}
+
 /* notes */
 
 @import "_colors";
