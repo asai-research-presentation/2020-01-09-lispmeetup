@@ -4,6 +4,8 @@
 #+LINK: img file:img/%s
 #+LINK: png file:img/%s.png
 #+LINK: jpg file:img/%s.jpg
+#+LINK: spng file:img/static/%s.png
+#+LINK: sjpg file:img/static/%s.jpg
 
 #+BEGIN_outline-text-1
 #+BEGIN_XLARGE
