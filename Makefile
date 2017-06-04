@@ -8,7 +8,7 @@ styles     = sty/anorg.sty sty/user.sty
 
 ncpu       = $(shell grep "processor" /proc/cpuinfo | wc -l)
 
-.PHONY: auto all img scripts clean allclean html pdf resume index css deploy
+.PHONY: auto all img scripts clean allclean html pdf index css deploy
 .SECONDLY: *.elc *.org.*
 
 %.pdf: %.tex presen.org.tex img $(styles)
@@ -28,7 +28,6 @@ all: index
 html: img css presen.org.html MathJax
 pdf:    key.pdf
 nokey:  nokey.pdf
-resume: resume.pdf
 
 deploy: index
 	+scripts/deploy.sh git@github.com:$(GH_USER)/$$(basename $$(readlink -ef .)).git
