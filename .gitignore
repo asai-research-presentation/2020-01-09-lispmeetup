@@ -27,3 +27,4 @@
 *.fdb_latexmk
 *.fls
 .sass-cache/
+*.pyg
