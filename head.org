@@ -1,6 +1,7 @@
+# We use TeX:verbatim because of mathjax stuff
+# 
 #+OPTIONS:   H:4 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-# #+OPTIONS:   TeX:verbatim LaTeX:verbatim skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
-#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
+#+OPTIONS:   TeX:verbatim LaTeX:verbatim skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/layout.css" />
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/default.css" />
 #+HTML_HEAD: <script type="text/javascript" src="js/jquery.js"></script>
@@ -8,10 +9,14 @@
 #+HTML_HEAD: <script type="text/javascript" src="js/jgestures/jgestures.min.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="js/code.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="MathJax/MathJax.js"></script>
-# #+HTML_MATHJAX: align:"left" mathml:t path:"MathJax/MathJax.js"
-#+HTML_HEAD: <script type="text/javascript" src="js/mathjaxconf.js"></script>
+#+HTML_HEAD_EXTRA: <script type="text/javascript" src="js/mathjaxconf.js"></script>
 #+HTML_POSTAMBLE: nil
 
 # ## To remove the banner, comment out the next line.
 # #+HTML_HEAD: <a id="banner" href="https://github.com/guicho271828/another-org-info"><img style="position: absolute; top: 0; right: 0; border: 0;" src="img/static/forkme.png" alt="Fork me on GitHub"></a>
 
+
+# we do not use the mathjax code inserted by org-mode, since it is not
+# customizable (customization is hard-coded)
+# #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
+# #+HTML_MATHJAX: align:"left" mathml:t path:"MathJax/MathJax.js"
