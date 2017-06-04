@@ -24,9 +24,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% default style 
 
-\newenvironment{xlarge}{\huge}{}
-\renewenvironment{larger}{\relsize{1}}{}
-\renewenvironment{smaller}{\relsize{-1}}{}
+\newenvironment{xlarge}{\par\huge\bf}{}
+\renewenvironment{larger}{\par\relsize{1}}{}
+\renewenvironment{smaller}{\par\relsize{-1}}{}
 
 \newenvironment{outline-text-1}{}{}
 
@@ -46,8 +46,8 @@
 \NewEnviron{resume}{\blfootnote{\BODY}}
 \NewEnviron{inline}{\BODY}
 \NewEnviron{expanded}{\BODY}
-\NewEnviron{container-fluid}{\BODY}
-\NewEnviron{row-fluid}{\BODY}
+\NewEnviron{container-fluid}{\par\BODY}
+\NewEnviron{row-fluid}{\par\BODY}
 
 % \strip@pt removes pt from the expression
 \newcommand{\ddwidth}[1]{\dimexpr (\linewidth * #1 / 12) - 1.5em \relax}% duodecimal width
