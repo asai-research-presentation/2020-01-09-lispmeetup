@@ -42,7 +42,7 @@ MathJax:
 	$(call get-archive, https://github.com/mathjax/MathJax/archive/2.6.1.tar.gz, MathJax-2.6.1, $@)
 
 org-mode:
-	$(call get-archive, http://orgmode.org/org-8.2.10.tar.gz, org-8.2.10, $@)
+	$(call get-archive, http://orgmode.org/org-8.3.6.tar.gz, org-8.3.6, $@)
 	$(MAKE) -C $@ compile
 
 scripts:

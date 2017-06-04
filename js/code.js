@@ -103,18 +103,18 @@ function outlineContents(n){
 }
 
 function buildSectionHash(secnums){
-    // get an array of numbers and return outline-container-sec-*-*-*
+    // get an array of numbers and return outline-container-orgheadline-*-*-*
     return Array.prototype.reduce.call(
         secnums,
         function(prev,arg){
-            return prev+"-"+arg;
+            return prev+arg;
         },
-        "#outline-container-sec"
+        "#outline-container-orgheadline"
     );
 }
 
 function parseSectionHash(id){
-    var re = /#?(?:outline-container-sec-)?(.*)/;
+    var re = /#?(?:outline-container-orgheadline)?(.*)/;
     return (id.match(re)||[null,"1"])[1].split("-");
 }
 
