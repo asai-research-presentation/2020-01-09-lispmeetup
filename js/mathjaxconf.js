@@ -8,7 +8,7 @@ MathJax.Hub.Config({
     extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
                  "TeX/noUndefined.js"],
     tex2jax: {
-        inlineMath: [ ["$","$"] ],
+        inlineMath: [ ["$","$"], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
         skipTags: ["script","noscript","style","textarea","pre","code"],
         ignoreClass: "tex2jax_ignore",
