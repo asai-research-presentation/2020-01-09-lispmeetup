@@ -191,11 +191,9 @@ dt {
 dd dd:before, dd li:before, li dd:before, li li:before {
   content: ''; }
 
-/* .expanded { */
-/*     li, dd { */
-/*         visibility : visible; */
-/*     } */
-/* } */
+.expanded li, .expanded dd {
+  visibility: visible; }
+
 /* ***************** List expansion ******************* */
 /* expanded lists and dl (description list) is visible */
 /* display: the size is not accounted */
