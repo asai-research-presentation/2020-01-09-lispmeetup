@@ -28,3 +28,4 @@
 *.fls
 .sass-cache/
 *.pyg
+*.ptc
