@@ -1,7 +1,7 @@
 # We use TeX:verbatim because of mathjax stuff
 # 
 #+OPTIONS:   H:4 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:   TeX:verbatim LaTeX:verbatim skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc skip:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/layout.css" />
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/default.css" />
 #+HTML_HEAD: <script type="text/javascript" src="js/jquery.js"></script>
