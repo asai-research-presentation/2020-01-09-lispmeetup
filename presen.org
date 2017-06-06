@@ -7,62 +7,62 @@
 #+LINK: spng file:img/static/%s.png
 #+LINK: sjpg file:img/static/%s.jpg
 
-#+BEGIN_outline-text-1
-#+BEGIN_XLARGE
-#+BEGIN_CENTER
+#+begin_outline-text-1
+#+begin_xlarge
+#+begin_center
 To Start Press "n"
-#+END_CENTER
-#+END_XLARGE
+#+end_center
+#+end_xlarge
 
-#+BEGIN_CENTER
+#+begin_center
 *WARN* Turn off your custom keyboard shortcuts
-#+END_CENTER
+#+end_center
 
-#+BEGIN_NOTE
-#+BEGIN_ALIGNRIGHT
+#+begin_note
+#+begin_alignright
 Made by guicho2.71828 (Masataro Asai)
-#+END_ALIGNRIGHT
-#+END_NOTE
-#+END_outline-text-1
+#+end_alignright
+#+end_note
+#+end_outline-text-1
 
 * What Is It?
 
-#+BEGIN_XLARGE
+#+begin_xlarge
 An Alternative to
-#+BEGIN_CENTER
+#+begin_center
 Org-based Presentation
-#+END_CENTER
-#+BEGIN_ALIGNRIGHT
+#+end_center
+#+begin_alignright
 Method
-#+END_ALIGNRIGHT
-#+END_XLARGE
+#+end_alignright
+#+end_xlarge
 
-#+BEGIN_CENTER
+#+begin_center
 Proceed with "n"
-#+END_CENTER
+#+end_center
 
 * Usage (on browsers)
 
-#+BEGIN_SMALLER
+#+begin_smaller
 
-#+BEGIN_CONTAINER-FLUID
-#+BEGIN_ROW-FLUID
-#+BEGIN_SPAN6
+#+begin_container-fluid
+#+begin_row-fluid
+#+begin_span6
 + n,<Space> :: go to the next slide/expand a list
 + p :: back to the previous slide
 + u, ^ :: go to the parent section
 + N :: expand all list in the current slide
-#+END_SPAN6
-#+BEGIN_SPAN6
+#+end_span6
+#+begin_span6
 + s, or typing "go" :: jump to an arbitrary section (using minibuffer)
 + d :: debugging mode (shows content border)
 + <Ctrl-g> or <Esc> :: cancel current key strokes
 + typing "help" :: show available commands in the minibuffer!
-#+END_SPAN6
-#+END_ROW-FLUID
-#+END_CONTAINER-FLUID
+#+end_span6
+#+end_row-fluid
+#+end_container-fluid
 
-#+END_SMALLER
+#+end_smaller
 
 * Usage (on emacs)
 
@@ -109,6 +109,33 @@ Proceed with "n"
   + =platex= and =dvipdfmx=
   + alternatively, =pdflatex=
 
+* Code block / highlightation
+
+
+#+begin_container-fluid
+#+begin_row-fluid
+#+begin_span6
+#+begin_src lisp
+(defun factorial (n)
+  (if (zerop n)
+      1
+      (* n (factorial (1- n)))))
+#+end_src
+#+end_span6
+#+begin_span6
+#+begin_src python
+import numpy as np
+def unit(i):
+    x = np.zeros([i,i])
+    for i in range(i):
+        x[i][i] = 1
+    return x
+#+end_src
+#+end_span6
+#+end_row-fluid
+#+end_container-fluid
+
+
 * Images
 
 + Put images into =img/= directory.
@@ -128,7 +155,7 @@ We mark the html tag with org-mode blocks such as =#+BEGIN_EXAMPLE=.
 Using [[http://orgmode.org/manual/Easy-Templates.html][block template]] (by modifying =org-structure-template-alist=),
 you can quickly write such blocks i.e.:
 
-#+BEGIN_EXAMPLE
+#+begin_example
 at the beginning of line, hit
 
 <s<tab>
@@ -136,10 +163,10 @@ at the beginning of line, hit
 in normal org-mode destribution in emacs,
 it would expand into:
 
-#+BEGIN_SRC 
+#+begin_src 
 
-#+END_SRC
-#+END_EXAMPLE
+#+end_src
+#+end_example
 
 ** customizing templates
 
@@ -147,9 +174,9 @@ We provide custom =org-structure-template-alist=.
 These blocks are recognized by the stylesheet we provide,
 so they are highlighted correctly.
 
-#+BEGIN_CONTAINER-FLUID
-#+BEGIN_ROW-FLUID
-#+BEGIN_SPAN6
+#+begin_container-fluid
+#+begin_row-fluid
+#+begin_span6
 + <S -- smaller
 + <lar -- larger
 + <t -- twocolumn
@@ -159,18 +186,18 @@ so they are highlighted correctly.
 + <lcr -- "left,center,right" format with x-large fonts
 + <E -- latex `equation' environment
 + still more...
-#+END_SPAN6
-#+BEGIN_SPAN6
+#+end_span6
+#+begin_span6
 copy-paste it
 to your =.emacs=
 
-#+BEGIN_CENTER
+#+begin_center
 [[file:config.el]]
-#+END_CENTER
+#+end_center
 
-#+END_SPAN6
-#+END_ROW-FLUID
-#+END_CONTAINER-FLUID
+#+end_span6
+#+end_row-fluid
+#+end_container-fluid
 
 * Utility
 
@@ -206,77 +233,77 @@ Mathjax formula:
 
 ** Twocolumn Test
 
-#+BEGIN_CONTAINER-FLUID
-#+BEGIN_ROW-FLUID
-#+BEGIN_SPAN6
+#+begin_container-fluid
+#+begin_row-fluid
+#+begin_span6
 + HOOA!
 + *HOOA!*
 + HOOA!
-#+END_SPAN6
-#+BEGIN_SPAN6
+#+end_span6
+#+begin_span6
 This is a LISP ALIEN IN A CAGE!
 
 [[png:alien]]
 
-#+END_SPAN6
-#+END_ROW-FLUID
-#+END_CONTAINER-FLUID
+#+end_span6
+#+end_row-fluid
+#+end_container-fluid
 
 
 ** many columns test
 
 
-#+BEGIN_CONTAINER-FLUID
-#+BEGIN_ROW-FLUID
-#+BEGIN_SPAN3
+#+begin_container-fluid
+#+begin_row-fluid
+#+begin_span3
  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
-#+END_SPAN3
-#+BEGIN_SPAN3
+#+end_span3
+#+begin_span3
  b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b
-#+END_SPAN3
-#+BEGIN_SPAN3
+#+end_span3
+#+begin_span3
  c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c
-#+END_SPAN3
-#+BEGIN_SPAN3
+#+end_span3
+#+begin_span3
  d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d
-#+END_SPAN3
-#+END_ROW-FLUID
-#+END_CONTAINER-FLUID
+#+end_span3
+#+end_row-fluid
+#+end_container-fluid
 
 * A Slide with Too Little Contents
 
-#+BEGIN_CENTER
-#+BEGIN_SMALLER
+#+begin_center
+#+begin_smaller
 Hi, I'm small!
-#+END_SMALLER
-#+END_CENTER
+#+end_smaller
+#+end_center
 
-#+BEGIN_NOTE
+#+begin_note
 See the headline is correctly adjusted
-#+END_NOTE
+#+end_note
 
 * Left-Center-Right template
 
-#+BEGIN_XLARGE
+#+begin_xlarge
 x-large left
-#+BEGIN_CENTER
+#+begin_center
 centered
-#+END_CENTER
-#+BEGIN_ALIGNRIGHT
+#+end_center
+#+begin_alignright
 right
-#+END_ALIGNRIGHT
-#+END_XLARGE
+#+end_alignright
+#+end_xlarge
 
-#+BEGIN_NOTE
+#+begin_note
 This is a footnote
-#+END_NOTE
+#+end_note
 
 * TODOs
 
-#+BEGIN_CONTAINER-FLUID
-#+BEGIN_ROW-FLUID
-#+BEGIN_SPAN6
-#+BEGIN_SMALLER
+#+begin_container-fluid
+#+begin_row-fluid
+#+begin_span6
+#+begin_smaller
 + Features
   + Table of contents
   + +=<dl>= does not expand+ *DONE*
@@ -289,10 +316,10 @@ This is a footnote
   + +stopwatch/countdown timer+ *DONE*. "timer"
   + +link to #section+ *DONE*.
     #+HTML: <a href="index.html#6">sample link</a>
-#+END_SMALLER
-#+END_SPAN6
-#+BEGIN_SPAN6
-#+BEGIN_SMALLER
+#+end_smaller
+#+end_span6
+#+begin_span6
+#+begin_smaller
 + Features inspired by other tools
   + Content Search (in org-infojs)
   + Drawing mode (in [[http://code.google.com/p/jessyink/][jessyink]])
@@ -303,8 +330,8 @@ This is a footnote
   + present one paragraph/word/letter at a time
     + those in [[http://docutils.sourceforge.net/docs/user/slide-shows.s5.html][s5]]
   + "C-M-x" style notation in the command definition
-#+END_SMALLER
-#+END_SPAN6
+#+end_smaller
+#+end_span6
 
-#+END_ROW-FLUID
-#+END_CONTAINER-FLUID
+#+end_row-fluid
+#+end_container-fluid
