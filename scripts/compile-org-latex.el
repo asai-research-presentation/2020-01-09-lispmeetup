@@ -5,6 +5,7 @@
 (defun compile-org (in out)
   (require 'ox-latex)
   (require 'org-table)
+  (org-version nil t t)
   (find-file in)
   (setf org-latex-image-default-width ""
         ;; org-latex-image-default-height "\\defaultimageheight"

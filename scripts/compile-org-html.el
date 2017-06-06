@@ -9,6 +9,7 @@
 (defun compile-org (in out)
   (require 'ox-html)
   (require 'org-table)
+  (org-version nil t t)
   ;; (require 'htmlize)
   ;; (font-lock-mode)
   (custom-set-faces 
