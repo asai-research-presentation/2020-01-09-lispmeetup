@@ -3,10 +3,13 @@
 (add-to-list 'load-path (concat default-directory "../org-mode/contrib/lisp/"))
 (add-to-list 'load-path (concat default-directory "../htmlize"))
 
+(require 'ox-html)
+(require 'org-table)
+;; (require 'htmlize)
 (defun compile-org (in out)
   (require 'ox-html)
   (require 'org-table)
-  (require 'htmlize)
+  ;; (require 'htmlize)
   ;; (font-lock-mode)
   (custom-set-faces 
    '(default                      ((t (:foreground "#ffffff" :background "black"))))
@@ -19,7 +22,8 @@
    '(font-lock-type-face          ((t (:foreground "ForestGreen"))))
    '(font-lock-variable-name-face ((t (:foreground "sienna"))))
    '(font-lock-warning-face       ((t (:foreground "red" :weight bold)))))
-  (setq htmlize-use-rgb-map 'force)  
   (find-file in)
+  (setq ;; htmlize-use-rgb-map 'force
+        org-html-with-latex 'verbatim) ;; force verbatim so that custom mathjax config can be loaded
   (org-html-export-as-html nil nil nil nil)
   (write-file out))
