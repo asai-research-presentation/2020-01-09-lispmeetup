@@ -19,6 +19,9 @@ h1, h2, h3, h4 {
 
 h1 {
     /* max-width: 90%; */
+    &.title {
+        font-size: 200%;
+    }
 }
 
 h2, h3, h4 {
