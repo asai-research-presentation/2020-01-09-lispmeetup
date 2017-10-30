@@ -39,7 +39,6 @@ body {
 /* printing */
 @page mypage {
   size: a4 landscape; }
-
 /* animation */
 .emerging {
   animation-name: emergeX;
@@ -50,15 +49,12 @@ body {
   from {
     -moz-transform: translateX(20px);
     opacity: 0.0; }
-
   30% {
     -moz-transform: translateX(0px);
     opacity: 0.1; }
-
   to {
     -moz-transform: translateX(0px);
     opacity: 1.0; } }
-
 .emerging-list {
   animation-name: emergeY;
   animation-duration: 0.7s;
@@ -68,57 +64,42 @@ body {
   from {
     -moz-transform: translateY(-20px);
     opacity: 0.0; }
-
   30% {
     -moz-transform: translateY(0px);
     opacity: 0.1; }
-
   to {
     -moz-transform: translateY(0px);
     opacity: 1.0; } }
-
 @keyframes highlight {
   0% {
     color: #000; }
-
   2.5% {
     color: #822; }
-
   12.5% {
     color: #822; }
-
   25% {
     color: #000; }
-
   50% {
     color: #000; }
-
   100% {
     color: #000; } }
-
 @keyframes highlight-border {
   0% {
     border-color: #222; }
-
   5% {
     border-color: #c00; }
-
   70% {
     border-color: #222; } }
-
 @keyframes highlight-border-black {
   0% {
     border-color: #000;
     background-color: #fff; }
-
   5% {
     border-color: #f00;
     background-color: #fee; }
-
   70% {
     border-color: #000;
     background-color: #fff; } }
-
 /* ************** Sectioning ************** */
 #text-before-first-headline {
   display: none; }
@@ -345,9 +326,15 @@ th.right, td.right {
 /* } */
 /* ************* Figures, Images, Table ********** */
 .figure {
-  padding: 0px; }
-  .figure p {
-    margin: 0px; }
+  padding: 0px;
+  margin: 0.45em;
+  /* margin: 0.2em 0 0 0; */
+  /* p { */
+  /*     margin: 0px; */
+  /* } */ }
+
+svg {
+  margin: 0.45em; }
 
 img {
   -moz-box-sizing: content-box;
@@ -731,3 +718,5 @@ table {
     /* bottom: 0px !important; */
     /* left:0px !important; */
     /* top: 0px !important; */ }
+
+/*# sourceMappingURL=layout.css.map */
