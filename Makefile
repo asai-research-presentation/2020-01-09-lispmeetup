@@ -1,7 +1,7 @@
 
 latexmk    = latexmk/latexmk.pl
 
-GH_USER    = guicho271828
+GH_USER    = asai-research-presentation
 EMACS      = emacs
 EMACSFLAGS =
 styles     = sty/anorg.sty sty/user.sty
