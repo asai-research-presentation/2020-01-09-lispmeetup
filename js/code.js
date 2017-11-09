@@ -554,10 +554,10 @@ function sectionPrompt2(message){
         message,function(result){
             goToSection(
                 parseSectionHash(
-                    buildSectionHash(result)),
+                    buildSectionHash(result.split("-"))),
                 function(){
                     sectionPrompt2(
-                        buildSectionHash(result)
+                        buildSectionHash(result.split("-"))
                             + " does not exists.");})},
         parseSectionHash(currentHash()).join("-"));
 }
