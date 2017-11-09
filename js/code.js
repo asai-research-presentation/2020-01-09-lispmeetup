@@ -426,6 +426,40 @@ function keyboardHandler(e){
 }
 
 ////////////////////////////////////////////////////////////////
+//// Touch event handlers //////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+// from https://qiita.com/Wataru/items/a9548015e00683e142e4
+var position, direction;
+
+function getPosition(event) {
+    return event.originalEvent.touches[0].pageX;
+}
+
+function onTouchStart(event) {
+    position = getPosition(event);
+    direction = '';
+}
+
+function onTouchMove(event) {
+    if (position - getPosition(event) > 70) {
+        direction = 'right';
+    } else if (position - getPosition(event) < -70){
+        direction = 'left';
+    }
+}
+
+function onTouchEnd(event) {
+    if (direction == 'right'){
+        keyManager.n();
+    } else if (direction == 'left'){
+        keyManager.p();
+    }
+}
+
+//横方向の座標を取得
+
+////////////////////////////////////////////////////////////////
 //// Initialization
 ////
 
@@ -440,10 +474,14 @@ window.onload = function(){
     $("#content").addClass("outline-1");
     slide = new Slide($("#content"));
     slide.show();
-    setExpanders();
+    // setExpanders();
     setupResume();
     keystrokeManager.setup();
-    $(window).keypress(keyboardHandler);
+    $(window).on('keypress',keyboardHandler);
+    $(window).on("click",keyManager.n);
+    $(window).on('touchstart', onTouchStart);
+    $(window).on('touchmove', onTouchMove);
+    $(window).on('touchend', onTouchEnd);
     
     if(location.hash!=""){
         goToSection(
