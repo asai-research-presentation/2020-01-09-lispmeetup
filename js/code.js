@@ -282,7 +282,8 @@ var keystrokeManager = {
     setup: function(){
         this._minibuffer
             .append(this._prompt)
-            .append(this._input);
+            .append(this._input)
+            .append("<span id='fullscreen'>+</span>");
         $("body").prepend(this._minibuffer);
     },
     query: function(message,fn,def,enteredByDefault){
@@ -457,7 +458,25 @@ function onTouchEnd(event) {
     }
 }
 
-//横方向の座標を取得
+////////////////////////////////////////////////////////////////
+//// Fullscreen ////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+// from https://developers.google.com/web/fundamentals/native-hardware/fullscreen/
+function toggleFullScreen() {
+  var doc = window.document;
+  var docEl = doc.documentElement;
+
+  var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+  var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+  if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+    requestFullScreen.call(docEl);
+  }
+  else {
+    cancelFullScreen.call(doc);
+  }
+}
 
 ////////////////////////////////////////////////////////////////
 //// Initialization
@@ -477,6 +496,8 @@ window.onload = function(){
     // setExpanders();
     setupResume();
     keystrokeManager.setup();
+
+    $('#fullscreen').on("click",toggleFullScreen);
     $(window).on('keypress',keyboardHandler);
     $(window).on("click",keyManager.n);
     $(window).on('touchstart', onTouchStart);

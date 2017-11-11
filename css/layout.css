@@ -90,6 +90,10 @@ body {
   font-size: small;
   text-align: left; }
 
+#fullscreen {
+  float: right;
+  margin-right: 0.3em; }
+
 #prompt {
   margin-left: 0.5em; }
 
