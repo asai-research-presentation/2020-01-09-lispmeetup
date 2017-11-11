@@ -1,21 +1,30 @@
 
 /* ************ Contents and Control ********** */
 
-$basefontsize : 22px;
 
 body {
     overflow: hidden;           /* hide the scrollbar */
-    font-size: $basefontsize;
     line-height: 1.25em;
     text-indent: 0.5em;
 }
 
+@for $i from 2 through 12 {
+    @media screen and (min-height: $i*100px) and (max-height: (1+$i)*100px) {
+        body {
+            font-size: $i*2.8px;
+        }
+        #content {
+            max-width: $i*133px;
+        }
+    }
+}
+
 #content {
     padding: 0em;
-    max-width: 1024px;
     margin-left: auto;
     margin-right:auto;
 }
+
 #postamble {
     display: none !important;
 }
