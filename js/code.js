@@ -283,7 +283,7 @@ var keystrokeManager = {
         this._minibuffer
             .append(this._prompt)
             .append(this._input)
-            .append("<span id='fullscreen'>+</span>");
+            .append("<span id='fullscreen'>■</span>");
         $("body").prepend(this._minibuffer);
     },
     query: function(message,fn,def,enteredByDefault){

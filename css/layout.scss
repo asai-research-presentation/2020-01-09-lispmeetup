@@ -44,6 +44,7 @@ body {
 #fullscreen {
     float: right;
     margin-right: 0.3em;
+    font-size: 1cm;             /* display-agnostic size spec */
 }
 
 #prompt {
