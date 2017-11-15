@@ -9,7 +9,17 @@ body {
 }
 
 @for $i from 2 through 12 {
-    @media screen and (min-height: $i*100px) and (max-height: (1+$i)*100px) {
+    @media screen and (orientation: landscape) and (min-height: $i*100px) and (max-height: (1+$i)*100px) {
+        body {
+            font-size: $i*3.3px;
+        }
+        #content {
+            max-width: $i*133px;
+        }
+    }
+}
+@for $i from 2 through 12 {
+    @media screen and (orientation: portrait) and (min-width: $i*100px) and (max-width: (1+$i)*100px) {
         body {
             font-size: $i*3.3px;
         }
