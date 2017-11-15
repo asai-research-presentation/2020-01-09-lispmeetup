@@ -11,7 +11,7 @@ body {
 @for $i from 2 through 12 {
     @media screen and (min-height: $i*100px) and (max-height: (1+$i)*100px) {
         body {
-            font-size: $i*2.8px;
+            font-size: $i*3px;
         }
         #content {
             max-width: $i*133px;
