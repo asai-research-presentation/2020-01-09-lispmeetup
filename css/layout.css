@@ -106,6 +106,9 @@ body {
   float: right;
   margin-right: 0.5em; }
 
+.mjx-chtml {
+  margin-right: 0.3em !important; }
+
 /* printing */
 @page mypage {
   size: a4 landscape; }
