@@ -1,4 +1,4 @@
-#+title: Yet Another Org-mode Presentation Script
+#+title: 
 #+author: Masataro Asai
 #+include: "head.org"
 #+LINK: img file:img/%s
@@ -7,15 +7,20 @@
 #+LINK: spng file:img/static/%s.png
 #+LINK: sjpg file:img/static/%s.jpg
 
+#+html_head: <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:500,900">
+#+html_head_extra:
+
 #+begin_outline-text-1
-#+begin_xlarge
-#+begin_center
-To Start Press "n"
-#+end_center
-#+end_xlarge
 
 #+begin_center
-*WARN* Turn off your custom keyboard shortcuts
+#+begin_larger
+*Beyond Common Lisp*
++    ...? 
+#+end_larger
+
++ ok, sorry, I was a little clickbaity
+
+
 #+end_center
 
 #+begin_note
@@ -25,313 +30,225 @@ Made by guicho2.71828 (Masataro Asai)
 #+end_note
 #+end_outline-text-1
 
-* What Is It?
+# honestly I was just thinking about 
+# the 
 
-#+begin_xlarge
-An Alternative to
-#+begin_center
-Org-based Presentation
-#+end_center
-#+begin_alignright
-Method
-#+end_alignright
-#+end_xlarge
+* Me
 
-#+begin_center
-Proceed with "n"
-#+end_center
++ Ph.D in Automated Planning / Heuristic Graph Search (aka symbolic AI) (U. Tokyo)
++ Creating the future AI with Neural-Symbolic hybrid at IBM
++ A somewhat competent Common Lisper
 
-* Usage (on browsers)
+[[spng:ranking]]
 
-#+begin_smaller
+* About this informal short talk
 
-#+begin_container-fluid
-#+begin_row-fluid
-#+begin_span6
-+ n,<Space> :: go to the next slide/expand a list
-+ p :: back to the previous slide
-+ u, ^ :: go to the parent section
-+ N :: expand all list in the current slide
-#+end_span6
-#+begin_span6
-+ s, or typing "go" :: jump to an arbitrary section (using minibuffer)
-+ d :: debugging mode (shows content border)
-+ <Ctrl-g> or <Esc> :: cancel current key strokes
-+ typing "help" :: show available commands in the minibuffer!
-#+end_span6
-#+end_row-fluid
-#+end_container-fluid
+About this informal short talk:
+I wish to talk about the current limit of the language
+(humbly and without sounding ignorant),
+about macro systems (no, not about hygenic macros),
+package systems and type systems.
 
-#+end_smaller
++ Wish to talk about the current limit of the language
+  + *without sounding ignorant*
+  + macro system
+    + no, not about hygenic macros
+  + package system
+  + type system
+  + misc.
++ propose some language prototypes
+  + the ideas are thought out few months ago
++ 
 
-* Usage (on emacs)
+* Part 1 : "Lisp macros are awesome!"
 
-1. clone [[https://github.com/guicho271828/another-org-info][our repo]]
++ It is.
++ but once you stay in common lisp for many years, it feels something is missing
 
-2. =make html= to publish
+** The case of local macros in Iterate
 
-3. show it on your browser!
+ + Iterate: the lispier alternative to loop
+ + Has various *local macros*
+   #+begin_src lisp
+ (iter (for i below 5)   ; <- local macro
+       (for j = (1+ i))  ; <- local macro
+       (print i))
+   #+end_src
+ + They cannot be implemented by =macrolet/defmacro=
+   + because the =iterate= macro *must detect =for= beforehand*
 
-* Virtue
+** Iterate as =macrolet= ?
 
-+ Simplicity
-  + =code.js= is a pure javascript, only has 200 lines (increasing as new features
-    are added)
-+ Extensibility
-  + you can write your own extension and its easy
-  + set a function to =keyManager.<your-key-strokes>=
-  + the key strokes should contain character $c$ within char code $32 < c < 126$
-    + =Space,!,",...A,B,C,...x,y,z,{,|,~=
-+ LICENSE
-  + GPLv3 ?? < not attatched a license yet
+ A simplified version that supports only =for=
 
-* Example: Expanding a List
+ #+begin_src lisp
+ (iter (for i below 5)
+       (for j = (1+ i))
+       (print j))
+ #+end_src
 
-+ *the dots* tell "/this is a content/"
-+ list
-+ list
-* Dependencies
-<<dependency>>
+ What =iterate= must do for =for=:
 
-+ jQuery (included)
-+ Inkscape (image conversion)
-+ org-mode (included)
-+ MathJax (optional submodule)
+ + Detect the variables, its initialization, stepping, stopping criteria
 
-* LaTeX output
+ #+begin_src lisp
+ (defmacro iter (&body body)
+   `(macrolet ((for (...) ...))
+      ,@body))
+ #+end_src
 
-+ [[file:presen.pdf][PDF Presentaiton]] presen.pdf -- presentation in pdf with similar
-  appearance. Useful when browser-based presentation is not allowed
-+ [[file:resume.pdf][Printable Resume]] resume.pdf -- short and printed version.
-+ =make pdf= and =make resume= on the shell
-+ need the latest $\mbox{\TeX}$ live installation
-  + see =Makefile=
-  + =platex= and =dvipdfmx=
-  + alternatively, =pdflatex=
+ + Useless: =for= in =body= are expanded *after* the =iter= macro
+ + We need *inter-macro communications*
 
-* Code block / highlightation
+** Current solution: Code walker
 
+ Iterate walks across the code body
 
-#+begin_container-fluid
-#+begin_row-fluid
-#+begin_span6
-#+begin_src lisp
-(defun factorial (n)
-  (if (zerop n)
-      1
-      (* n (factorial (1- n)))))
-#+end_src
-#+end_span6
-#+begin_span6
-#+begin_src python
-import numpy as np
-def unit(i):
-    x = np.zeros([i,i])
-    for i in range(i):
-        x[i][i] = 1
-    return x
-#+end_src
-#+end_span6
-#+end_row-fluid
-#+end_container-fluid
+ + Standard macros are expanded (exposing the local macro inside)
 
+ #+begin_src lisp
+ (defmacro for2 (&rest args) `(for ,@args))
 
-* Images
+ (iter (for2 i below 5)
+       (print i))        ; works
+ #+end_src
 
-+ Put images into =img/= directory.
-+ svg files are converted into png.
-  + We recommend it because
-    1. In html presentation, the inserted svg images capture the keyboard and mouse event
-       and the presentation sometimes does not work right.
-    2. In resume output and pdf presentation, the =svg= and =svg-inkscape= package is a
-       bit buggy and I personally failed make it work.
-+ svg-png conversion is done by =inkscape=
-  + but you can also use ImageMagick =convert= command.
-  + See =img/Makefile= for more information.
+ + Surrounding local macros are also expanded
 
-* Org-block templates
+ #+begin_src lisp
+ (macrolet ((for2 (&rest args) `(for ,@args)))
+   (iter (for2 i below 5)
+         (print i)))        ; works
+ #+end_src
 
-We mark the html tag with org-mode blocks such as =#+BEGIN_EXAMPLE=.
-Using [[http://orgmode.org/manual/Easy-Templates.html][block template]] (by modifying =org-structure-template-alist=),
-you can quickly write such blocks i.e.:
+ This can be done by passing =&environment= variable to =macroexpand=.
 
-#+begin_example
-at the beginning of line, hit
+** However...
 
-<s<tab>
+ #+begin_src lisp
+ (iter (for i below 5)
+       (macrolet ((unused () ()))
+         (collect i)))
 
-in normal org-mode destribution in emacs,
-it would expand into:
+ WARNING: Iterate:
+ Iterate does not know how to handle the special form (MACROLET ...)
 
-#+begin_src 
+   The function ITERATE:COLLECT is undefined.
+      [Condition of type UNDEFINED-FUNCTION]
+ #+end_src
 
-#+end_src
-#+end_example
+ This cannot be done in ANSI CL
+ + Requires CLtL2 =augment-environement= to shadow the outer binding
+ + =iterate= does not use it -- it has its own walker.
 
-** customizing templates
+** Sketch                                                          :noexport:
 
-We provide custom =org-structure-template-alist=.
-These blocks are recognized by the stylesheet we provide,
-so they are highlighted correctly.
+ #+begin_src lisp
+ (defun walk (form env)
+   (let ((form (macroexpand form env)))
+     (case (car form)
+       ('tagbody ...)
+       ...
+       ('macrolet
+        (destructuring-bind (bindings . body) (rest form)
+          (walk `(progn ,@body) (sb-cltl2:augment-environment env :macro binding))))
+       ...)))
 
-#+begin_container-fluid
-#+begin_row-fluid
-#+begin_span6
-+ <S -- smaller
-+ <lar -- larger
-+ <t -- twocolumn
-+ <n -- footnote
-+ <r -- float right
-+ <ar -- align right
-+ <lcr -- "left,center,right" format with x-large fonts
-+ <E -- latex `equation' environment
-+ still more...
-#+end_span6
-#+begin_span6
-copy-paste it
-to your =.emacs=
+ (defmacro for (&rest args)
+   (cerror 'for-found :args args)
+   '(progn))
 
-#+begin_center
-[[file:config.el]]
-#+end_center
+ (defmacro iter (&body body &environment e)
+   (let (metadata)
+     (handler-bind ((for-found
+                      (lambda (c)
+                         (push-metadata c metadata) ; (1)
+                         (continue c))))
+        (let ((body (walk `(progn ,@body) e)))
+          (wrap metadata body)))))                  ; (2)
+ #+end_src
 
-#+end_span6
-#+end_row-fluid
-#+end_container-fluid
+** But writing a code walker is dumb
 
-* Utility
+ + Every inter-macro communication requires *its own code walker*
+ + hu.dwim.walker is not a solution (returns a CLOS object tree)
+ + Can be replaced by =macroexpand-all=
 
-+ ./make-periotically.sh [args]
-  + Watches the changes in the directory and =make=
-  + Build statuses are notified in inotify pop-up
-  + all arguments are passed to =make=
-  + dependency : inotifywait, notify-send
+** MACROEXPAND-ALL Sketch
 
-* Makefile Targets
+ #+begin_src lisp
+ (ql:quickload :trivial-macroexpand-all)
+ (use-package :trivial-macroexpand-all)
 
-+ =make html= -- builds the html version
-+ =make resume= -- builds the resume version
-+ =make pdf= -- builds the pdf version
-+ =make= -- build all
+ (defmacro for (&rest args)
+   (cerror 'for-found :args args)
+   '(progn))
 
-* Test
+ (defmacro iter (&body body &environment e)
+   (let (metadata)
+     (handler-bind ((for-found
+                      (lambda (c)
+                         (push-metadata c metadata) ; (1)
+                         (continue c))))
+        (let ((body (macroexpand-all `(progn ,@body) e)))
+          (wrap metadata body)))))                  ; (2)
+ #+end_src
 
-+ [[http://www.google.com][Link]]
-+ This
-+ Is
-+ A Test
+** Lisp macros are strictly normal order
 
-Mathjax formula:
+ #+begin_container-fluid
+ #+begin_row-fluid
+ #+begin_span6
+ #+begin_src lisp
+ (when x
+   (when y
+     ...body...))
 
-\[
- E=mc^2
-\]
+ (if x
+     (when y
+       ...body...)
+     nil)
 
-\begin{equation}
- E=mc^2 + \frac{1}{2} mv^2
-\end{equation}
+ (if x
+     (if y
+         ...body...
+         nil)
+     nil)
+ #+end_src
+ #+end_span6
+ #+begin_span6
+ + this limits the ability to write a /local macro/.
+ #+end_span6
+ #+end_row-fluid
+ #+end_container-fluid
 
-** Twocolumn Test
+** Normal order evaluation vs Applicative order evaluation         :noexport:
 
-#+begin_container-fluid
-#+begin_row-fluid
-#+begin_span6
-+ HOOA!
-+ *HOOA!*
-+ HOOA!
-#+end_span6
-#+begin_span6
-This is a LISP ALIEN IN A CAGE!
+ #+begin_src lisp
+ ;; Assume + and * are primitives (normal form)
+ (defun 1+     (x) (+ 1 x))
+ (defun square (x) (* x x))
+ #+end_src
 
-[[png:alien]]
+ #+begin_container-fluid
+ #+begin_row-fluid
+ #+begin_span6
+ Applicable order evaluation:
 
-#+end_span6
-#+end_row-fluid
-#+end_container-fluid
+ + =(square (1+ 5))=
+ + =(* (1+ 5) (1+ 5))= --> needs values for =(1+ 5)=
+ + =(* (+ 1 5) (1+ 5))=
+ + =(* (+ 1 5) (+ 1 5))=
 
+ #+end_span6
+ #+begin_span6
+ #+end_span6
+ #+end_row-fluid
+ #+end_container-fluid
 
-** many columns test
+** Local macro and macrolet                                        :noexport:
 
+* Part 2: package system and symbols
 
-#+begin_container-fluid
-#+begin_row-fluid
-#+begin_span3
- a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
-#+end_span3
-#+begin_span3
- b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b
-#+end_span3
-#+begin_span3
- c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c
-#+end_span3
-#+begin_span3
- d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d
-#+end_span3
-#+end_row-fluid
-#+end_container-fluid
-
-* A Slide with Too Little Contents
-
-#+begin_center
-#+begin_smaller
-Hi, I'm small!
-#+end_smaller
-#+end_center
-
-#+begin_note
-See the headline is correctly adjusted
-#+end_note
-
-* Left-Center-Right template
-
-#+begin_xlarge
-x-large left
-#+begin_center
-centered
-#+end_center
-#+begin_alignright
-right
-#+end_alignright
-#+end_xlarge
-
-#+begin_note
-This is a footnote
-#+end_note
-
-* TODOs
-
-#+begin_container-fluid
-#+begin_row-fluid
-#+begin_span6
-#+begin_smaller
-+ Features
-  + Table of contents
-  + +=<dl>= does not expand+ *DONE*
-  + +Showing current keystrokes+ *DONE*
-  + auto-scroll/auto-zoom with big contents
-  + Showing current/total page number
-  + +Changing Stylesheet+ *DONE*. "style"
-  + +Up-Section command+ *DONE*. "u"
-  + Slide thumbnail
-  + +stopwatch/countdown timer+ *DONE*. "timer"
-  + +link to #section+ *DONE*.
-    #+HTML: <a href="index.html#6">sample link</a>
-#+end_smaller
-#+end_span6
-#+begin_span6
-#+begin_smaller
-+ Features inspired by other tools
-  + Content Search (in org-infojs)
-  + Drawing mode (in [[http://code.google.com/p/jessyink/][jessyink]])
-  + 'Paused' mode (in [[http://lab.hakim.se/reveal-js/][reveal.js]])
-  + +Export to PDF (also in reveal.js)+ *DONE*
-  + +resume output+ *DONE*
-  + Slide with an image covering the entire background (slideshare)
-  + present one paragraph/word/letter at a time
-    + those in [[http://docutils.sourceforge.net/docs/user/slide-shows.s5.html][s5]]
-  + "C-M-x" style notation in the command definition
-#+end_smaller
-#+end_span6
-
-#+end_row-fluid
-#+end_container-fluid
++ notorious
++ 
