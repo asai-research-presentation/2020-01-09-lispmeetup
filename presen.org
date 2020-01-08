@@ -20,6 +20,7 @@
 
 + ok, sorry, I was a little clickbaity
 
+Masataro Asai
 
 #+end_center
 
@@ -272,7 +273,7 @@ We propose /compile-time continuation/
 
 This can encupsulate the unspecified =&environment= structure
 
-+ =c= is merely a closure
+=c= is merely a closure
 
 > https://github.com/guicho271828/recursive-macroexpansion
 
@@ -300,9 +301,196 @@ Applicable order evaluation:
 #+end_row-fluid
 #+end_container-fluid
 
-
 * Part 2: package system, symbols and namespace
 
-+ notorious
-+ 
++ Not about its complexity
++ Not about package-inferred systems
++ but about *namespaces*
+
+** The issue of the package system in CL: @@html:<br>@@ → cannot import the "feature" of each symbol
+
+#+begin_src lisp
+(in-package :numeric)
+(defun square (x) (* x x))
+
+(in-package :gui)
+(defclass square (rectangle) ...)
+
+(defpackage :library3 (:use :numeric :gui)) ; conflict!!
+#+end_src
+
+Their features never overwrap → *no need for a conflict* (but they do in CL)
+
+** The case of Trivia's =fail/next= macro                          :noexport:
+
+=trivia= pattern matching library
+
+#+begin_src lisp
+(match (list 1 2)
+  ((list x y)
+   (if (= y (* 2 x))
+       (print :success!)
+       (trivia.fail:fail))) ; <- separated
+
+  ...next clauses...)
+#+end_src
+
+to avoid *frequent conflicts*:
+
+#+begin_src lisp
+(defpackage test (:use :cl :trivia :fiveam))
+(test mytest
+  (fail "reason"))
+#+end_src
+
+** The case of Trivia's =next= macro
+
+=trivia= pattern matching library has a =next= macro
+
+#+begin_src lisp
+(match arg
+  ((list x y)
+   (if (= y (* 2 x))
+       (print :success!)
+       (trivia.next:next))) ; <- separated
+
+  ((list x y)
+   (print :something-else)))
+#+end_src
+
+to avoid *frequent conflicts* with *iterate*:
+
+#+begin_src lisp
+(iter (initially (setq i 0))
+      (for i next (if (> i 10) (terminate) (incf i))
+      (print i))
+#+end_src
+
+Their features never overwrap → *no need for a conflict* (but they do in CL)
+
++ What are "features"? → The key notion missing here is *namespace*
+
+** Background : Namespace @@html:<br>@@ (it is /orthogonal/ to packages)
+
+Common Lisp is Lisp 2 : *variable* and *function* namespaces. ... Is it?
+
+#+begin_src lisp
+(defun fn (list)
+  (list list list list))
+#+end_src
+
++ *No, CL is Lisp-N* : same symbol can mean *more than* 2 things
+
+  #+begin_src lisp
+(defun fn (x) x)
+(defclass fn () ())
+(defvar fn)
+(cffi:define-foreign-library fn ...)
+(trivia:defpattern fn ...)
+(clack:defroute fn ...)
+(asdf:defsystem fn ...)
+  #+end_src
+
+** Background : Namespace (cont.)
+
+*Every namespace has accessors, conditions, boundp(, binder)*
+
+| namespace | accessor        | unbound condition  | boundp  | binding     |
+|-----------+-----------------+--------------------+---------+-------------|
+| class     | find-class      | SIMPLE-ERROR       | n/a     | n/a         |
+| function  | symbol-function | UNDEFINED-FUNCTION | fboundp | flet,labels |
+| value     | symbol-value    | UNBOUND-VARIABLE   | boundp  | let         |
+|
+
+/Some/ namespaces in CL can be said to overlap with each other:
+
++ *class*  --- with *type*, *condition* and *struct*
+  
+  *function*  --- with *macro-function* and *generic-function*
+  
+  *value*  --- with *symbol-macro*
+
+** Background : Macro DEFINE-NAMESPACE
+
+https://github.com/guicho271828/lisp-namespace
+
+: (define-namespace name &optional (expected-type t) (binding t) (documentation ""))
+
+For a namespace X, it defines:
+
++ =#'symbol-x, #'(setf symbol-x), #'x-boundp, UNBOUND-X=
+
+  Implementation: Simple hash table.
+
+  Namespaces have its own namespace named =namespace=.
+  
++ Integrated into =cl:documentation= interface (and appears on C-c C-d)
+
+  #+begin_src lisp
+(setf (documentation 'mysym 'x) "doc for mysym")
+  #+end_src
+
+  i.e. CL *already* has the notion of (non-extensible) namespace
+
+** Proposed package system:
+
+*Symbol* itself is global (hashtable from a *string* to a *symbol object*)
+
+*Import and export* : performed per each namespace
+
+*Conflict* : happens within the same namespace
+
+*Shadowing* : possible per each namespace (or for all namespaces, for convenience)
+
+#+begin_src lisp
+(export 'square 'numeric 'function)
+(export 'square 'gui     'class)
+(defpackage mypackage
+  (:use :cl :numeric :gui))
+(make-instance 'square) ; -> #<STANDARD-CLASS SQUARE>
+(square 5.0)            ; -> 25.0
+(eq 'mypackage:square 'numeric:square) = (eq 'square 'square) ; -> T
+(eq 'mypackage:square 'gui:square)     = (eq 'square 'square) ; -> T
+#+end_src
+
+(i.e. package prefixes are ignored)
+
+*namespace accessor* has additional =package= arguments
+
+#+begin_src lisp
+(make-instance 'square) vs (make-instance 'pkg2:square)
+                        ↓
+(make-instance 'square) vs (make-instance (find-class 'square 'pkg2))
+#+end_src
+
+→ compensation, but is required less often
+
+** The case of Trivia's =next= macro                               :noexport:
+
+=trivia='s =next= macro and =iterate='s =next= (keyword used in its macro) are orthogonal
+
+Then =iterate='s =next=
+
+#+begin_src lisp
+(match arg
+  ((list x y)
+   (if (= y (* 2 x))
+       (print :success!)
+       (trivia.next:next))) ; <- separated
+
+  ((list x y)
+   (print :something-else)))
+#+end_src
+
+to avoid *frequent conflicts* with *iterate*:
+
+#+begin_src lisp
+(iter (initially (setq i 0))
+      (for i next (if (> i 10) (terminate) (incf i))
+      (print i))
+#+end_src
+
+* Part 3: Type System
+
+(I think probably the time has run out)
 
