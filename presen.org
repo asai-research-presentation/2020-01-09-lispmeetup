@@ -43,206 +43,266 @@ Made by guicho2.71828 (Masataro Asai)
 
 * About this informal short talk
 
-+ Wish to talk about the current limit of the language
+Been writing *small experimental libraries* to play with the language design
+
+Today I showcase the assortment of such tiny little ideas
+
++ *Goal*: (blatantly) wish to talk about the current limit of the language
+  
+  and propose some prototypes
   + *without sounding ignorant*
+
+    *(i.e. try to avoid topics that are well known)*
   + macro system
     + no, not about hygenic macros
-  + package system
+  + package system and namespace
+    + no, not about package-inferred-systems
   + type system
+    + no, not about =satisfy= and recursive types
   + misc.
-+ propose some language prototypes
-  + the ideas are thought out few months ago
-+ 
 
 * Part 1 : "Lisp macros are awesome!"
 
-+ It is.
-+ but once you stay in common lisp for many years, it feels something is missing
+True, but it feels something is missing once you stay long enough in common lisp
 
 ** The case of local macros in Iterate
 
- + Iterate: the lispier alternative to loop
- + Has various *local macros*
-   #+begin_src lisp
- (iter (for i below 5)   ; <- local macro
-       (for j = (1+ i))  ; <- local macro
-       (print i))
-   #+end_src
- + They cannot be implemented by =macrolet/defmacro=
-   + because the =iterate= macro *must detect =for= beforehand*
+Iterate: the lispier alternative to loop
+
++ Has various *local macros*
+  #+begin_src lisp
+(iter (for i below 5)   ; <- local macro
+      (for j = (1+ i))  ; <- local macro
+      (print i))
+  #+end_src
++ They cannot be implemented by =macrolet/defmacro=
+  
+  → because the =iterate= macro *must detect =for= beforehand*
 
 ** Iterate as =macrolet= ?
 
- A simplified version that supports only =for=
+Suppose a simplified version that supports only =for=
 
- #+begin_src lisp
- (iter (for i below 5)
-       (for j = (1+ i))
-       (print j))
- #+end_src
+What =iterate= must do for =for=?
 
- What =iterate= must do for =for=:
+#+begin_src lisp
+(iter (for i below 5)   ; <- detect these
+      (for j = (1+ i))  ; <- detect these 
+      (print j))
+#+end_src
 
- + Detect the variables, its initialization, stepping, stopping criteria
+Can we implement =for= with a macrolet?
 
- #+begin_src lisp
- (defmacro iter (&body body)
-   `(macrolet ((for (...) ...))
-      ,@body))
- #+end_src
+#+begin_src lisp
+(defmacro iter (&body body)
+  `(macrolet ((for (...) ...))
+     ,@body))
+#+end_src
 
- + *Useless:* =for= in =body= are expanded *after* expanding =iter=
- + We need *inter-macro communications*
++ *No:* =for= in =body= are expanded *after* expanding =iter=
+  
+  → =iter= cannot receive information (e.g. loop variables)
+
+  → The case of *inter-macro communications*
 
 ** Current solution: Code walker
 
- Iterate walks across the code body
+Iterate walks across the code body
 
- + Standard macros are expanded (exposing the local macro inside)
++ Standard macros are expanded (exposing the local macro inside)
 
- #+begin_src lisp
- (defmacro for2 (&rest args) `(for ,@args))
+  #+begin_src lisp
+(defmacro for2 (&rest args) `(for ,@args))
 
- (iter (for2 i below 5)
-       (print i))        ; works
- #+end_src
+(iter (for2 i below 5)
+      (print i))        ; works
+  #+end_src
 
- + Surrounding =macrolet='s are also expanded
++ Surrounding =macrolet='s are also expanded
 
- #+begin_src lisp
- (macrolet ((for2 (&rest args) `(for ,@args)))
-   (iter (for2 i below 5)
-         (print i)))        ; works
- #+end_src
+  #+begin_src lisp
+(macrolet ((for2 (&rest args) `(for ,@args)))
+  (iter (for2 i below 5)
+        (print i)))        ; works
+  #+end_src
 
- This can be done by passing =&environment= variable to =macroexpand=.
+  by passing =&environment= variable to =macroexpand=.
 
 ** However, inner =macrolet='s cause problems
 
- #+begin_src lisp
- (iter (for i below 5)
-       (macrolet ((collect (x) `(print ,x)))
-         (collect i)))
+#+begin_src lisp
+(iter (macrolet ((for2 (&rest args) `(for ,@args)))
+        (for2 i below 5))
+      (print i))
 
- WARNING: Iterate:
- Iterate does not know how to handle the special form (MACROLET ...)
+WARNING: Iterate:
+Iterate does not know how to handle the special form (MACROLET ...)
 
-   The function ITERATE:COLLECT is undefined.
-      [Condition of type UNDEFINED-FUNCTION]
- #+end_src
+  The function FOR2 is undefined.
+     [Condition of type UNDEFINED-FUNCTION]
+#+end_src
 
- *This cannot be done in ANSI CL*
- + Requires CLtL2 =augment-environement= to shadow the outer binding
- + =iterate= does not use it -- it has its own walker.
++ *This cannot be done in ANSI CL*
+
+  → Requires CLtL2 =augment-environement= to shadow the outer binding
+  
+  → =iterate= does not use it -- it has its own walker.
 
 ** Sketch                                                          :noexport:
 
- #+begin_src lisp
- (defun walk (form env)
-   (let ((form (macroexpand form env)))
-     (case (car form)
-       ('tagbody ...)
-       ...
-       ('macrolet
-        (destructuring-bind (bindings . body) (rest form)
-          (walk `(progn ,@body) (sb-cltl2:augment-environment env :macro binding))))
-       ...)))
+#+begin_src lisp
+(defun walk (form env)
+  (let ((form (macroexpand form env)))
+    (case (car form)
+      ('tagbody ...)
+      ...
+      ('macrolet
+       (destructuring-bind (bindings . body) (rest form)
+         (walk `(progn ,@body) (sb-cltl2:augment-environment env :macro binding))))
+      ...)))
 
- (defmacro for (&rest args)
-   (cerror 'for-found :args args)
-   '(progn))
+(defmacro for (&rest args)
+  (cerror 'for-found :args args)
+  '(progn))
 
- (defmacro iter (&body body &environment e)
-   (let (metadata)
-     (handler-bind ((for-found
-                      (lambda (c)
-                         (push-metadata c metadata) ; (1)
-                         (continue c))))
-        (let ((body (walk `(progn ,@body) e)))
-          (wrap metadata body)))))                  ; (2)
- #+end_src
+(defmacro iter (&body body &environment e)
+  (let (metadata)
+    (handler-bind ((for-found
+                     (lambda (c)
+                        (push-metadata c metadata) ; (1)
+                        (continue c))))
+       (let ((body (walk `(progn ,@body) e)))
+         (wrap metadata body)))))                  ; (2)
+#+end_src
 
 ** But writing a code walker is dumb
 
- + Every inter-macro communication requires *its own code walker*
- + hu.dwim.walker is not a solution (returns a CLOS object tree)
- + *Can be replaced by* =macroexpand-all=
++ Every inter-macro communication requires *its own code walker?*
++ hu.dwim.walker is not a solution (returns a CLOS object tree)
++ *Can be replaced by* =macroexpand-all=
 
 ** MACROEXPAND-ALL Sketch
 
- #+begin_src lisp
- (ql:quickload :trivial-macroexpand-all)
- (use-package :trivial-macroexpand-all)
+#+begin_src lisp
+(ql:quickload :trivial-macroexpand-all)
+(use-package :trivial-macroexpand-all)
 
- (defmacro for (&rest args)
-   (cerror "ignore" 'for-found :args args)
-   '(progn))
+(defmacro for (&rest args)
+  (cerror "ignore" 'for-found :args args)
+  '(progn))
 
- (defmacro iter (&body body &environment e)
-   (let (metadata)
-     (handler-bind ((for-found
-                      (lambda (c)
-                         (push c metadata)          ; (1)
-                         (continue c))))
-        (let ((body (macroexpand-all `(progn ,@body) e)))
-          (wrap metadata body)))))                  ; (2)
- #+end_src
+(defmacro iter (&body body &environment e)
+  (let (metadata)
+    (handler-bind ((for-found
+                     (lambda (c)
+                        (push c metadata)          ; (1)
+                        (continue c))))
+       (let ((body (macroexpand-all `(progn ,@body) e)))
+         (wrap metadata body)))))                  ; (2)
+#+end_src
 
-** Lisp macros are strictly normal order
++ Can we generalize this intention further?
 
- #+begin_container-fluid
- #+begin_row-fluid
- #+begin_span6
- #+begin_src lisp
- (when x
-   (when y
-     ...body...))
+** Lisp Macro evaluation
 
- (if x
-     (when y
-       ...body...)
-     nil)
+#+begin_container-fluid
+#+begin_row-fluid
+#+begin_span6
+Macro expansion is normal order
+#+begin_src lisp
+(when x
+  (when y
+    ...body...))
 
- (if x
-     (if y
-         ...body...
-         nil)
-     nil)
- #+end_src
- #+end_span6
- #+begin_span6
- + this limits the ability to write a /local macro/.
- #+end_span6
- #+end_row-fluid
- #+end_container-fluid
+(if x
+    (when y
+      ...body...)
+    nil)
+
+(if x
+    (if y
+        ...body...
+        nil)
+    nil)
+#+end_src
+#+end_span6
+#+begin_span6
+As opposed to applicable order
+#+begin_src lisp
+(when x
+  (when y
+    ...body...))
+
+(when x
+  (if y
+      ...body...
+      nil))
+
+(if x
+    (if y
+        ...body...
+        nil)
+    nil)
+#+end_src
+#+end_span6
+#+end_row-fluid
+#+end_container-fluid
+
+We change this (partially)
+
+** Whats the common pattern? @@html:<br>@@ → Nondeterministic expansion
+
+#+begin_src lisp
+(defmacro iter ( ... )
+  (loop <expand further>
+        (if <fail>
+            <fix and retry>
+            <return>)))
+#+end_src
+
+We propose /compile-time continuation/
+
+#+begin_src lisp
+(defmacro iter ( &body body &cont c )
+  (loop (funcall c `(progn ,@body)) ; expand inner first
+        (if <fail>
+            <fix and retry>
+            <return>)))
+#+end_src
+
+This can encupsulate the unspecified =&environment= structure
+
++ =c= is merely a closure
+
+> https://github.com/guicho271828/recursive-macroexpansion
 
 ** Normal order evaluation vs Applicative order evaluation         :noexport:
 
- #+begin_src lisp
- ;; Assume + and * are primitives (normal form)
- (defun 1+     (x) (+ 1 x))
- (defun square (x) (* x x))
- #+end_src
+#+begin_src lisp
+;; Assume + and * are primitives (normal form)
+(defun 1+     (x) (+ 1 x))
+(defun square (x) (* x x))
+#+end_src
 
- #+begin_container-fluid
- #+begin_row-fluid
- #+begin_span6
- Applicable order evaluation:
+#+begin_container-fluid
+#+begin_row-fluid
+#+begin_span6
+Applicable order evaluation:
 
- + =(square (1+ 5))=
- + =(* (1+ 5) (1+ 5))= --> needs values for =(1+ 5)=
- + =(* (+ 1 5) (1+ 5))=
- + =(* (+ 1 5) (+ 1 5))=
++ =(square (1+ 5))=
++ =(* (1+ 5) (1+ 5))= --> needs values for =(1+ 5)=
++ =(* (+ 1 5) (1+ 5))=
++ =(* (+ 1 5) (+ 1 5))=
 
- #+end_span6
- #+begin_span6
- #+end_span6
- #+end_row-fluid
- #+end_container-fluid
+#+end_span6
+#+begin_span6
+#+end_span6
+#+end_row-fluid
+#+end_container-fluid
 
-** Local macro and macrolet                                        :noexport:
 
-* Part 2: package system and symbols
+* Part 2: package system, symbols and namespace
 
 + notorious
 + 
+
