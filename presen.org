@@ -436,24 +436,19 @@ For a namespace X, it defines:
 
 *Symbol* itself is global (hashtable from a *string* to a *symbol object*)
 
-*Import and export* : performed per each namespace
+*Import/export/conflict* : performed per each namespace
 
-*Conflict* : happens within the same namespace
-
-*Shadowing* : possible per each namespace (or for all namespaces, for convenience)
+*Shadowing* : per namespace (or for all namespaces, for convenience)
 
 #+begin_src lisp
 (export 'square 'numeric 'function)
 (export 'square 'gui     'class)
-(defpackage mypackage
-  (:use :cl :numeric :gui))
+(defpackage mypackage (:use :cl :numeric :gui))
 (make-instance 'square) ; -> #<STANDARD-CLASS SQUARE>
 (square 5.0)            ; -> 25.0
-(eq 'mypackage:square 'numeric:square) = (eq 'square 'square) ; -> T
-(eq 'mypackage:square 'gui:square)     = (eq 'square 'square) ; -> T
+(eq 'mypackage:square 'numeric:square) ; -> T
+(eq 'mypackage:square 'gui:square)     ; -> T
 #+end_src
-
-(i.e. package prefixes are ignored)
 
 *namespace accessor* has additional =package= arguments
 
@@ -493,4 +488,57 @@ to avoid *frequent conflicts* with *iterate*:
 * Part 3: Type System
 
 (I think probably the time has run out)
+
+I really want a parameteric type in CL
+
+** The case of matrix GEMM
+
+#+begin_src lisp
+(defun gemm (a b c)
+  (declare ((array ?t (?d1 ?d2)) a))
+  (declare ((array ?t (?d2 ?d3)) b))
+  (declare ((array ?t (?d1 ?d3)) c))
+  ...)
+#+end_src
+
+I want it to signal a compile-time/run-time error when
+
++ a, b, c are of different upgraded-array-element-types
++ dimensions do not match
+
+*This and recursive type is an orthogonal issue*
+
+(it can happen without recursive type)
+
+** So I made one
+
+https://github.com/numcl/gtype
+
+#+begin_src lisp
+(defun gemm (a b c)
+  (resolve  ; <--------- ugly!
+    (declare (gtype (array ?t (?n1 ?n2)) a)
+             (gtype (array ?t (?n2 ?n3)) b)
+             (gtype (array ?t (?n1 ?n3)) c))
+    (dotimes (i ?n1)
+      (dotimes (j ?n2)
+        (dotimes (k ?n3)
+          (setf (aref c i k) (* (aref a i j) (aref b j k))))))))
+#+end_src
+
+Does not perform compile-time checking
+
+Implemented through =cltl2:declaration-information=
+
+I wish to develop a lisp that does this natively
+
+** By the way...
+
+The choice of aesthetics:
+
+Historic prolog style : =(array ?t (?n1 ?n2))=
+
+C++ style : =(array <T> (<n1> <n2>))=
+
+Which do you like?
 
