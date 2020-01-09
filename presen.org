@@ -606,3 +606,42 @@ Can also be dynamically altered; similar to LIL
 However, most usage will have the compiler support
 
 (in combination with types)
+
+* Closing remarks
+
+Personally I feel like moving away from Common Lisp
+
+ -- but *NOT* to non-lisp! *The Time is right for me:*
+
++ I have a (virtual) freedom of research
+
++ The dawn of neural-symbolic AI is approaching
+
++ Needs a language that has a large enough feature set for helping it
+
++ Not python: lacks low-level speed and optional type checks (~ SBCL)
+
++ Not CL: hard to modify the core of its compiler
+
+*Personal opinion: Lisp must address more acadmic needs*
+
++ symbolic optimization solvers (SAT, CSP, Prolog, MILP) as stdlib
+
+  type checking / compiler built on these *standardized* frameworks
+
+  https://github.com/guicho271828/cl-maxsat, cl-sat, cl-prolog2, cl-smt
+
++ connectionist optimization solvers (NN, tensors) as stdlib
+  
+  https://github.com/numcl/numcl , gtype, specialized-function (Julia-like dispatch for CL)
+
+* Conclusion
+
+Showcased tiny ideas that could be useful for implementing non-CL lisp
+
++ compile-time continuation
++ namespace
++ type-based constraints
++ role declarations
+
++ Argued that we need something new
