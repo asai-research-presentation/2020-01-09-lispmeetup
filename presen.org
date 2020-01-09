@@ -22,6 +22,8 @@
 
 Masataro Asai
 
+<note: "n" / "p" key to move forward / backward >
+
 #+end_center
 
 #+begin_note
@@ -36,35 +38,25 @@ Made by guicho2.71828 (Masataro Asai)
 
 * Me
 
-+ Ph.D in Automated Planning / Heuristic Graph Search (aka symbolic AI) (U. Tokyo)
++ Automated Planning / Heuristic Graph Search (aka symbolic AI)
 + Creating the future AI with Neural-Symbolic hybrid at IBM
 + A somewhat competent Common Lisper
 
 [[spng:ranking]]
 
-* About this informal short talk
+* About the Talk : Assortment of Tiny Little Ideas
 
-Been writing *small experimental libraries* to play with the language design
-
-Today I showcase the assortment of such tiny little ideas
-
-+ *Goal*: (blatantly) wish to talk about the current limit of the language
++ *Goal*: (blatantly) talk about the *current limitation of the language*
   
-  and propose some prototypes
+  and *propose some prototypes*
   + *without sounding ignorant*
 
     *(i.e. try to avoid topics that are well known)*
-  + macro system
-    + no, not about hygenic macros
-  + package system and namespace
-    + no, not about package-inferred-systems
-  + type system
-    + no, not about =satisfy= and recursive types
-  + misc.
+  + macro, package, namespace, type system, misc.
 
 * Part 1 : "Lisp macros are awesome!"
 
-True, but it feels something is missing once you stay long enough in common lisp
+*True*, but it feels something is missing
 
 ** The case of local macros in Iterate
 
@@ -204,7 +196,7 @@ Iterate does not know how to handle the special form (MACROLET ...)
 
 + Can we generalize this intention further?
 
-** Lisp Macro evaluation
+** (Partially) Chainging the Macro Expansion Order
 
 #+begin_container-fluid
 #+begin_row-fluid
@@ -248,8 +240,6 @@ As opposed to applicable order
 #+end_span6
 #+end_row-fluid
 #+end_container-fluid
-
-We change this (partially)
 
 ** Whats the common pattern? @@html:<br>@@ → Nondeterministic expansion
 
@@ -617,11 +607,11 @@ Personally I feel like moving away from Common Lisp
 
 + The dawn of neural-symbolic AI is approaching
 
-+ Needs a language that has a large enough feature set for helping it
++ We need a language that has a *large enough feature set for helping it*
 
-+ Not python: lacks low-level speed and optional type checks (~ SBCL)
++ *Not python:* lacks low-level speed and optional type checks (~ SBCL)
 
-+ Not CL: hard to modify the core of its compiler
++ *Not CL:* hard to modify the core of its compiler
 
 *Personal opinion: Lisp must address more acadmic needs*
 
