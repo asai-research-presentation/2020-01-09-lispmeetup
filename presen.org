@@ -542,3 +542,67 @@ C++ style : =(array <T> (<n1> <n2>))=
 
 Which do you like?
 
+* Part 4: Equality functions
+
+#+begin_src lisp
+(eq "string" "string") ; -> NIL
+(eql "string" "string") ; -> NIL
+(equal "string" "string") ; -> T
+(equalp "string" "string") ; -> T
+(string= "string" "string") ; -> T
+(string-equal "string" "string") ; -> T
+#+end_src
+
+** LIL (as I understand)
+
+#+begin_src lisp
+(defgeneric eq (<interface> a b))
+(defmethod eq ((<interface> <case-insensitive-string>) (a string) (b string)))
+#+end_src
+
+but the resulting code requires an explicit mention to the interface
+
+#+begin_src lisp
+(defun myfunc (<i> a b c d e)
+  (and (eq      <i> a b)
+       (less    <i> b c)
+       (greater <i> c d)
+       (!=      <i> d e)))
+#+end_src
+
+** Proposed alternative: /role/ declaration
+
+#+begin_src lisp
+(declare (type string a b))
+(declare (role case-insensitive-string a b))
+(= a b)
+#+end_src
+
++ *Orthogonal* to a casting (like C++ does); *Not* this:
+  
+  #+begin_src lisp
+(= (coerce a 'case-insensitive-string)
+   (coerce b 'case-insensitive-string))
+#+end_src
+
++ Operation is defined by the role *lexically* assigned to variables
+  
+  #+begin_src lisp
+(declare (type string a b c d))
+(declare (role case-insensitive-string a b c d))
+(and (= a b) (/= b c) (or (= b d) (= b d)))
+#+end_src
+
+** Proposed alternative: /role/ declaration
+
+Can also be dynamically altered; similar to LIL
+
+#+begin_src lisp
+(defun equal-with-runtime-role (a b role)
+  (with-role ((a role) (b role))
+    (= a b)))
+#+end_src
+
+However, most usage will have the compiler support
+
+(in combination with types)
