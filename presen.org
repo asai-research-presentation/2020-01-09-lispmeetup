@@ -526,15 +526,15 @@ https://github.com/numcl/gtype
           (setf (aref c i k) (* (aref a i j) (aref b j k))))))))
 #+end_src
 
-Does not perform compile-time checking
-
 Implemented through =cltl2:declaration-information=
 
-I wish to develop a lisp that does this natively
+*Hack*: *Does not perform compile-time checking*
 
-** By the way...
+→ Impossible inside CL, needs a framework to extend the compiler
 
-The choice of aesthetics:
+→ I wish to develop a lisp that does this natively
+
+** The choice of aesthetics:
 
 Historic prolog style : =(array ?t (?n1 ?n2))=
 
