@@ -1,0 +1,26 @@
+make[1]: warning: -jN forced in submake: disabling jobserver mode.
+make[1]: Entering directory '/home/masataro/repos/presentations/2020-01-09-lispmeetup'
+make -C img
+make -C css
+make -C scripts
+make[2]: Entering directory '/home/masataro/repos/presentations/2020-01-09-lispmeetup/img'
+make[2]: Entering directory '/home/masataro/repos/presentations/2020-01-09-lispmeetup/css'
+sass --update .
+make[2]: Entering directory '/home/masataro/repos/presentations/2020-01-09-lispmeetup/scripts'
+Q --batch  -f batch-byte-compile compile-org-html.el
+Q --batch  -f batch-byte-compile compile-org-latex.el
+make[2]: Q: Command not found
+Makefile:5: recipe for target 'compile-org-html.elc' failed
+make[2]: [compile-org-html.elc] Error 127 (ignored)
+make[2]: Q: Command not found
+Makefile:5: recipe for target 'compile-org-latex.elc' failed
+make[2]: [compile-org-latex.elc] Error 127 (ignored)
+make[2]: Leaving directory '/home/masataro/repos/presentations/2020-01-09-lispmeetup/scripts'
+scripts/org-html.sh presen.org presen.org.html
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/masataro/repos/presentations/2020-01-09-lispmeetup/img'
+Loading /home/masataro/repos/presentations/2020-01-09-lispmeetup/scripts/compile-org-html.el (source)...
+Org-mode version 8.3.6 (8.3.6-dist @ /home/masataro/repos/presentations/2020-01-09-lispmeetup/org-mode/lisp/)
+make[2]: Leaving directory '/home/masataro/repos/presentations/2020-01-09-lispmeetup/css'
+cp -f presen.org.html index.html
+make[1]: Leaving directory '/home/masataro/repos/presentations/2020-01-09-lispmeetup'

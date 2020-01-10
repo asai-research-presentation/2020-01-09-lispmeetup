@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-01-09 木 20:10 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Masataro Asai" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/layout.css" />
+<link rel="stylesheet" type="text/css" href="css/default.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.loupe.min.js"></script>
+<script type="text/javascript" src="js/jgestures/jgestures.min.js"></script>
+<script type="text/javascript" src="js/code.js"></script>
+<script type="text/javascript" src="MathJax/MathJax.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:500,900">
+<script type="text/javascript" src="js/mathjaxconf.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div class="outline-text-1">
+<p>
+
+</p>
+
+<div class="org-center">
+<div class="larger">
+<p>
+<b>Beyond Common Lisp</b>
+</p>
+<ul class="org-ul">
+<li>&#x2026;?</li>
+</ul>
+
+</div>
+
+<ul class="org-ul">
+<li>ok, sorry, I was a little clickbaity</li>
+</ul>
+
+<p>
+Masataro Asai
+</p>
+
+<p>
+&lt;note: "n" / "p" key to move forward / backward &gt;
+</p>
+</div>
+
+<div class="note">
+<div class="alignright">
+<p>
+Made by guicho2.71828 (Masataro Asai)
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1"><span class="section-number-2">1</span> Me</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Automated Planning / Heuristic Graph Search (aka symbolic AI)</li>
+<li>Creating the future AI with Neural-Symbolic hybrid at IBM</li>
+<li>A somewhat competent Common Lisper</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="img/static/ranking.png" alt="ranking.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2"><span class="section-number-2">2</span> About the Talk : Assortment of Tiny Little Ideas</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li><p>
+<b>Goal</b>: (blatantly) talk about the <b>current limitation of the language</b>
+</p>
+
+<p>
+and <b>propose some prototypes</b>
+</p>
+<ul class="org-ul">
+<li><p>
+<b>without sounding ignorant</b>
+</p>
+
+<p>
+<b>(i.e. try to avoid topics that are well known)</b>
+</p></li>
+<li>macro, package, namespace, type system, misc.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-2">
+<h2 id="orgheadline11"><span class="section-number-2">3</span> Part 1 : "Lisp macros are awesome!"</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>True</b>, but it feels something is missing
+</p>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">3.1</span> The case of local macros in Iterate</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Iterate: the lispier alternative to loop
+</p>
+
+<ul class="org-ul">
+<li><p>
+Has various <b>local macros</b>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(iter (for i below 5)   <span style="color: #b22222;">; &lt;- local macro</span>
+      (for j = (1+ i))  <span style="color: #b22222;">; &lt;- local macro</span>
+      (print i))
+</pre>
+</div></li>
+<li><p>
+They cannot be implemented by <code>macrolet/defmacro</code>
+</p>
+
+<p>
+→ because the <code>iterate</code> macro <b>must detect <code>for</code> beforehand</b>
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">3.2</span> Iterate as <code>macrolet</code> ?</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Suppose a simplified version that supports only <code>for</code>
+</p>
+
+<p>
+What <code>iterate</code> must do for <code>for</code>?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(iter (for i below 5)   <span style="color: #b22222;">; &lt;- detect these</span>
+      (for j = (1+ i))  <span style="color: #b22222;">; &lt;- detect these </span>
+      (print j))
+</pre>
+</div>
+
+<p>
+Can we implement <code>for</code> with a macrolet?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">iter</span> (<span style="color: #228b22;">&amp;body</span> body)
+  `(<span style="color: #a020f0;">macrolet</span> ((for (...) ...))
+     ,@body))
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>
+<b>No:</b> <code>for</code> in <code>body</code> are expanded <b>after</b> expanding <code>iter</code>
+</p>
+
+<p>
+→ <code>iter</code> cannot receive information (e.g. loop variables)
+</p>
+
+<p>
+→ The case of <b>inter-macro communications</b>
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">3.3</span> Current solution: Code walker</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Iterate walks across the code body
+</p>
+
+<ul class="org-ul">
+<li><p>
+Standard macros are expanded (exposing the local macro inside)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">for2</span> (<span style="color: #228b22;">&amp;rest</span> args) `(for ,@args))
+
+(iter (for2 i below 5)
+      (print i))        <span style="color: #b22222;">; works</span>
+</pre>
+</div></li>
+
+<li><p>
+Surrounding <code>macrolet</code>'s are also expanded
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">macrolet</span> ((for2 (<span style="color: #228b22;">&amp;rest</span> args) `(for ,@args)))
+  (iter (for2 i below 5)
+        (print i)))        <span style="color: #b22222;">; works</span>
+</pre>
+</div>
+
+<p>
+by passing <code>&amp;environment</code> variable to <code>macroexpand</code>.
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">3.4</span> However, inner <code>macrolet</code>'s cause problems</h3>
+<div class="outline-text-3" id="text-3-4">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(iter (<span style="color: #a020f0;">macrolet</span> ((for2 (<span style="color: #228b22;">&amp;rest</span> args) `(for ,@args)))
+        (for2 i below 5))
+      (print i))
+
+WARNING: Iterate:
+Iterate does not know how to handle the special form (<span style="color: #a020f0;">MACROLET</span> ...)
+
+  The function FOR2 is undefined.
+     [Condition of type UNDEFINED-FUNCTION]
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>
+<b>This cannot be done in ANSI CL</b>
+</p>
+
+<p>
+→ Requires CLtL2 <code>augment-environement</code> to shadow the outer binding
+</p>
+
+<p>
+→ <code>iterate</code> does not use it &#x2013; it has its own walker.
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">3.5</span> But writing a code walker is dumb</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>Every inter-macro communication requires <b>its own code walker?</b></li>
+<li>hu.dwim.walker is not a solution (returns a CLOS object tree)</li>
+<li><b>Can be replaced by</b> <code>macroexpand-all</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">3.6</span> MACROEXPAND-ALL Sketch</h3>
+<div class="outline-text-3" id="text-3-6">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(ql:quickload <span style="color: #483d8b;">:trivial-macroexpand-all</span>)
+(use-package <span style="color: #483d8b;">:trivial-macroexpand-all</span>)
+
+(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">for</span> (<span style="color: #228b22;">&amp;rest</span> args)
+  (<span style="color: #ff0000; font-weight: bold;">cerror</span> <span style="color: #8b2252;">"ignore"</span> 'for-found <span style="color: #483d8b;">:args</span> args)
+  '(<span style="color: #a020f0;">progn</span>))
+
+(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">iter</span> (<span style="color: #228b22;">&amp;body</span> body <span style="color: #228b22;">&amp;environment</span> e)
+  (<span style="color: #a020f0;">let</span> (metadata)
+    (<span style="color: #a020f0;">handler-bind</span> ((for-found
+                     (<span style="color: #a020f0;">lambda</span> (c)
+                        (push c metadata)          <span style="color: #b22222;">; (1)</span>
+                        (continue c))))
+       (<span style="color: #a020f0;">let</span> ((body (macroexpand-all `(<span style="color: #a020f0;">progn</span> ,@body) e)))
+         (wrap metadata body)))))                  <span style="color: #b22222;">; (2)</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Can we generalize this intention further?</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">3.7</span> (Partially) Chainging the Macro Expansion Order</h3>
+<div class="outline-text-3" id="text-3-7">
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span6">
+<p>
+Macro expansion is normal order
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">when</span> x
+  (<span style="color: #a020f0;">when</span> y
+    ...body...))
+
+(<span style="color: #a020f0;">if</span> x
+    (<span style="color: #a020f0;">when</span> y
+      ...body...)
+    nil)
+
+(<span style="color: #a020f0;">if</span> x
+    (<span style="color: #a020f0;">if</span> y
+        ...body...
+        nil)
+    nil)
+</pre>
+</div>
+
+</div>
+<div class="span6">
+<p>
+As opposed to applicable order
+</p>
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">when</span> x
+  (<span style="color: #a020f0;">when</span> y
+    ...body...))
+
+(<span style="color: #a020f0;">when</span> x
+  (<span style="color: #a020f0;">if</span> y
+      ...body...
+      nil))
+
+(<span style="color: #a020f0;">if</span> x
+    (<span style="color: #a020f0;">if</span> y
+        ...body...
+        nil)
+    nil)
+</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">3.8</span> Whats the common pattern? <br> → Nondeterministic expansion</h3>
+<div class="outline-text-3" id="text-3-8">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">iter</span> ( ... )
+  (<span style="color: #a020f0;">loop</span> &lt;expand further&gt;
+        (<span style="color: #a020f0;">if</span> &lt;fail&gt;
+            &lt;fix and retry&gt;
+            &lt;return&gt;)))
+</pre>
+</div>
+
+<p>
+We propose <i>compile-time continuation</i>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">defmacro</span> <span style="color: #0000ff;">iter</span> ( <span style="color: #228b22;">&amp;body</span> body <span style="color: #228b22;">&amp;cont</span> c )
+  (<span style="color: #a020f0;">loop</span> (funcall c `(<span style="color: #a020f0;">progn</span> ,@body)) <span style="color: #b22222;">; expand inner first</span>
+        (<span style="color: #a020f0;">if</span> &lt;fail&gt;
+            &lt;fix and retry&gt;
+            &lt;return&gt;)))
+</pre>
+</div>
+
+<p>
+This can encupsulate the unspecified <code>&amp;environment</code> structure
+</p>
+
+<p>
+<code>c</code> is merely a closure
+</p>
+
+<p>
+&gt; <a href="https://github.com/guicho271828/recursive-macroexpansion">https://github.com/guicho271828/recursive-macroexpansion</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-2">
+<h2 id="orgheadline18"><span class="section-number-2">4</span> Part 2: package system, symbols and namespace</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Not about its complexity</li>
+<li>Not about package-inferred systems</li>
+<li>but about <b>namespaces</b></li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">4.1</span> The issue of the package system in CL: <br> → cannot import the "feature" of each symbol</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">in-package</span> <span style="color: #483d8b;">:numeric</span>)
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">square</span> (x) (* x x))
+
+(<span style="color: #a020f0;">in-package</span> <span style="color: #483d8b;">:gui</span>)
+(<span style="color: #a020f0;">defclass</span> <span style="color: #228b22;">square</span> (rectangle) ...)
+
+(<span style="color: #a020f0;">defpackage</span> <span style="color: #228b22;">:library3</span> (<span style="color: #483d8b;">:use</span> <span style="color: #483d8b;">:numeric</span> <span style="color: #483d8b;">:gui</span>)) <span style="color: #b22222;">; conflict!!</span>
+</pre>
+</div>
+
+<p>
+Their features never overwrap → <b>no need for a conflict</b> (but they do in CL)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-3">
+<h3 id="orgheadline13"><span class="section-number-3">4.2</span> The case of Trivia's <code>next</code> macro</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<code>trivia</code> pattern matching library has a <code>next</code> macro
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(match arg
+  ((list x y)
+   (<span style="color: #a020f0;">if</span> (= y (* 2 x))
+       (print <span style="color: #483d8b;">:success!</span>)
+       (trivia.next:next))) <span style="color: #b22222;">; &lt;- separated</span>
+
+  ((list x y)
+   (print <span style="color: #483d8b;">:something-else</span>)))
+</pre>
+</div>
+
+<p>
+to avoid <b>frequent conflicts</b> with <b>iterate</b>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(iter (initially (setq i 0))
+      (for i next (<span style="color: #a020f0;">if</span> (&gt; i 10) (terminate) (incf i))
+      (print i))
+</pre>
+</div>
+
+<p>
+Their features never overwrap → <b>no need for a conflict</b> (but they do in CL)
+</p>
+
+<ul class="org-ul">
+<li>What are "features"? → The key notion missing here is <b>namespace</b></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-3">
+<h3 id="orgheadline14"><span class="section-number-3">4.3</span> Background : Namespace <br> (it is <i>orthogonal</i> to packages)</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Common Lisp is Lisp 2 : <b>variable</b> and <b>function</b> namespaces. &#x2026; Is it?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">fn</span> (list)
+  (list list list list))
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>
+<b>No, CL is Lisp-N</b> : same symbol can mean <b>more than</b> 2 things
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">fn</span> (x) x)
+(<span style="color: #a020f0;">defclass</span> <span style="color: #228b22;">fn</span> () ())
+(<span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">fn</span>)
+(cffi:define-foreign-library fn ...)
+(trivia:defpattern fn ...)
+(clack:defroute fn ...)
+(asdf:defsystem fn ...)
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">4.4</span> Background : Namespace (cont.)</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+<b>Every namespace has accessors, conditions, boundp(, binder)</b>
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">namespace</th>
+<th scope="col" class="org-left">accessor</th>
+<th scope="col" class="org-left">unbound condition</th>
+<th scope="col" class="org-left">boundp</th>
+<th scope="col" class="org-left">binding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">class</td>
+<td class="org-left">find-class</td>
+<td class="org-left">SIMPLE-ERROR</td>
+<td class="org-left">n/a</td>
+<td class="org-left">n/a</td>
+</tr>
+
+<tr>
+<td class="org-left">function</td>
+<td class="org-left">symbol-function</td>
+<td class="org-left">UNDEFINED-FUNCTION</td>
+<td class="org-left">fboundp</td>
+<td class="org-left">flet,labels</td>
+</tr>
+
+<tr>
+<td class="org-left">value</td>
+<td class="org-left">symbol-value</td>
+<td class="org-left">UNBOUND-VARIABLE</td>
+<td class="org-left">boundp</td>
+<td class="org-left">let</td>
+</tr>
+<tbody>
+<tr>
+</tr>
+</tbody>
+</table>
+
+<p>
+<i>Some</i> namespaces in CL can be said to overlap with each other:
+</p>
+
+<ul class="org-ul">
+<li><p>
+<b>class</b>  &#x2014; with <b>type</b>, <b>condition</b> and <b>struct</b>
+</p>
+
+<p>
+<b>function</b>  &#x2014; with <b>macro-function</b> and <b>generic-function</b>
+</p>
+
+<p>
+<b>value</b>  &#x2014; with <b>symbol-macro</b>
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">4.5</span> Background : Macro DEFINE-NAMESPACE</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+<a href="https://github.com/guicho271828/lisp-namespace">https://github.com/guicho271828/lisp-namespace</a>
+</p>
+
+<pre class="example">
+(define-namespace name &amp;optional (expected-type t) (binding t) (documentation ""))
+</pre>
+
+<p>
+For a namespace X, it defines:
+</p>
+
+<ul class="org-ul">
+<li><p>
+<code>#'symbol-x, #'(setf symbol-x), #'x-boundp, UNBOUND-X</code>
+</p>
+
+<p>
+Implementation: Simple hash table.
+</p>
+
+<p>
+Namespaces have its own namespace named <code>namespace</code>.
+</p></li>
+
+<li><p>
+Integrated into <code>cl:documentation</code> interface (and appears on C-c C-d)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(setf (documentation 'mysym 'x) <span style="color: #8b2252;">"doc for mysym"</span>)
+</pre>
+</div>
+
+<p>
+i.e. CL <b>already</b> has the notion of (non-extensible) namespace
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">4.6</span> Proposed package system:</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+<b>Symbol</b> itself is global (hashtable from a <b>string</b> to a <b>symbol object</b>)
+</p>
+
+<p>
+<b>Import/export/conflict</b> : performed per each namespace
+</p>
+
+<p>
+<b>Shadowing</b> : per namespace (or for all namespaces, for convenience)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(export 'square 'numeric 'function)
+(export 'square 'gui     'class)
+(<span style="color: #a020f0;">defpackage</span> <span style="color: #228b22;">mypackage</span> (<span style="color: #483d8b;">:use</span> <span style="color: #483d8b;">:cl</span> <span style="color: #483d8b;">:numeric</span> <span style="color: #483d8b;">:gui</span>))
+(make-instance 'square) <span style="color: #b22222;">; -&gt; #&lt;STANDARD-CLASS SQUARE&gt;</span>
+(square 5.0)            <span style="color: #b22222;">; -&gt; 25.0</span>
+(eq 'mypackage:square 'numeric:square) <span style="color: #b22222;">; -&gt; T</span>
+(eq 'mypackage:square 'gui:square)     <span style="color: #b22222;">; -&gt; T</span>
+</pre>
+</div>
+
+<p>
+<b>namespace accessor</b> has additional <code>package</code> arguments
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(make-instance 'square) vs (make-instance 'pkg2:square)
+                        &#8595;
+(make-instance 'square) vs (make-instance (find-class 'square 'pkg2))
+</pre>
+</div>
+
+<p>
+→ compensation, but is required less often
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline22" class="outline-2">
+<h2 id="orgheadline22"><span class="section-number-2">5</span> Part 3: Type System</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+(I think probably the time has run out)
+</p>
+
+<p>
+I really want a parameteric type in CL
+</p>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">5.1</span> The case of matrix GEMM</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">gemm</span> (a b c)
+  (<span style="color: #a020f0;">declare</span> ((array ?t (?d1 ?d2)) a))
+  (<span style="color: #a020f0;">declare</span> ((array ?t (?d2 ?d3)) b))
+  (<span style="color: #a020f0;">declare</span> ((array ?t (?d1 ?d3)) c))
+  ...)
+</pre>
+</div>
+
+<p>
+I want it to signal a compile-time/run-time error when
+</p>
+
+<ul class="org-ul">
+<li>a, b, c are of different upgraded-array-element-types</li>
+<li>dimensions do not match</li>
+</ul>
+
+<p>
+<b>This and recursive type is an orthogonal issue</b>
+</p>
+
+<p>
+(it can happen without recursive type)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">5.2</span> So I made one</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+<a href="https://github.com/numcl/gtype">https://github.com/numcl/gtype</a>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">gemm</span> (a b c)
+  (resolve  <span style="color: #b22222;">; &lt;--------- ugly!</span>
+    (<span style="color: #a020f0;">declare</span> (gtype (array ?t (?n1 ?n2)) a)
+             (gtype (array ?t (?n2 ?n3)) b)
+             (gtype (array ?t (?n1 ?n3)) c))
+    (<span style="color: #a020f0;">dotimes</span> (i ?n1)
+      (<span style="color: #a020f0;">dotimes</span> (j ?n2)
+        (<span style="color: #a020f0;">dotimes</span> (k ?n3)
+          (setf (aref c i k) (* (aref a i j) (aref b j k))))))))
+</pre>
+</div>
+
+<p>
+Implemented through <code>cltl2:declaration-information</code>
+</p>
+
+<p>
+<b>Hack</b>: <b>Does not perform compile-time checking</b>
+</p>
+
+<p>
+→ Impossible inside CL, needs a framework to extend the compiler
+</p>
+
+<p>
+→ I wish to develop a lisp that does this natively
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">5.3</span> The choice of aesthetics:</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+Historic prolog style : <code>(array ?t (?n1 ?n2))</code>
+</p>
+
+<p>
+C++ style : <code>(array &lt;T&gt; (&lt;n1&gt; &lt;n2&gt;))</code>
+</p>
+
+<p>
+Which do you like?
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline26" class="outline-2">
+<h2 id="orgheadline26"><span class="section-number-2">6</span> Part 4: Equality functions</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(eq <span style="color: #8b2252;">"string"</span> <span style="color: #8b2252;">"string"</span>) <span style="color: #b22222;">; -&gt; NIL</span>
+(eql <span style="color: #8b2252;">"string"</span> <span style="color: #8b2252;">"string"</span>) <span style="color: #b22222;">; -&gt; NIL</span>
+(equal <span style="color: #8b2252;">"string"</span> <span style="color: #8b2252;">"string"</span>) <span style="color: #b22222;">; -&gt; T</span>
+(equalp <span style="color: #8b2252;">"string"</span> <span style="color: #8b2252;">"string"</span>) <span style="color: #b22222;">; -&gt; T</span>
+(string= <span style="color: #8b2252;">"string"</span> <span style="color: #8b2252;">"string"</span>) <span style="color: #b22222;">; -&gt; T</span>
+(string-equal <span style="color: #8b2252;">"string"</span> <span style="color: #8b2252;">"string"</span>) <span style="color: #b22222;">; -&gt; T</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline23" class="outline-3">
+<h3 id="orgheadline23"><span class="section-number-3">6.1</span> LIL (as I understand)</h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">defgeneric</span> <span style="color: #0000ff;">eq</span> (&lt;interface&gt; a b))
+(<span style="color: #a020f0;">defmethod</span> <span style="color: #0000ff;">eq</span> ((&lt;interface&gt; &lt;case-insensitive-string&gt;) (a string) (b string)))
+</pre>
+</div>
+
+<p>
+but the resulting code requires an explicit mention to the interface
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">myfunc</span> (&lt;i&gt; a b c d e)
+  (and (eq      &lt;i&gt; a b)
+       (less    &lt;i&gt; b c)
+       (greater &lt;i&gt; c d)
+       (!=      &lt;i&gt; d e)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">6.2</span> Proposed alternative: <i>role</i> declaration</h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">declare</span> (type string a b))
+(<span style="color: #a020f0;">declare</span> (role case-insensitive-string a b))
+(= a b)
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>
+<b>Orthogonal</b> to a casting (like C++ does); <b>Not</b> this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(= (coerce a 'case-insensitive-string)
+   (coerce b 'case-insensitive-string))
+</pre>
+</div></li>
+
+<li><p>
+Operation is defined by the role <b>lexically</b> assigned to variables
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">declare</span> (type string a b c d))
+(<span style="color: #a020f0;">declare</span> (role case-insensitive-string a b c d))
+(and (= a b) (/= b c) (or (= b d) (= b d)))
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-3">
+<h3 id="orgheadline25"><span class="section-number-3">6.3</span> Proposed alternative: <i>role</i> declaration</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Can also be dynamically altered; similar to LIL
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">equal-with-runtime-role</span> (a b role)
+  (with-role ((a role) (b role))
+    (= a b)))
+</pre>
+</div>
+
+<p>
+However, most usage will have the compiler support
+</p>
+
+<p>
+(in combination with types)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline27" class="outline-2">
+<h2 id="orgheadline27"><span class="section-number-2">7</span> Closing remarks</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Personally I feel like moving away from Common Lisp
+</p>
+
+<p>
+&#x2013; but <b>NOT</b> to non-lisp! <b>The Time is right for me:</b>
+</p>
+
+<ul class="org-ul">
+<li>I have a (virtual) freedom of research</li>
+
+<li>The dawn of neural-symbolic AI is approaching</li>
+
+<li>We need a language that has a <b>large enough feature set for helping it</b></li>
+
+<li><b>Not python:</b> lacks low-level speed and optional type checks (~ SBCL)</li>
+
+<li><b>Not CL:</b> hard to modify the core of its compiler</li>
+</ul>
+
+<p>
+<b>Personal opinion: Lisp must address more acadmic needs</b>
+</p>
+
+<ul class="org-ul">
+<li><p>
+symbolic optimization solvers (SAT, CSP, Prolog, MILP) as stdlib
+</p>
+
+<p>
+type checking / compiler built on these <b>standardized</b> frameworks
+</p>
+
+<p>
+<a href="https://github.com/guicho271828/cl-maxsat">https://github.com/guicho271828/cl-maxsat</a>, cl-sat, cl-prolog2, cl-smt
+</p></li>
+
+<li><p>
+connectionist optimization solvers (NN, tensors) as stdlib
+</p>
+
+<p>
+<a href="https://github.com/numcl/numcl">https://github.com/numcl/numcl</a> , gtype, specialized-function (Julia-like dispatch for CL)
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline28" class="outline-2">
+<h2 id="orgheadline28"><span class="section-number-2">8</span> Conclusion</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Showcased tiny ideas that could be useful for implementing non-CL lisp
+</p>
+
+<ul class="org-ul">
+<li>compile-time continuation</li>
+<li>namespace</li>
+<li>type-based constraints</li>
+<li>role declarations</li>
+
+<li>Argued that we need something new</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Masataro Asai</p>
+<p class="date">Created: 2020-01-09 木 20:10</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
